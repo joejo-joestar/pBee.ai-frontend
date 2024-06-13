@@ -2,6 +2,14 @@
 
 This repository is to store the static files for the PBee.ai website.
 
+Libraries and Such:
+- React
+- Redux
+- Vite
+- Typescript
+- Tailwindcss
+- Bootstrap(?)
+
 ## TODO:
 - [ ] Finalization of Flow of Website
 - [ ] Weekly Deliverables
