@@ -24,7 +24,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
       <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
         {/* Aligning towards center */}
         <div
-          className={`${navbarBackground} transition flex px-3 py-3 justify-center gap-1 rounded-xl ${flexBetween} mx-auto w-2/3`}
+          className={`${navbarBackground} transition delay-150 flex px-3 py-3 justify-center gap-1 rounded-xl ${flexBetween} mx-auto w-2/3`}
         >
           {/* Aligning depending screen size */}
           <div className={` ${flexBetween} w-full gap-10`}>
