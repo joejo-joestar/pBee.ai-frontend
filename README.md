@@ -2,19 +2,14 @@
 
 This repository is to store the static files for the PBee.ai website.
 
-Libraries and Such:
-- React
-- Redux
-- **Vite**
-- **Typescript**
-- **Tailwindcss**
-- Bootstrap(?)
-- **framer motion**
-- **react anchor link smooth scroll**
-
-## TODO:
-- [ ] Finalization of Flow of Website
-- [ ] Weekly Deliverables
+## Libraries and Such:
+- [React](https://react.dev/learn)
+- [Redux]()
+- [Vite](https://vitejs.dev/guide/)
+- [Typescript]()
+- [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
+- [Framer Mtion](https://www.framer.com/motion/)
+- [React Anchor Link Smooth Scroll](https://www.npmjs.com/package/react-anchor-link-smooth-scroll)
 
 ## Landing Page
 ###  Hero Page
@@ -29,14 +24,10 @@ Libraries and Such:
 
 ### Get Started Page
 - [ ] Login Page
-  <!-- - [ ] Sign In using Google
-  - [ ] Sign In using Outlook-->
   - [ ] Credentials
-  - [ ] Sign In using Email 
+  - [ ] Sign In using Email
 - [ ] Sign Up Page
-  - [ ] Sign 
-  <!-- - [ ] Sign Up using Google
-  - [ ] Sign Up using Outlook -->
+  - [ ] Sign
 - [ ] Pricing
 
 ## Product
@@ -53,3 +44,26 @@ Libraries and Such:
 - [ ] Exporting
   - [ ] Share
 
+## Using this repo
+
+creating react project
+```terminal
+npm create vite@latest
+
+npm install
+npm cd [project name]
+```
+
+installing other dependencies
+```terminal
+npm i framer-motion react-anchor-link-smooth-scroll
+npm i -D @types/react-anchor-link-smooth-scroll @types/node
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+Test Server
+```terminal
+npm run dev
+```
