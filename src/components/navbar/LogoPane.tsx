@@ -1,6 +1,6 @@
-import logo from "@/assets/Logo.svg";
+import logo from "@a/Logo.svg";
 import Link from "./Link";
-import { SelectedPage } from "@/components/shared/types";
+import { SelectedPage } from "@c/shared/types";
 
 type Props = {
   selectedPage: SelectedPage;

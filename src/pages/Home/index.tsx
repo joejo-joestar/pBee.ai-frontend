@@ -1,12 +1,13 @@
-import ActionButton from "@/components/shared/ActionButton";
-import { SelectedPage } from "@/components/shared/types";
-import useMediaQuery from "@/hooks/useMediaQuery";
-import Image from "@/assets/tempimg.png";
+import ActionButton from "@c/shared/ActionButton";
+import { SelectedPage } from "@c/shared/types";
+import useMediaQuery from "@h/useMediaQuery";
+import Image from "@a/tempimg.png";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
+// TODO: finish
 const Home = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width:1240px)");
 

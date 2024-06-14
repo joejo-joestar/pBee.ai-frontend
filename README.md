@@ -8,7 +8,7 @@ This repository is to store the static files for the PBee.ai website.
 - [Vite](https://vitejs.dev/guide/)
 - [Typescript]()
 - [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
-- [Framer Mtion](https://www.framer.com/motion/)
+- [Framer Motion](https://www.framer.com/motion/)
 - [React Anchor Link Smooth Scroll](https://www.npmjs.com/package/react-anchor-link-smooth-scroll)
 
 ## Landing Page

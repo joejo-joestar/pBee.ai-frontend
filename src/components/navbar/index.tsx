@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { SelectedPage } from "@/components/shared/types";
 import LogoPane from "./LogoPane";
-import QuickLinks from "./QuickLinks";
-import LoginButtons from "./LoginButtons";
-import useMediaQuery from "@/hooks/useMediaQuery";
-import Bars from "@/assets/Bars.svg";
+import useMediaQuery from "@h/useMediaQuery";
+import Bars from "@a/Bars.svg";
 import MobileMenu from "./MobileMenu";
+import RightHalf from "./RightHalf";
 
 type Props = {
   isTopOfPage: boolean;
@@ -36,19 +35,10 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             />
             {/* Right Side */}
             {isAboveMediumScreens ? (
-              <div className={`${flexBetween} w-2/3 gap-3`}>
-                {/* Quick Links */}
-                <QuickLinks
-                  style={`${flexBetween} gap-6`}
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-                {/* Login/Sign Up Buttons */}
-                <LoginButtons
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-              </div>
+              <RightHalf
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
             ) : (
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
                 <img alt="Menu" src={Bars} />

@@ -1,5 +1,5 @@
-import Close from "@/assets/Close.svg";
-import { SelectedPage } from "../shared/types";
+import Close from "@a/Close.svg";
+import { SelectedPage } from "@c/shared/types";
 import QuickLinks from "./QuickLinks";
 
 type Props = {
@@ -16,7 +16,7 @@ const MobileMenu = ({
   setIsMenuToggled,
 }: Props) => {
   return (
-    <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] duration-100 bg-bgDark70">
+    <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-bgDark70">
       {/* Close Icon */}
       <div className="flex justify-end p-12">
         <button onClick={() => setIsMenuToggled(!isMenuToggled)}>

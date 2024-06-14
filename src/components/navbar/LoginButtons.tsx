@@ -1,6 +1,6 @@
-import ActionButton from "../shared/ActionButton";
+import ActionButton from "@c/shared/ActionButton";
 import Link from "./Link";
-import { SelectedPage } from "@/components/shared/types";
+import { SelectedPage } from "@c/shared/types";
 
 type Props = {
   selectedPage: SelectedPage;
