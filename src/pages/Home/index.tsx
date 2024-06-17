@@ -29,7 +29,7 @@ const Home = ({ setSelectedPage }: Props) => {
           </div>
         </div>
         {/* Action */}
-        <ActionButton size="px-8 py-6" setSelectedPage={setSelectedPage}>
+        <ActionButton style="px-10 py-5 text-xl" setSelectedPage={setSelectedPage} page={SelectedPage.Pricing}>
           Get Started
         </ActionButton>
         {/* Image */}

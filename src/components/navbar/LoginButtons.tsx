@@ -3,24 +3,27 @@ import Link from "./Link";
 import { SelectedPage } from "@c/shared/types";
 
 type Props = {
+  style: string;
+  buttonStyle: string;
   selectedPage: SelectedPage;
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const flexBetween = "flex items-center justify-between";
-
-const Logo = ({ selectedPage, setSelectedPage }: Props) => {
+const Logo = ({ style, buttonStyle, selectedPage, setSelectedPage }: Props) => {
   return (
-    <div className={`${flexBetween} gap-8`}>
+    <div className={`${style}`}>
       <Link
         page="Sign In"
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-        <ActionButton
-            size="px-6 py-4"
-            setSelectedPage={setSelectedPage}
-        >Get Started</ActionButton>
+      <ActionButton
+        style={`${buttonStyle}`}
+        page={SelectedPage.Pricing}
+        setSelectedPage={setSelectedPage}
+      >
+        Get Started
+      </ActionButton>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { SelectedPage } from "@/components/shared/types";
-import LogoPane from "./LogoPane";
-import useMediaQuery from "@h/useMediaQuery";
 import Bars from "@a/Bars.svg";
+import useMediaQuery from "@h/useMediaQuery";
+import LogoPane from "./LogoPane";
+import PageLinks from "./PageLinks";
 import MobileMenu from "./MobileMenu";
-import RightHalf from "./RightHalf";
 
 type Props = {
   isTopOfPage: boolean;
@@ -24,7 +24,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
       <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
         {/* Aligning towards center */}
         <div
-          className={`${navbarBackground} transition delay-150 flex px-3 py-3 justify-center gap-1 rounded-xl ${flexBetween} mx-auto w-2/3`}
+          className={`transition delay-150 ${navbarBackground} flex px-3 py-3 justify-center gap-1 rounded-xl ${flexBetween} mx-auto w-3/4`}
         >
           {/* Aligning depending screen size */}
           <div className={` ${flexBetween} w-full gap-10`}>
@@ -35,7 +35,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             />
             {/* Right Side */}
             {isAboveMediumScreens ? (
-              <RightHalf
+              <PageLinks
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
               />
@@ -45,6 +45,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
               </button>
             )}
             {/* Mobile Menu Modal */}
+            {/* TODO: finish mobile menu */}
             {!isAboveMediumScreens && isMenuToggled && (
               <MobileMenu
                 selectedPage={selectedPage}

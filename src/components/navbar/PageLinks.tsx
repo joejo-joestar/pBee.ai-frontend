@@ -9,7 +9,7 @@ type Props = {
 
 const flexBetween = "flex items-center justify-between";
 
-const RightHalf = ({ selectedPage, setSelectedPage }: Props) => {
+const PageLinks = ({ selectedPage, setSelectedPage }: Props) => {
   return (
     <div className={`${flexBetween} w-2/3 gap-3`}>
       {/* Quick Links */}
@@ -20,6 +20,8 @@ const RightHalf = ({ selectedPage, setSelectedPage }: Props) => {
       />
       {/* Login/Sign Up Buttons */}
       <LoginButtons
+        style={`${flexBetween} gap-8`}
+        buttonStyle={`px-6 py-4`}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
@@ -27,4 +29,4 @@ const RightHalf = ({ selectedPage, setSelectedPage }: Props) => {
   );
 };
 
-export default RightHalf;
+export default PageLinks;
