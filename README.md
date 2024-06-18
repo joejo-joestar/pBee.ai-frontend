@@ -13,13 +13,14 @@ This repository is to store the static files for the PBee.ai website.
 
 ## Landing Page
 ###  Hero Page
-- [ ] Navbar
-- [ ] Features
+- [x] Navbar
+- [x] Home
+- [x] Features
 - [ ] Testimonials
 - [ ] About Us
 - [ ] More About Us
 - [ ] FAQ
-- [ ] CTA(?)
+- [ ] CTA
 - [ ] Footer
 
 ### Get Started Page
