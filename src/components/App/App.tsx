@@ -25,7 +25,6 @@ function App() {
 
   return (
     <div className="app bg-bgDark100">
-      {/* <h1 className="text-center text-xl font-bold italic">Hello world!</h1> */}
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
