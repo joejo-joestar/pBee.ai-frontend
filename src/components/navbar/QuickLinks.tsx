@@ -1,5 +1,5 @@
 import Link from "./Link";
-import { SelectedPage } from "@/components/shared/types";
+import { SelectedPage } from "@c/shared/types";
 
 type Props = {
   style: string;
@@ -11,22 +11,22 @@ const QuickLinks = ({ style, selectedPage, setSelectedPage }: Props) => {
   return (
     <div className={`${style}`}>
       <Link
-        page="Product"
+        page={SelectedPage.Product}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
       <Link
-        page="Pricing"
+        page={SelectedPage.Pricing}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
       <Link
-        page="Company"
+        page={SelectedPage.Company}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
       <Link
-        page="Contact"
+        page={SelectedPage.Contact}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />

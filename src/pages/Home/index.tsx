@@ -11,7 +11,7 @@ const Home = ({ setSelectedPage }: Props) => {
 
   return (
     <section
-      id="Placard"
+      id="placard"
       className="gap-16 bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
     >
       <MainHeader setSelectedPage={setSelectedPage} />

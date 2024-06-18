@@ -56,8 +56,8 @@ npm cd [project name]
 
 installing other dependencies
 ```terminal
-npm i framer-motion react-anchor-link-smooth-scroll
-npm i -D @types/react-anchor-link-smooth-scroll @types/node
+npm i framer-motion
+npm i -D @types/node
 
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p

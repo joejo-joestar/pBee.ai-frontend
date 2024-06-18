@@ -1,6 +1,7 @@
 import { SelectedPage } from "@c/shared/types";
 import Cards from "@p/Features/FeatureCards";
 import HText from "@c/shared/HText";
+import { motion } from "framer-motion";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
@@ -10,14 +11,15 @@ type Props = {
 const Features = ({ setSelectedPage }: Props) => {
   return (
     <section
-      id="Product"
+      id="product"
       className="gap-16 bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
     >
-      <div className="flex flex-col z-10 mt-40 p-5 md:basis-4/5 text-center">
+        
+      <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Product)} className="flex flex-col z-10 mt-40 p-5 md:basis-4/5 text-center">
         {/* Heading */}
         <HText>What can you do with Placard AI?</HText>
       {/* Cards */}
-      </div>
+      </motion.div>
       <Cards />
     </section>
   );

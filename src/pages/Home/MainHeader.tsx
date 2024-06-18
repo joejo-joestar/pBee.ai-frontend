@@ -1,6 +1,7 @@
 import { SelectedPage } from "@c/shared/types";
 import ActionButton from "@c/shared/ActionButton";
 import MainHeaderText from "@c/shared/MainHText";
+import { motion } from "framer-motion";
 
 type Props = {
   setSelectedPage(value: SelectedPage): void;
@@ -8,7 +9,7 @@ type Props = {
 
 const HeroTop = ({ setSelectedPage }: Props) => {
   return (
-    <div className="flex flex-col z-10 mt-40 p-5 md:basis-3/5 items-center">
+    <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Placard)} className="flex flex-col z-10 mt-40 p-5 md:basis-3/5 items-center">
       <div className="md:-mt-30 text-center ">
         {/* Headings */}
         <MainHeaderText>Marketing, Simplified</MainHeaderText>
@@ -19,13 +20,13 @@ const HeroTop = ({ setSelectedPage }: Props) => {
       </div>
       {/* Action */}
       <ActionButton
+        page={SelectedPage.Pricing}
         style="px-10 py-5 text-xl w-[300px]"
         setSelectedPage={setSelectedPage}
-        page={SelectedPage.Pricing}
       >
         Get Started
       </ActionButton>
-    </div>
+    </motion.div>
   );
 };
 
