@@ -1,5 +1,3 @@
-import React from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import { SelectedPage } from "./types";
 
 type Props = {
@@ -11,13 +9,18 @@ type Props = {
 
 const ActionButton = ({ style, children, page, setSelectedPage }: Props) => {
   return (
-    <AnchorLink
-      className={`${style} flex flex-col justify-center items-center gap-1 rounded-xl bg-gradient-to-b from-[#4d3fb0] to-[#7063cb] border-2 border-solid border-[#aaa1e2] hover:bg-text100`}
-      onClick={() => setSelectedPage(page)}
+    <a
+      className={`${style} transition duration-500 flex flex-col justify-center items-center gap-1 rounded-xl bg-gradient-to-b from-[#4d3fb0]/60 to-[#7063cb]/50 border-2 border-solid border-[#aaa1e2] hover:border-[#aaa1e2]/40`}
       href={`#${page}`}
+      onClick={(e) => {
+        let currentPage = document.getElementById(page);
+        e.preventDefault(); // Stop Page Reloading
+        currentPage && currentPage.scrollIntoView({ behavior: "smooth" });
+        setSelectedPage(page);
+      }}
     >
       {children}
-    </AnchorLink>
+    </a>
   );
 };
 

@@ -16,7 +16,7 @@ const Link = ({ page, selectedPage, setSelectedPage }: Props) => {
       onClick={(e) => {
         let currentPage = document.getElementById(lowerCasePage);
         e.preventDefault(); // Stop Page Reloading
-        currentPage && currentPage.scrollIntoView();
+        currentPage && currentPage.scrollIntoView({ behavior: "smooth" });
         setSelectedPage(lowerCasePage);
       }}
     >
