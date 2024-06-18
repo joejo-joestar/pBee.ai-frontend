@@ -13,7 +13,12 @@ const Link = ({ page, selectedPage, setSelectedPage }: Props) => {
       className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""}
       transition duration-500 hover:text-lavender70`}
       href={`#${lowerCasePage}`}
-      onClick={() => setSelectedPage(lowerCasePage)}
+      onClick={(e) => {
+        let currentPage = document.getElementById(lowerCasePage);
+        e.preventDefault(); // Stop Page Reloading
+        currentPage && currentPage.scrollIntoView();
+        setSelectedPage(lowerCasePage);
+      }}
     >
       {page}
     </a>
