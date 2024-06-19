@@ -5,6 +5,8 @@ import Home from "@p/Home";
 import Features from "@p/Features";
 import Testimonials from "@p/Testimonials";
 import Footer from "@/components/footer/Footer";
+import CTA from "@/pages/CTA";
+import AboutUs from "@/pages/AboutUs";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -34,6 +36,8 @@ function App() {
       <Home setSelectedPage={setSelectedPage} />
       <Features setSelectedPage={setSelectedPage} />
       <Testimonials setSelectedPage={setSelectedPage} />
+      <AboutUs setSelectedPage={setSelectedPage} />
+      <CTA setSelectedPage={setSelectedPage} />
       <Footer />
     </div>
   );

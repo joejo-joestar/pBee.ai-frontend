@@ -1,4 +1,3 @@
-
 type Props = {
   size: string;
   title: string;
@@ -10,9 +9,11 @@ type Props = {
 const Card = ({ size, title, subtitle, img }: Props) => {
   return (
     <div
-      className={`${size} h-[400px] flex flex-col backdrop-blur shadow-lg p-5 rounded-xl bg-[#5b4ead]/5`}
+      className={`${size} h-[400px] bg-indigo-700/opacity-5 shadow-inner border border-indigo-700 flex flex-col backdrop-blur p-5 rounded-xl bg-[#5b4ead]/5`}
     >
-      <img className="rounded-xl" alt="yes" src={img} />
+      <div className="rounded-xl bg-gradient-to-l from-gray-900 via-black to-gray-900">
+        <img className="rounded-xl" alt="yes" src={img} />
+      </div>
       <h3 className="mt-5 text-lg font-bold">{title}</h3>
       <p>{subtitle}</p>
     </div>

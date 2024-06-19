@@ -19,7 +19,7 @@ const Testimonials = ({ setSelectedPage }: Props) => {
         <h2 className="text-xl">See what they have to say.</h2>
         {/* Cards */}
       </motion.div>
-      {/* <Quotes size={""} quote={""} author={""} profile={""} /> */}
+      <Quotes />
     </section>
   );
 };

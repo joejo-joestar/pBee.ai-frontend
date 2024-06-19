@@ -7,7 +7,7 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const QuickLinkss = ({ style, selectedPage, setSelectedPage }: Props) => {
+const QuickLinks = ({ style, selectedPage, setSelectedPage }: Props) => {
   return (
     <div className={`${style}`}>
       <Links
@@ -34,4 +34,4 @@ const QuickLinkss = ({ style, selectedPage, setSelectedPage }: Props) => {
   );
 };
 
-export default QuickLinkss;
+export default QuickLinks;
