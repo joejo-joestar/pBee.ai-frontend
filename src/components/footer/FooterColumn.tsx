@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import logo from "@a/Logo.png";
 
 type Props = {
@@ -18,17 +17,7 @@ const FooterColumn = ({ title, links, isLogoColumn = false }: Props) => (
       <div className="flex flex-col gap-5">
         <h3 className="font-semibold mb-2">{title}</h3>
         {links.map((link, index) => (
-          <a
-            key={index}
-            href="#"
-            className="hover:underline"
-            onClick={(e) => {
-              let currentPage = document.getElementById(link.toLowerCase());
-              e.preventDefault(); // Stop Page Reloading
-              currentPage && currentPage.scrollIntoView({ behavior: "smooth" });
-              setSelectedPage(link.toLowerCase());
-            }}
-          >
+          <a key={index} href="#" className="hover:underline">
             {link}
           </a>
         ))}
@@ -38,6 +27,3 @@ const FooterColumn = ({ title, links, isLogoColumn = false }: Props) => (
 );
 
 export default FooterColumn;
-function setSelectedPage(link: string) {
-  throw new Error("Function not implemented.");
-}

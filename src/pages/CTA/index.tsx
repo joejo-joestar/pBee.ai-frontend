@@ -10,9 +10,9 @@ const CTA = ({ setSelectedPage }: Props) => {
   return (
     <section
       id="cta"
-      className="gap-16 h-[1080px] bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
+      className="gap-16 h-[1080px] place-content-center bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
     >
-      <div className="flex flex-col m-auto items-center text-center gap-16">
+      <div className="flex flex-col justify-center items-center gap-5">
         {/* CTA */}
         <div className="flex-col gap-6 flex">
           <MainHeaderText>Start creating with Placard</MainHeaderText>

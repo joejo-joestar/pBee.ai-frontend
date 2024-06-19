@@ -10,15 +10,16 @@ const AboutUs = ({ setSelectedPage }: Props) => {
   return (
     <section
       id="aboutus"
-      className="gap-16 h-[1080px] bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
+      className="gap-16 h-[1080px] place-content-center bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
     >
-      <div className="flex flex-col m-auto items-center gap-4">
+      <div className="flex flex-col justify-center items-center gap-5">
         {/* Heading */}
         <MainHeaderText>About Us</MainHeaderText>
         <p className="text-center text-zinc-300 text-2xl">
           Our goal is to make powerful marketing tools accessible and easy to
           use for businesses.
         </p>
+        {/* Learn More Button */}
         <ActionButton
           style={"px-10 py-5 text-xl w-[300px]"}
           page={""}
@@ -27,15 +28,6 @@ const AboutUs = ({ setSelectedPage }: Props) => {
           Learn More
         </ActionButton>
       </div>
-      {/* BG Image */}
-      {/* <img
-        className="size-[812px] opacity-20"
-        src="https://via.placeholder.com/812x812"
-      />
-      <img
-        className="size-[1188px] opacity-5"
-        src="https://via.placeholder.com/1188x1188"
-      /> */}
     </section>
   );
 };
