@@ -22,8 +22,8 @@ const AboutUs = ({ setSelectedPage }: Props) => {
         {/* Learn More Button */}
         <ActionButton
           style={"px-10 py-5 text-xl w-[300px]"}
-          page={""}
-          setSelectedPage={""}
+          page={SelectedPage.MoreAboutUs}
+          setSelectedPage={setSelectedPage}
         >
           Learn More
         </ActionButton>
