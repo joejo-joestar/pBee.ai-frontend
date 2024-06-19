@@ -4,6 +4,7 @@ import { SelectedPage } from "@c/shared/types";
 import Home from "@p/Home";
 import Features from "@p/Features";
 import Testimonials from "@p/Testimonials";
+import Footer from "@/components/footer/Footer";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
