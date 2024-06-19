@@ -7,6 +7,7 @@ import Testimonials from "@p/Testimonials";
 import Footer from "@/components/footer/Footer";
 import CTA from "@/pages/CTA";
 import AboutUs from "@/pages/AboutUs";
+import FAQ from "@/pages/FAQs/FAQ"; // Import the FAQ component
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -37,6 +38,7 @@ function App() {
       <Features setSelectedPage={setSelectedPage} />
       <Testimonials setSelectedPage={setSelectedPage} />
       <AboutUs setSelectedPage={setSelectedPage} />
+      <FAQ /> {/* Add the FAQ component */}
       <CTA setSelectedPage={setSelectedPage} />
       <Footer />
     </div>
