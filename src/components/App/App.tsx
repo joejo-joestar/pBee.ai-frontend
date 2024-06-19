@@ -33,7 +33,8 @@ function App() {
       />
       <Home setSelectedPage={setSelectedPage} />
       <Features setSelectedPage={setSelectedPage} />
-      <Testimonials setSelectedPage={setSelectedPage}/>
+      <Testimonials setSelectedPage={setSelectedPage} />
+      <Footer />
     </div>
   );
 }
