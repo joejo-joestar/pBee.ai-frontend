@@ -10,7 +10,14 @@ const QuickLinks = ({ style, selectedPage }: Props) => {
   return (
     <div className={`${style}`}>
       <Links page={"Product"} selectedPage={selectedPage} />
-      <Links page={"Pricing"} selectedPage={selectedPage} />
+      <a
+        className={`${
+          selectedPage === "pricing" ? "text-lavender70" : ""
+        } transition duration-500 hover:text-lavender70`}
+        href="pricing"
+      >
+        Pricing
+      </a>
       <Links page={"Company"} selectedPage={selectedPage} />
       <Links page={"Contact"} selectedPage={selectedPage} />
     </div>

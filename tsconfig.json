@@ -6,6 +6,7 @@
       "@c/*": ["./src/components/*"],
       "@p/*": ["./src/pages/*"],
       "@h/*": ["./src/hooks/*"],
+      "@r/*": ["./src/routes/*"],
     },
     "target": "ES2020",
     "useDefineForClassFields": true,

@@ -12,6 +12,7 @@ export default defineConfig({
       { find: "@c", replacement: path.resolve(__dirname, "src/components") },
       { find: "@p", replacement: path.resolve(__dirname, "src/pages") },
       { find: "@h", replacement: path.resolve(__dirname, "src/hooks") },
+      { find: "@r", replacement: path.resolve(__dirname, "src/routes") },
 
     ],
   },

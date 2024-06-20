@@ -57,6 +57,8 @@ npm cd [project name]
 
 installing other dependencies
 ```terminal
+npm i react-router-dom
+
 npm i framer-motion
 npm i -D @types/node
 
