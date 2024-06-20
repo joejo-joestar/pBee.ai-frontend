@@ -1,5 +1,5 @@
-import ActionButton from "../shared/ActionButton";
-import { SelectedPage } from "../shared/types";
+import ActionButton from "@c/shared/ActionButton";
+import { SelectedPage } from "@c/shared/types";
 
 type Props = {};
 

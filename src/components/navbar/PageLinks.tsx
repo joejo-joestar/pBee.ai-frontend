@@ -4,26 +4,20 @@ import QuickLinks from "./QuickLinks";
 
 type Props = {
   selectedPage: SelectedPage;
-  setSelectedPage: (value: SelectedPage) => void;
 };
 
 const flexBetween = "flex items-center justify-between";
 
-const PageLinks = ({ selectedPage, setSelectedPage }: Props) => {
+const PageLinks = ({ selectedPage }: Props) => {
   return (
     <div className={`${flexBetween} w-2/3 gap-3`}>
       {/* Quick Links */}
-      <QuickLinks
-        style={`${flexBetween} gap-6`}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-      />
+      <QuickLinks style={`${flexBetween} gap-6`} selectedPage={selectedPage} />
       {/* Login/Sign Up Buttons */}
       <LoginButtons
         style={`${flexBetween} gap-8`}
         buttonStyle={`px-6 py-4`}
         selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
       />
     </div>
   );

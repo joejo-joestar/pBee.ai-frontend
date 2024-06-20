@@ -6,22 +6,13 @@ type Props = {
   style: string;
   buttonStyle: string;
   selectedPage: SelectedPage;
-  setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Logo = ({ style, buttonStyle, selectedPage, setSelectedPage }: Props) => {
+const Logo = ({ style, buttonStyle, selectedPage }: Props) => {
   return (
     <div className={`${style}`}>
-      <Links
-        page="Sign In"
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-      />
-      <ActionButton
-        style={`${buttonStyle}`}
-        page={SelectedPage.Pricing}
-        setSelectedPage={setSelectedPage}
-      >
+      <Links page="Sign In" selectedPage={selectedPage} />
+      <ActionButton style={`${buttonStyle}`} page={SelectedPage.Pricing}>
         Get Started
       </ActionButton>
     </div>

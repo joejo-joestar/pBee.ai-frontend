@@ -7,14 +7,12 @@ import LoginButtons from "./LoginButtons";
 
 type Props = {
   selectedPage: SelectedPage;
-  setSelectedPage: (value: SelectedPage) => void;
   isMenuToggled: boolean;
   setIsMenuToggled: (value: boolean) => void;
 };
 
 const MobileMenu = ({
   selectedPage,
-  setSelectedPage,
   isMenuToggled,
   setIsMenuToggled,
 }: Props) => {
@@ -30,13 +28,11 @@ const MobileMenu = ({
       <QuickLinks
         style="ml-[15%] flex flex-col justify-left gap-10 text-2xl"
         selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
       />
       <LoginButtons
         style={`ml-[15%] flex flex-col gap-10 text-2xl`}
         buttonStyle={`px-6 py-4 basis-3/4 w-[200px] `}
         selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
       />
     </div>
   );

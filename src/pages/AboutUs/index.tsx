@@ -1,6 +1,7 @@
-import ActionButton from "@/components/shared/ActionButton";
-import MainHeaderText from "@/components/shared/MainHText";
-import { SelectedPage } from "@/components/shared/types";
+import ActionButton from "@c/shared/ActionButton";
+import MainHeaderText from "@c/shared/MainHText";
+import { SelectedPage } from "@c/shared/types";
+import { motion } from "framer-motion";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
@@ -9,10 +10,13 @@ type Props = {
 const AboutUs = ({ setSelectedPage }: Props) => {
   return (
     <section
-      id="aboutus"
+      id="company"
       className="gap-16 h-[1080px] place-content-center bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
     >
-      <div className="flex flex-col justify-center items-center gap-5">
+      <motion.div
+        onViewportEnter={() => setSelectedPage(SelectedPage.Company)}
+        className="flex flex-col justify-center items-center gap-5"
+      >
         {/* Heading */}
         <MainHeaderText>About Us</MainHeaderText>
         <p className="text-center text-zinc-300 text-2xl">
@@ -23,11 +27,10 @@ const AboutUs = ({ setSelectedPage }: Props) => {
         <ActionButton
           style={"px-10 py-5 text-xl w-[300px]"}
           page={SelectedPage.MoreAboutUs}
-          setSelectedPage={setSelectedPage}
         >
           Learn More
         </ActionButton>
-      </div>
+      </motion.div>
     </section>
   );
 };

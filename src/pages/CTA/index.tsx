@@ -1,6 +1,6 @@
-import ActionButton from "@/components/shared/ActionButton";
-import MainHeaderText from "@/components/shared/MainHText";
-import { SelectedPage } from "@/components/shared/types";
+import ActionButton from "@c/shared/ActionButton";
+import MainHeaderText from "@c/shared/MainHText";
+import { SelectedPage } from "@c/shared/types";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
@@ -24,7 +24,6 @@ const CTA = ({ setSelectedPage }: Props) => {
         <ActionButton
           page={SelectedPage.Pricing}
           style="px-10 py-5 text-xl w-[300px]"
-          setSelectedPage={setSelectedPage}
         >
           Get Started
         </ActionButton>

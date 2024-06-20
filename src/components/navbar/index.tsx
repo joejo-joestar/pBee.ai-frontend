@@ -12,7 +12,7 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({ isTopOfPage, selectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width:1240px)");
@@ -33,13 +33,11 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             {/* Left Side */}
             <LogoPane
               selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
             />
             {/* Right Side */}
             {isAboveMediumScreens ? (
               <PageLinks
                 selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
               />
             ) : (
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
@@ -51,7 +49,6 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             {!isAboveMediumScreens && isMenuToggled && (
               <MobileMenu
                 selectedPage={selectedPage}
-                setSelectedPage={setSelectedPage}
                 isMenuToggled={isMenuToggled}
                 setIsMenuToggled={setIsMenuToggled}
               />

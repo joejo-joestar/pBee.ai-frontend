@@ -22,7 +22,6 @@ const HeroTop = ({ setSelectedPage }: Props) => {
       <ActionButton
         page={SelectedPage.Pricing}
         style="px-10 py-5 text-xl w-[300px]"
-        setSelectedPage={setSelectedPage}
       >
         Get Started
       </ActionButton>

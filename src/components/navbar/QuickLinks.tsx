@@ -4,32 +4,15 @@ import { SelectedPage } from "@c/shared/types";
 type Props = {
   style: string;
   selectedPage: SelectedPage;
-  setSelectedPage: (value: SelectedPage) => void;
 };
 
-const QuickLinks = ({ style, selectedPage, setSelectedPage }: Props) => {
+const QuickLinks = ({ style, selectedPage }: Props) => {
   return (
     <div className={`${style}`}>
-      <Links
-        page={"Product"}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-      />
-      <Links
-        page={"Pricing"}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-      />
-      <Links
-        page={"Company"}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-      />
-      <Links
-        page={"Contact"}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-      />
+      <Links page={"Product"} selectedPage={selectedPage} />
+      <Links page={"Pricing"} selectedPage={selectedPage} />
+      <Links page={"Company"} selectedPage={selectedPage} />
+      <Links page={"Contact"} selectedPage={selectedPage} />
     </div>
   );
 };

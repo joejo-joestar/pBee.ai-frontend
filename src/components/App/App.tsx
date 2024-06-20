@@ -4,10 +4,10 @@ import { SelectedPage } from "@c/shared/types";
 import Home from "@p/Home";
 import Features from "@p/Features";
 import Testimonials from "@p/Testimonials";
-import Footer from "@/components/footer/Footer";
-import CTA from "@/pages/CTA";
 import AboutUs from "@/pages/AboutUs";
-import FAQ from "@/pages/FAQs/FAQ"; // Import the FAQ component
+import FAQ from "@/pages/FAQs"; // Import the FAQ component
+import CTA from "@/pages/CTA";
+import Footer from "@/components/footer/Footer";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
