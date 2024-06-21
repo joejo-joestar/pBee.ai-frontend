@@ -11,15 +11,15 @@ const AboutUs = ({ setSelectedPage }: Props) => {
   return (
     <section
       id="company"
-      className="gap-16 h-[1080px] place-content-center bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
+      className="h-[1080px] place-content-center gap-16 bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
     >
       <motion.div
         onViewportEnter={() => setSelectedPage(SelectedPage.Company)}
-        className="flex flex-col justify-center items-center gap-5"
+        className="flex flex-col items-center justify-center gap-5"
       >
         {/* Heading */}
         <MainHeaderText>About Us</MainHeaderText>
-        <p className="text-center text-zinc-300 text-2xl">
+        <p className="text-center text-2xl text-zinc-300">
           Our goal is to make powerful marketing tools accessible and easy to
           use for businesses.
         </p>

@@ -1,6 +1,6 @@
 import { SelectedPage } from "@c/shared/types";
-import MainHeader from "@/pages/Home/MainHeader";
-import HeroCont from "@p/Home/HeroCont";
+import MainHeader from "@/pages/Hero/MainHeader";
+import HeroCont from "@/pages/Hero/HeroCont";
 import Image from "@a/tempimg.png";
 
 type Props = {

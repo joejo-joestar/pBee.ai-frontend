@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@c/navbar";
 import { SelectedPage } from "@c/shared/types";
-import Home from "@p/Home";
+import Hero from "@/pages/Hero";
 import Features from "@p/Features";
 import Testimonials from "@p/Testimonials";
 import AboutUs from "@p/AboutUs";
@@ -34,7 +34,7 @@ function App() {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <Home setSelectedPage={setSelectedPage} />
+      <Hero setSelectedPage={setSelectedPage} />
       <Features setSelectedPage={setSelectedPage} />
       <Testimonials setSelectedPage={setSelectedPage} />
       <AboutUs setSelectedPage={setSelectedPage} />

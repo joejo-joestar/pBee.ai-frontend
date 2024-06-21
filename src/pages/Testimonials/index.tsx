@@ -21,7 +21,7 @@ const Testimonials = ({ setSelectedPage }: Props) => {
         <HText>Our customers love Placard</HText>
         <h2 className="text-xl">See what they have to say.</h2>
       </motion.div>
-        {/* Cards */}
+      {/* Cards */}
       <Quotes />
     </section>
   );
