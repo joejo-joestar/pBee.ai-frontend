@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
 import Navbar from "@c/navbar";
 import { SelectedPage } from "@c/shared/types";
-import Home from "@p/Home";
-import Features from "@p/Features";
-import Testimonials from "@p/Testimonials";
-import AboutUs from "@p/AboutUs";
-import FAQ from "@p/FAQs"; // Import the FAQ component
-import CTA from "@p/CTA";
-import Footer from "@c/footer";
+import MoreAboutUs from "@p/MoreAboutUs";
+import Team from "@p/MoreAboutUs/Team";
 
-function App() {
+function AboutUs() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
-    SelectedPage.Placard,
+    SelectedPage.Company,
   );
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
@@ -19,7 +14,7 @@ function App() {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setIsTopOfPage(true);
-        setSelectedPage(SelectedPage.Placard);
+        setSelectedPage(SelectedPage.Pricing);
       }
       if (window.scrollY !== 0) setIsTopOfPage(false);
     };
@@ -28,21 +23,16 @@ function App() {
   }, []);
 
   return (
-    <div className="app bg-bgDark100">
+    <div className="AboutUs bg-bgDark100">
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <Home setSelectedPage={setSelectedPage} />
-      <Features setSelectedPage={setSelectedPage} />
-      <Testimonials setSelectedPage={setSelectedPage} />
-      <AboutUs setSelectedPage={setSelectedPage} />
-      <FAQ /> {/* Add the FAQ component */}
-      <CTA setSelectedPage={setSelectedPage} />
-      <Footer />
+      <MoreAboutUs />
+      <Team />
     </div>
   );
 }
 
-export default App;
+export default AboutUs;

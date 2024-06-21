@@ -4,7 +4,7 @@ import App from "@c/App/App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Pricing from "@r/Pricing";
-import MoreAboutUs from "@p/MoreAboutUs";
+import MoreAboutUs from "@r/MoreAboutUs";
 
 const router = createBrowserRouter([
   {

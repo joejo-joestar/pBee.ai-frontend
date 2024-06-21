@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./FAQ.css";
 import FAQItem from "./FAQItem";
 import HText from "@c/shared/HText";
 import { faqs } from "./faqs";
