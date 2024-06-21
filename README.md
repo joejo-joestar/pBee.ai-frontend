@@ -7,9 +7,9 @@ This repository is to store the static files for the PBee.ai website.
 - [Redux]()
 - [Vite](https://vitejs.dev/guide/)
 - [Typescript]()
+- [React Router Dom](https://reactrouter.com/en/main/start/tutorial#adding-a-router)
 - [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
 - [Framer Motion](https://www.framer.com/motion/)
-- [React Anchor Link Smooth Scroll](https://www.npmjs.com/package/react-anchor-link-smooth-scroll)
 
 ## Landing Page
 ###  Hero Page
@@ -17,11 +17,11 @@ This repository is to store the static files for the PBee.ai website.
 - [x] Home
 - [x] Features
 - [ ] Testimonials
-- [ ] About Us
+- [x] About Us
 - [ ] More About Us
-- [ ] FAQ
-- [ ] CTA
-- [ ] Footer
+- [x] FAQ
+- [x] CTA
+- [x] Footer
 
 ### Get Started Page
 - [ ] Login Page
@@ -29,7 +29,7 @@ This repository is to store the static files for the PBee.ai website.
   - [ ] Sign In using Email
 - [ ] Sign Up Page
   - [ ] Sign
-- [ ] Pricing
+- [x] Pricing
 
 ## Product
 - [ ] Account Settings Page
@@ -57,12 +57,17 @@ npm cd [project name]
 
 installing other dependencies
 ```terminal
+<!-- React-Router -->
 npm i react-router-dom
 
+<!-- Framer -->
 npm i framer-motion
+
+<!-- Other Dependencies -->
 npm i -D @types/node
 
-npm install -D tailwindcss postcss autoprefixer
+<!-- Tailwind Install -->
+npm i -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
