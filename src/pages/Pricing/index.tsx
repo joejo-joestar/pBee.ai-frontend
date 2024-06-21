@@ -12,13 +12,28 @@ const Pricing = ({}: Props) => {
       className="h-device place-content-center gap-16 bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
     >
       <div className="mt-40 flex flex-col p-6 text-center">
+        {/* Header */}
         <MainHeaderText>Grow your business today</MainHeaderText>
         <p className="mt-5 text-2xl">Choose a plan that works best for you.</p>
-
-        <div className="mt-10 flex flex-row justify-evenly gap-16">
-          <Card />
-          <Card />
-          <Card />
+        {/* Cards */}
+        <div className="mt-10 flex flex-row justify-center gap-16">
+          <Card
+            pricingType={"Starter"}
+            price={"5"}
+            features={"placeholder"}
+            isCustomPrice={false}
+          />
+          <Card
+            pricingType={"Pro"}
+            price={"50"}
+            features={"placeholder"}
+            isCustomPrice={false}
+          />
+          <Card
+            pricingType={"Enterprise"}
+            features={"placeholder"}
+            isCustomPrice={true}
+          />
         </div>
       </div>
     </section>

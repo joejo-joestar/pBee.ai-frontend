@@ -3,7 +3,7 @@ type Props = {
 };
 
 const HText = ({ children }: Props) => {
-  return <h1 className="text-5xl text-center font-bold">{children}</h1>;
+  return <h1 className="text-center text-5xl font-bold">{children}</h1>;
 };
 
 export default HText;

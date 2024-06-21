@@ -4,6 +4,7 @@ import QuickLinks from "./QuickLinks";
 import LoginButtons from "./LoginButtons";
 
 // TODO: add slide in transition (optional)
+// TODO: fix when scrolling down
 
 type Props = {
   selectedPage: SelectedPage;
