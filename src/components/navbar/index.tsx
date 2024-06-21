@@ -26,19 +26,15 @@ const Navbar = ({ isTopOfPage, selectedPage }: Props) => {
       <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
         {/* Aligning towards center */}
         <div
-          className={`transition delay-150 ${navbarBackground} flex px-3 py-3 justify-center gap-1 rounded-xl ${flexBetween} mx-auto w-3/4`}
+          className={`transition delay-150 ${navbarBackground} flex justify-center gap-1 rounded-xl px-3 py-3 ${flexBetween} mx-auto w-3/4`}
         >
           {/* Aligning depending screen size */}
           <div className={` ${flexBetween} w-full gap-10`}>
             {/* Left Side */}
-            <LogoPane
-              selectedPage={selectedPage}
-            />
+            <LogoPane selectedPage={selectedPage} />
             {/* Right Side */}
             {isAboveMediumScreens ? (
-              <PageLinks
-                selectedPage={selectedPage}
-              />
+              <PageLinks selectedPage={selectedPage} />
             ) : (
               <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
                 <img alt="Menu" src={Bars} />

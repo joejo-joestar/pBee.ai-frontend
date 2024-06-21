@@ -5,7 +5,7 @@ import Pricing from "@p/Pricing";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
-    SelectedPage.Placard,
+    SelectedPage.Pricing,
   );
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
@@ -13,7 +13,7 @@ function App() {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setIsTopOfPage(true);
-        setSelectedPage(SelectedPage.Placard);
+        setSelectedPage(SelectedPage.Pricing);
       }
       if (window.scrollY !== 0) setIsTopOfPage(false);
     };

@@ -2,16 +2,16 @@ import { SelectedPage } from "@c/shared/types";
 
 type Props = {
   page: string;
+  isInPageLink: boolean;
   selectedPage: SelectedPage;
 };
 
-const Link = ({ page, selectedPage }: Props) => {
+const Link = ({ page, isInPageLink, selectedPage }: Props) => {
   const lowerCasePage = page.toLowerCase().replace(/ /g, "") as SelectedPage;
   return (
     <a
-      className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""}
-      transition duration-500 hover:text-lavender70`}
-      href={`#${lowerCasePage}`}
+      className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""} transition duration-500 hover:text-lavender70`}
+      href={`/${isInPageLink ? `#${lowerCasePage}` : lowerCasePage}`}
     >
       {page}
     </a>
