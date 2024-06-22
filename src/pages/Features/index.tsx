@@ -12,13 +12,15 @@ const Features = ({ setSelectedPage }: Props) => {
   return (
     <section
       id="product"
-      className="gap-16 bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
+      className="h-full select-none place-content-center bg-deepPurple py-10"
     >
-        
-      <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Product)} className="flex flex-col z-10 mt-40 p-5 md:basis-4/5 text-center">
+      <motion.div
+        onViewportEnter={() => setSelectedPage(SelectedPage.Product)}
+        className="z-10 flex flex-col p-5 text-center md:basis-4/5"
+      >
         {/* Heading */}
         <HText>What can you do with Placard AI?</HText>
-      {/* Cards */}
+        {/* Cards */}
       </motion.div>
       <Cards />
     </section>

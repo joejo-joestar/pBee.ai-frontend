@@ -9,7 +9,7 @@ const Pricing = ({}: Props) => {
   return (
     <section
       id="pricing"
-      className="h-device place-content-center gap-16 bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
+      className="select-none place-content-center gap-16 bg-dark py-10"
     >
       <div className="mt-40 flex flex-col p-6 text-center">
         {/* Header */}

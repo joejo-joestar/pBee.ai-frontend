@@ -1,15 +1,14 @@
 type Props = {
-  size: string;
+  className: React.ComponentProps<"div">["className"];
   title: string;
   subtitle: string;
   img: string;
 };
 
-// TODO: finish
-const Card = ({ size, title, subtitle, img }: Props) => {
+const Card = ({ className: size, title, subtitle, img }: Props) => {
   return (
     <div
-      className={`${size} h-[400px] bg-indigo-700/opacity-5 shadow-inner border border-indigo-700 flex flex-col backdrop-blur p-5 rounded-xl bg-[#5b4ead]/5`}
+      className={`${size} border-cardColor shadow-cardGlowEffect bg-CardColor/5 flex flex-col rounded-xl border p-5 backdrop-blur`}
     >
       <div className="rounded-xl bg-gradient-to-l from-gray-900 via-black to-gray-900">
         <img className="rounded-xl" alt="yes" src={img} />
@@ -19,5 +18,4 @@ const Card = ({ size, title, subtitle, img }: Props) => {
     </div>
   );
 };
-
 export default Card;

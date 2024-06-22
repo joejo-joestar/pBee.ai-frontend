@@ -10,7 +10,7 @@ const Link = ({ page, isInPageLink, selectedPage }: Props) => {
   const lowerCasePage = page.toLowerCase().replace(/ /g, "") as SelectedPage;
   return (
     <a
-      className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""} transition duration-500 hover:text-lavender70`}
+      className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""} transition duration-500 select-none hover:text-lavender70`}
       href={`/${isInPageLink ? `#${lowerCasePage}` : lowerCasePage}`}
     >
       {page}

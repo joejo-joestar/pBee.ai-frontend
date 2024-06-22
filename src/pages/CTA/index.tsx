@@ -2,19 +2,17 @@ import ActionButton from "@c/shared/ActionButton";
 import MainHeaderText from "@c/shared/MainHText";
 import { SelectedPage } from "@c/shared/types";
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-};
+type Props = {};
 
-const CTA = ({ setSelectedPage }: Props) => {
+const CTA = ({}: Props) => {
   return (
     <section
       id="cta"
-      className="gap-16 h-[1080px] place-content-center bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
+      className="h-full select-none place-content-center gap-16 bg-ctaGradient py-10"
     >
-      <div className="flex flex-col justify-center items-center gap-5">
+      <div className="flex flex-col items-center justify-center gap-5">
         {/* CTA */}
-        <div className="flex-col gap-6 flex">
+        <div className="flex flex-col gap-6">
           <MainHeaderText>Start creating with Placard</MainHeaderText>
           <p className="text-center text-xl text-zinc-300">
             Never think twice about your media.

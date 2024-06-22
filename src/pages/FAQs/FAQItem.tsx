@@ -16,7 +16,7 @@ const FAQItem: React.FC<FAQItemProps> = ({
   return (
     <div className={`flex w-auto select-none flex-col`}>
       {/* Divider */}
-      <div className="my-10 h-0 w-auto border-[1px] border-solid border-bgDark50/70" />
+      <div className="border-cardColor/70 my-10 h-0 w-auto border border-solid" />
       {/* Question */}
       <div
         className="p-25 my-3 flex flex-row justify-between text-3xl font-medium"

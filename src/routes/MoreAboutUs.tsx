@@ -23,7 +23,7 @@ function AboutUs() {
   }, []);
 
   return (
-    <div className="AboutUs bg-bgDark100">
+    <div className="AboutUs bg-bgdark100">
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}

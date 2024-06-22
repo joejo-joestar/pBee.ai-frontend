@@ -6,8 +6,9 @@ type Props = {};
 // TODO: finish
 const Cards = ({}: Props) => {
   return (
-    <div className="content-center overflow-hidden">
-      <div className="absolute -left-1/4 mb-8 flex w-[150%] flex-wrap justify-center gap-4">
+    <div className="max-h-[420px] place-content-center overflow-hidden">
+      {/* Brick Layout */}
+      <div className="relative -left-1/4 flex flex-wrap justify-center gap-4 w-[2500px]">
         {/* QuoteCards */}
         {quotes_list.map((value) => (
           <QuoteCard

@@ -1,26 +1,26 @@
-  type Props = {
-    quote: string;
-    profileImg: string;
-    author: string;
-    designation: string;
-  };
+type Props = {
+  quote: string;
+  profileImg: string;
+  author: string;
+  designation: string;
+};
 
-  // TODO: finish
-  const Card = ({ quote, profileImg, author, designation }: Props) => {
-    return (
-      <div
-      className={`max-w-[400px] h-[200px] flex flex-col backdrop-blur shadow-lg p-5 rounded-xl bg-[#5b4ead]/5`}
-      >
-        <p>{quote}</p>
-        <div className="flex flex-row">
-          <img className="size-16 rounded-full" alt={author} src={profileImg} />
-          <div className="flex flex-col">
-            <h3 className="mt-5 text-lg font-bold">{author}</h3>
-            <h3 className="mt-5 text-md">{designation}</h3>
-          </div>
+// TODO: finish
+const Card = ({ quote, profileImg, author, designation }: Props) => {
+  return (
+    <div
+      className={`bg-cardColor/5 border-cardColor flex h-[200px] max-w-[400px] flex-col rounded-xl border p-5 shadow-lg backdrop-blur`}
+    >
+      <p>{quote}</p>
+      <div className="mt-5 flex flex-row">
+        <img className="size-16 rounded-full" alt={author} src={profileImg} />
+        <div className="ml-3 flex flex-col">
+          <h3 className="mt-0 text-lg font-bold">{author}</h3>
+          <h3 className="text-md mt-3">{designation}</h3>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default Card;
+export default Card;

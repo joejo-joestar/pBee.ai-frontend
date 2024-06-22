@@ -3,7 +3,7 @@ const tempimg = "https://via.placeholder.com/256x256";
 export const team_members = [
   {
     profile: tempimg,
-    name: "Ayman",
+    name: "Ayman Rahman",
     designation: "Product manager",
   },
   {
@@ -46,5 +46,4 @@ export const team_members = [
     name: "Sneha Sunil",
     designation: "Backend Dev",
   },
-//   Sreenikethan iyer
 ];

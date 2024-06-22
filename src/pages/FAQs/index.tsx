@@ -17,7 +17,7 @@ const FAQs = () => {
   return (
     <section
       id="faqs"
-      className="h-display gap-16 bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
+      className="h-full select-none gap-16 bg-faqGradient py-10"
     >
       {/* Header */}
       <HText>Frequently Asked Questions</HText>
@@ -32,7 +32,7 @@ const FAQs = () => {
             toggleFAQ={toggleFAQ}
           />
         ))}
-        <div className="my-10 h-0 w-auto border-[1px] border-solid border-bgDark50/70" />
+        <div className="my-10 h-0 w-auto border border-solid border-cardColor/70" />
       </div>
     </section>
   );

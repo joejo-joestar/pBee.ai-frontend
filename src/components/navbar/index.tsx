@@ -17,8 +17,8 @@ const Navbar = ({ isTopOfPage, selectedPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width:1240px)");
   const navbarBackground = isTopOfPage
-    ? "border-transparent border-[1px]"
-    : "shadow-lg border-[1px] border-solid border-[#aaa1e2] bg-[#484178]/60 backdrop-blur";
+    ? "border-transparent border"
+    : "shadow-lg border border-solid border-cardColor bg-cardColor/60 backdrop-blur";
 
   return (
     <nav>

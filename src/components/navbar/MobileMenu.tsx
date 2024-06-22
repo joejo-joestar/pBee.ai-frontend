@@ -18,7 +18,7 @@ const MobileMenu = ({
   setIsMenuToggled,
 }: Props) => {
   return (
-    <div className="fixed flex flex-col gap-10 right-0 bottom-0 z-40 h-full w-[300px] bg-bgDark70">
+    <div className="bg-cardColor fixed bottom-0 right-0 z-40 flex h-full w-[300px] flex-col gap-10">
       {/* Close Icon */}
       <div className="flex justify-end p-12">
         <button onClick={() => setIsMenuToggled(!isMenuToggled)}>

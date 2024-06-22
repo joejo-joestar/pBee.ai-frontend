@@ -1,6 +1,5 @@
 import { SelectedPage } from "@c/shared/types";
 import MainHeader from "@/pages/Hero/MainHeader";
-import HeroCont from "@/pages/Hero/HeroCont";
 import Image from "@a/tempimg.png";
 
 type Props = {
@@ -8,19 +7,14 @@ type Props = {
 };
 
 const Home = ({ setSelectedPage }: Props) => {
-
   return (
-    <section
-      id="placard"
-      className="gap-16 bg-gradient-to-b from-[#1c2336] to-[#12131c] py-10"
-    >
+    <section id="placard" className="h-full select-none bg-heroGradient py-10">
       <MainHeader setSelectedPage={setSelectedPage} />
-      <div className="flex flex-col mx-auto w-5/6 items-center justify-center">
+      <div className="mx-auto flex w-5/6 flex-col items-center justify-center">
         {/* Image */}
-        <div className="flex basis-3/5 justify-center mt-40 md:z-10">
+        <div className="mt-40 flex basis-3/5 justify-center">
           <img alt="Placard App" src={Image} />
         </div>
-        <HeroCont />
       </div>
     </section>
   );

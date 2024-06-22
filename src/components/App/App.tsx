@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@c/navbar";
 import { SelectedPage } from "@c/shared/types";
 import Hero from "@/pages/Hero";
+import HeroCont from "@p/Hero/HeroCont";
 import Features from "@p/Features";
 import Testimonials from "@p/Testimonials";
 import AboutUs from "@p/AboutUs";
@@ -28,18 +29,19 @@ function App() {
   }, []);
 
   return (
-    <div className="app bg-bgDark100">
+    <div className="app bg-dark h-fit">
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
       <Hero setSelectedPage={setSelectedPage} />
+      <HeroCont />
       <Features setSelectedPage={setSelectedPage} />
       <Testimonials setSelectedPage={setSelectedPage} />
       <AboutUs setSelectedPage={setSelectedPage} />
-      <FAQ /> {/* Add the FAQ component */}
-      <CTA setSelectedPage={setSelectedPage} />
+      <FAQ />
+      <CTA />
       <Footer />
     </div>
   );

@@ -9,17 +9,15 @@ type Props = {
 
 const AboutUs = ({ setSelectedPage }: Props) => {
   return (
-    <section
+    <motion.section
       id="company"
-      className="h-[1080px] place-content-center gap-16 bg-gradient-to-b from-[#12131c] to-[#1c2336] py-10"
+      onViewportEnter={() => setSelectedPage(SelectedPage.Company)}
+      className="h-full select-none place-content-center gap-16 bg-aboutUsGradient py-10"
     >
-      <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.Company)}
-        className="flex flex-col items-center justify-center gap-5"
-      >
+      <div className="flex flex-col items-center justify-center gap-5">
         {/* Heading */}
         <MainHeaderText>About Us</MainHeaderText>
-        <p className="text-center text-2xl text-zinc-300">
+        <p className="text-center text-2xl">
           Our goal is to make powerful marketing tools accessible and easy to
           use for businesses.
         </p>
@@ -30,8 +28,8 @@ const AboutUs = ({ setSelectedPage }: Props) => {
         >
           Learn More
         </ActionButton>
-      </motion.div>
-    </section>
+      </div>
+    </motion.section>
   );
 };
 
