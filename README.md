@@ -16,9 +16,9 @@ This repository is to store the static files for the PBee.ai website.
 - [x] Navbar
 - [x] Home
 - [x] Features
-- [ ] Testimonials
+- [x] Testimonials
 - [x] About Us
-- [ ] More About Us
+- [x] More About Us
 - [x] FAQ
 - [x] CTA
 - [x] Footer
