@@ -8,10 +8,9 @@ type Props = {
   selectedPage: SelectedPage;
 };
 
-const [open, setOpen] = useState(false);
-const showFlyout = open;
-
 const MobileMenu = ({ selectedPage }: Props) => {
+  const [open, setOpen] = useState(false);
+  const showFlyout = open;
   return (
     <div className="flex justify-center">
       <div
@@ -19,7 +18,7 @@ const MobileMenu = ({ selectedPage }: Props) => {
         onMouseLeave={() => setOpen(false)}
         className="relative h-fit w-fit"
       >
-        <a className="relative"> = </a>
+        <a className="relative"> Menu </a>
         <AnimatePresence>
           {showFlyout && (
             <motion.div
