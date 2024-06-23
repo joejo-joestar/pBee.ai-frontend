@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { SelectedPage } from "@/components/shared/types";
-import Bars from "@a/Bars.svg";
 import useMediaQuery from "@h/useMediaQuery";
 import LogoPane from "./LogoPane";
 import PageLinks from "./PageLinks";
@@ -14,7 +12,7 @@ type Props = {
 
 const Navbar = ({ isTopOfPage, selectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
-  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+  // const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width:1240px)");
   const navbarBackground = isTopOfPage
     ? "border-transparent border"
@@ -36,18 +34,7 @@ const Navbar = ({ isTopOfPage, selectedPage }: Props) => {
             {isAboveMediumScreens ? (
               <PageLinks selectedPage={selectedPage} />
             ) : (
-              <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                <img alt="Menu" src={Bars} />
-              </button>
-            )}
-            {/* Mobile Menu Modal */}
-            {/* TODO: finish mobile menu */}
-            {!isAboveMediumScreens && isMenuToggled && (
-              <MobileMenu
-                selectedPage={selectedPage}
-                isMenuToggled={isMenuToggled}
-                setIsMenuToggled={setIsMenuToggled}
-              />
+              <MobileMenu selectedPage={selectedPage} />
             )}
           </div>
         </div>
