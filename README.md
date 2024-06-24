@@ -10,6 +10,7 @@ This repository is to store the static files for the PBee.ai website.
 - [React Router Dom](https://reactrouter.com/en/main/start/tutorial#adding-a-router)
 - [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
 - [Framer Motion](https://www.framer.com/motion/)
+- [React-Color](https://casesandberg.github.io/react-color/)
 
 ## Landing Page
 ###  Hero Page
@@ -62,6 +63,9 @@ npm i react-router-dom
 
 <!-- Framer -->
 npm i framer-motion
+
+<!-- React-Color -->
+npm i react-color
 
 <!-- Other Dependencies -->
 npm i -D @types/node
