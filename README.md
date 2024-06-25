@@ -61,6 +61,9 @@ installing other dependencies
 <!-- React-Router -->
 npm i react-router-dom
 
+<!-- React-Redux -->
+npm install react-redux @reduxjs/toolkit
+
 <!-- Framer -->
 npm i framer-motion
 

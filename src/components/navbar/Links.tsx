@@ -1,4 +1,5 @@
 import { SelectedPage } from "@c/shared/types";
+import { Link } from "react-router-dom";
 
 type Props = {
   page: string;
@@ -6,16 +7,16 @@ type Props = {
   selectedPage: SelectedPage;
 };
 
-const Link = ({ page, isInPageLink, selectedPage }: Props) => {
+const CustomLink = ({ page, isInPageLink, selectedPage }: Props) => {
   const lowerCasePage = page.toLowerCase().replace(/ /g, "") as SelectedPage;
   return (
-    <a
-      className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""} transition duration-500 select-none hover:text-lavender70`}
-      href={`/${isInPageLink ? `#${lowerCasePage}` : lowerCasePage}`}
+    <Link
+      className={`${selectedPage === lowerCasePage ? "text-lavender70" : ""} select-none transition duration-500 hover:text-lavender70`}
+      to={`/${isInPageLink ? `#${lowerCasePage}` : lowerCasePage}`}
     >
       {page}
-    </a>
+    </Link>
   );
 };
 
-export default Link;
+export default CustomLink;

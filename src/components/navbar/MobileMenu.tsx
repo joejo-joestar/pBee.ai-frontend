@@ -18,7 +18,7 @@ const MobileMenu = ({ selectedPage }: Props) => {
         onMouseLeave={() => setOpen(false)}
         className="relative h-fit w-fit"
       >
-        <a className="relative"> Menu </a>
+        <span className="relative"> Menu </span>
         <AnimatePresence>
           {showFlyout && (
             <motion.div
