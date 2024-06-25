@@ -1,4 +1,4 @@
-import Card from "@p/Features/Card";
+import Card from "@p/Home/Features/Card";
 import img1 from "@a/img1.png";
 import img2 from "@a/img2.png";
 

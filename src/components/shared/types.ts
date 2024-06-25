@@ -1,4 +1,5 @@
 export enum SelectedPage {
+  ROOT = "/",
   Placard = "placard",
   Product = "product",
   Pricing = "pricing",

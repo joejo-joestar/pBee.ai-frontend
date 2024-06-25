@@ -1,12 +1,12 @@
 import { SelectedPage } from "@c/shared/types";
-import MainHeader from "@/pages/Hero/MainHeader";
+import MainHeader from "@p/Home/Hero/MainHeader";
 import Image from "@a/tempimg.png";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Home = ({ setSelectedPage }: Props) => {
+const Hero = ({ setSelectedPage }: Props) => {
   return (
     <section id="placard" className="h-full select-none bg-heroGradient py-10">
       <MainHeader setSelectedPage={setSelectedPage} />
@@ -20,4 +20,4 @@ const Home = ({ setSelectedPage }: Props) => {
   );
 };
 
-export default Home;
+export default Hero;

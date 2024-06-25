@@ -1,5 +1,5 @@
 import { SelectedPage } from "@c/shared/types";
-import Cards from "@p/Features/FeatureCards";
+import Cards from "@p/Home/Features/FeatureCards";
 import HText from "@c/shared/HText";
 import { motion } from "framer-motion";
 

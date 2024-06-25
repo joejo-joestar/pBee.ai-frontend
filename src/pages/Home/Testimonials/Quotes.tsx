@@ -1,5 +1,5 @@
 import QuoteCard from "./QuoteCard";
-import quotes_list from "./quotes_list";
+import quotes_list from "./quotesList";
 
 type Props = {};
 

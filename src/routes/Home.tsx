@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
-import Navbar from "@c/navbar";
 import { SelectedPage } from "@c/shared/types";
+import Footer from "@c/footer";
+import Navbar from "@c/navbar";
+import AboutUs from "@p/Home/AboutUs";
+import CTA from "@p/Home/CTA";
+import Features from "@p/Home/Features";
 import Hero from "@p/Home/Hero";
 import HeroCont from "@p/Home/Hero/HeroCont";
-import Features from "@p/Home/Features";
 import Testimonials from "@p/Home/Testimonials";
-import AboutUs from "@p/Home/AboutUs";
-import FAQ from "@p/Home/FAQs"; // Import the FAQ component
-import CTA from "@p/Home/CTA";
-import Footer from "@c/footer";
+import FAQs from "@p/Home/FAQs";
+import { useEffect, useState } from "react";
 
-function App() {
+type Props = {};
+
+const Home = ({}: Props) => {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
     SelectedPage.Placard,
   );
@@ -29,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app bg-dark h-fit">
+    <>
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
@@ -40,11 +42,11 @@ function App() {
       <Features setSelectedPage={setSelectedPage} />
       <Testimonials setSelectedPage={setSelectedPage} />
       <AboutUs setSelectedPage={setSelectedPage} />
-      <FAQ />
+      <FAQs />
       <CTA />
       <Footer />
-    </div>
+    </>
   );
-}
+};
 
-export default App;
+export default Home;
