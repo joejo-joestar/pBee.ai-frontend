@@ -1,3 +1,5 @@
+// TODO: Split File
+
 import MainHeaderText from "@c/shared/MainHText";
 import Card from "./Card";
 import Navbar from "@c/navbar";

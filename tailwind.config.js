@@ -11,6 +11,8 @@ export default {
         text70: "#E5E9FA",
         text50: "#D1D6F4",
         lavender70: "#B4BAED",
+        productDark: "#131121",
+        canvas: "#19181f",
         cardColor: "#5B4EAD",
         dark: "#120F1A",
         deepPurple: "#12131C",

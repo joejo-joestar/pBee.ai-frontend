@@ -46,13 +46,13 @@ const AIChatbar: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 right-0 h-auto w-1/4 bg-gray-200 shadow-lg">
-      <div className="absolute inset-x-0 bottom-0 px-4 py-4">
+    <div className="div h-auto w-1/4 bg-gray-200 shadow-lg">
+      <div className="inset-x-0 bottom-0 px-4 py-4">
         <div className="flex flex-col space-y-2 overflow-y-auto">
           {chatHistory.map((message, index) => (
             <div
               key={index}
-              className={`flex items-center rounded-lg p-2 ${
+              className={`flex w-full items-center rounded-lg p-2 ${
                 message.sender === "user"
                   ? "bg-gray-300 text-black"
                   : "bg-blue-500 text-white"
@@ -62,14 +62,14 @@ const AIChatbar: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="mt-4 flex items-center">
+        <div className="mt-4 flex items-center justify-end">
           <input
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-grow rounded-lg border border-gray-300 p-2 focus:outline-none"
-            placeholder="Type your message..."
+            className="rounded-lg border border-gray-300 p-2 focus:outline-none"
+            placeholder="Type your message"
           />
           <button
             className="ml-2 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"

@@ -1,5 +1,5 @@
 import ActionButton from "@c/shared/ActionButton";
-import Links from "./Links";
+import Links from "./PLink";
 import { SelectedPage } from "@c/shared/types";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const Logo = ({ style, buttonStyle, selectedPage }: Props) => {
   return (
     <div className={`${style}`}>
-      <Links page="Sign In" selectedPage={selectedPage} isInPageLink={false} />
+      <Links page="Sign In" selectedPage={selectedPage} />
       <ActionButton style={`${buttonStyle}`} page={SelectedPage.Pricing}>
         Get Started
       </ActionButton>

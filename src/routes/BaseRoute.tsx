@@ -2,6 +2,8 @@ import Home from "@/routes/Home";
 import MoreAboutUs from "@p/Team";
 import Pricing from "@p/Pricing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ScrollToTop from "@/hooks/ScrollToTop";
+import ProductTest from "./ProductTest";
 
 export enum Routes {
   BASE = "/*",
@@ -9,6 +11,7 @@ export enum Routes {
   ABOUTUS = "/moreaboutus",
   SIGNIN = "/signin",
   SIGNUP = "/signup",
+  PRODUCTEST = "/producttest",
 }
 
 export enum AbsoluteRoutes {
@@ -18,19 +21,32 @@ export enum AbsoluteRoutes {
 const router = createBrowserRouter([
   {
     path: Routes.BASE,
-    element: <Home />,
+    element: (
+      <>
+        <ScrollToTop />
+        <Home />
+      </>
+    ),
     errorElement: <div>404 No Page</div>,
-    children:[{
-      
-    }]
+    children: [{}],
   },
   {
     path: Routes.PRICING,
-    element: <Pricing />,
+    element: (
+      <>
+        <ScrollToTop />
+        <Pricing />
+      </>
+    ),
   },
   {
     path: Routes.ABOUTUS,
-    element: <MoreAboutUs />,
+    element: (
+      <>
+        <ScrollToTop />
+        <MoreAboutUs />
+      </>
+    ),
   },
   // TODO: Finish
   {
@@ -42,13 +58,17 @@ const router = createBrowserRouter([
     element: <></>,
   },
   {
-    path: Routes.SIGNIN,
-    element: <></>,
+    path: Routes.PRODUCTEST,
+    element: <ProductTest />,
   },
 ]);
 
 const BaseRoute = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 };
 
 export default BaseRoute;

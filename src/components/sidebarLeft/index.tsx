@@ -22,10 +22,11 @@ const Sidebar: React.FC = () => {
   const activeContent = tabs.find((tab) => tab.title === activeTab)?.content;
 
   return (
-    <div className="fixed left-0 h-full w-1/5 bg-gray-200 shadow-lg">
-      <div className="flex h-full flex-col">
+    <div className="flex h-full w-1/5 bg-gray-200 shadow-lg">
+      <div className="flex h-full w-full flex-col">
+          {activeContent}
         <div className="flex items-center p-4">
-          <button className="flex w-full rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-700">
+          <button className="flex w-full rounded-lg bg-violet-500 px-4 py-2 text-white hover:bg-blue-700">
             New Poster
           </button>
         </div>
@@ -45,7 +46,6 @@ const Sidebar: React.FC = () => {
           ))}
         </div>
       </div>
-      {activeContent}
     </div>
   );
 };

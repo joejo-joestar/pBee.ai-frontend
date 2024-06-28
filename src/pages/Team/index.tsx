@@ -1,3 +1,5 @@
+// TODO: Split File
+
 import MainHeaderText from "@c/shared/MainHText";
 import MoreInfo from "./MoreInfo";
 import Navbar from "@c/navbar";

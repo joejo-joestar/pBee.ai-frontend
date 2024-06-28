@@ -1,4 +1,5 @@
-import Links from "./Links";
+import PLink from "./PLink";
+import ALink from "./ALink";
 import { SelectedPage } from "@c/shared/types";
 
 type Props = {
@@ -9,14 +10,10 @@ type Props = {
 const QuickLinks = ({ style, selectedPage }: Props) => {
   return (
     <div className={`${style}`}>
-      <Links page={"Product"} selectedPage={selectedPage} isInPageLink={true} />
-      <Links
-        page={"Pricing"}
-        selectedPage={selectedPage}
-        isInPageLink={false}
-      />
-      <Links page={"Company"} selectedPage={selectedPage} isInPageLink={true} />
-      <Links page={"Contact"} selectedPage={selectedPage} isInPageLink={true} />
+      <ALink page={"Product"} selectedPage={selectedPage} />
+      <PLink page={"Pricing"} selectedPage={selectedPage} />
+      <ALink page={"Company"} selectedPage={selectedPage} />
+      <PLink page={"Contact"} selectedPage={selectedPage} />
     </div>
   );
 };
