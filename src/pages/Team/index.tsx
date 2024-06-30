@@ -2,9 +2,9 @@
 
 import MainHeaderText from "@c/shared/MainHText";
 import MoreInfo from "./MoreInfo";
-import Navbar from "@/components/Navbar";
 import { SelectedPage } from "@c/shared/types";
 import { useState, useEffect } from "react";
+import Navbar from "@/components/Navbar";
 
 type Props = {};
 
