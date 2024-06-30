@@ -3,7 +3,7 @@ import MoreAboutUs from "@p/Team";
 import Pricing from "@p/Pricing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ScrollToTop from "@/hooks/ScrollToTop";
-import ProductTest from "./ProductTest";
+import ProductTest from "./Producttest";
 
 export enum Routes {
   BASE = "/*",
