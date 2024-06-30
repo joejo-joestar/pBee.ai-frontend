@@ -1,6 +1,6 @@
 import { SelectedPage } from "@c/shared/types";
-import Footer from "@c/footer";
-import Navbar from "@c/navbar";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import AboutUs from "@p/Home/AboutUs";
 import CTA from "@p/Home/CTA";
 import Features from "@p/Home/Features";

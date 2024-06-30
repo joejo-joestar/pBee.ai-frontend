@@ -11,7 +11,7 @@ export enum Routes {
   ABOUTUS = "/moreaboutus",
   SIGNIN = "/signin",
   SIGNUP = "/signup",
-  PRODUCTEST = "/producttest",
+  PRODUCT = "/producttest",
 }
 
 export enum AbsoluteRoutes {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     element: <></>,
   },
   {
-    path: Routes.PRODUCTEST,
+    path: Routes.PRODUCT,
     element: <ProductTest />,
   },
 ]);

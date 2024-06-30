@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navbar from "@c/navbar";
+import Navbar from "@/components/Navbar";
 import { SelectedPage } from "@c/shared/types";
 import Hero from "@p/Home/Hero";
 import HeroCont from "@p/Home/Hero/HeroCont";
@@ -8,7 +8,7 @@ import Testimonials from "@p/Home/Testimonials";
 import AboutUs from "@p/Home/AboutUs";
 import FAQ from "@p/Home/FAQs"; // Import the FAQ component
 import CTA from "@p/Home/CTA";
-import Footer from "@c/footer";
+import Footer from "@/components/Footer";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
