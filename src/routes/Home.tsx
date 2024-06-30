@@ -1,4 +1,4 @@
-import { SelectedPage } from "@c/shared/types";
+       import { SelectedPage } from "@c/shared/types";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AboutUs from "@p/Home/AboutUs";

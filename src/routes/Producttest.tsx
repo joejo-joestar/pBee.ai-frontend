@@ -12,7 +12,7 @@ const ProductTest = ({}: Props) => {
       className="h-full select-none place-content-center gap-16 bg-dark py-10"
     >
       <div className="flex h-full flex-row justify-between">
-        {/* <Customize /> */}
+        <Customize />
         <Sidebar />
         <Canvas />
         <ChatBar />

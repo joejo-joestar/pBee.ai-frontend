@@ -1,4 +1,5 @@
-import ActionButton from "@c/shared/ActionButton";
+// import ActionButton from "@c/shared/ActionButton";
+// import { SelectedPage } from "../shared/types";
 
 type Props = {};
 
@@ -11,9 +12,13 @@ const NewsletterSubscription = ({}: Props) => (
         type="email"
         placeholder="Enter your email"
       />
-      <ActionButton style={"px-5 py-3"} page={""} setSelectedPage={""}>
+      {/* <ActionButton
+        style={"px-5 py-3"}
+        page={SelectedPage.Placard}
+        setSelectedPage={SelectedPage.Placard}
+      >
         Subscribe
-      </ActionButton>
+      </ActionButton> */}
     </div>
   </div>
 );
