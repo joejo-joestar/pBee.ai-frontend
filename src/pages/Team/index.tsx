@@ -4,7 +4,7 @@ import MainHeaderText from "@/components/shared/MainHText";
 import MoreInfo from "./MoreInfo";
 import { SelectedPage } from "@/components/shared/types";
 import { useState, useEffect } from "react";
-import Navbar from "@/components/navbar1";
+import Navbar from "@/components/Navbar";
 
 type Props = {};
 

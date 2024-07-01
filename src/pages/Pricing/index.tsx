@@ -2,7 +2,7 @@
 
 import MainHeaderText from "@/components/shared/MainHText";
 import Card from "./Card";
-import Navbar from "@/components/navbar1";
+import Navbar from "@/components/Navbar";
 import { SelectedPage } from "@/components/shared/types";
 import { useEffect, useState } from "react";
 
