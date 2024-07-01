@@ -1,4 +1,4 @@
-// import ActionButton from "@c/shared/ActionButton";
+// import ActionButton from "@/components/shared/ActionButton";
 // import { SelectedPage } from "../shared/types";
 
 type Props = {};

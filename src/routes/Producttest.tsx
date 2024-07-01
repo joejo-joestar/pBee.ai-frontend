@@ -1,7 +1,7 @@
 import Canvas from "@/components/Canvas/Canvas";
 import Customize from "@/components/Customize";
-import Sidebar from "@c/sidebarLeft";
-import ChatBar from "@c/sidebarRight";
+import Sidebar from "@/components/sidebarLeft";
+import ChatBar from "@/components/sidebarRight";
 
 type Props = {};
 

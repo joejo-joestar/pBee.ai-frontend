@@ -1,6 +1,6 @@
-import { SelectedPage } from "@c/shared/types";
-import MainHeader from "@p/Home/Hero/MainHeader";
-import Image from "@a/tempimg.png";
+import { SelectedPage } from "@/components/shared/types";
+import MainHeader from "@/pages/Home/Hero/MainHeader";
+import Image from "@/assets/tempimg.png";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;

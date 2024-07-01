@@ -1,6 +1,6 @@
 import PLink from "./PLink";
 import ALink from "./ALink";
-import { SelectedPage } from "@c/shared/types";
+import { SelectedPage } from "@/components/shared/types";
 
 type Props = {
   style: string;

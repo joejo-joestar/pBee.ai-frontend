@@ -1,9 +1,9 @@
 // TODO: Split File
 
-import MainHeaderText from "@c/shared/MainHText";
+import MainHeaderText from "@/components/shared/MainHText";
 import Card from "./Card";
-import Navbar from "../../components/Navbar";
-import { SelectedPage } from "@c/shared/types";
+import Navbar from "@/components/navbar1";
+import { SelectedPage } from "@/components/shared/types";
 import { useEffect, useState } from "react";
 
 type Props = {};

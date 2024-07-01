@@ -1,6 +1,6 @@
-import { SelectedPage } from "@c/shared/types";
-import Cards from "@p/Home/Features/FeatureCards";
-import HText from "@c/shared/HText";
+import { SelectedPage } from "@/components/shared/types";
+import Cards from "@/pages/Home/Features/FeatureCards";
+import HText from "@/components/shared/HText";
 import { motion } from "framer-motion";
 
 type Props = {

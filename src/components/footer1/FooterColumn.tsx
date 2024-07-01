@@ -1,4 +1,4 @@
-import logo from "@a/Logo.png";
+import logo from "@/assets/Logo44.svg";
 
 type Props = {
   title: string;

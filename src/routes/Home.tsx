@@ -1,13 +1,13 @@
-import { SelectedPage } from "@c/shared/types";
-import Footer from '../../src/components/Footer';
-import Navbar from "../components/Navbar";
-import AboutUs from "@p/Home/AboutUs";
-import CTA from "@p/Home/CTA";
-import Features from "@p/Home/Features";
-import Hero from "@p/Home/Hero";
-import HeroCont from "@p/Home/Hero/HeroCont";
-import Testimonials from "@p/Home/Testimonials";
-import FAQs from "@p/Home/FAQs";
+import { SelectedPage } from "@/components/shared/types";
+import Footer from '@/components/footer1';
+import Navbar from "@/components/navbar1";
+import AboutUs from "@/pages/Home/AboutUs";
+import CTA from "@/pages/Home/CTA";
+import Features from "@/pages/Home/Features";
+import Hero from "@/pages/Home/Hero";
+import HeroCont from "@/pages/Home/Hero/HeroCont";
+import Testimonials from "@/pages/Home/Testimonials";
+import FAQs from "@/pages/Home/FAQs";
 import { useEffect, useState } from "react";
 
 type Props = {};

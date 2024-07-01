@@ -1,6 +1,6 @@
 import Home from "@/routes/Home";
-import MoreAboutUs from "@p/Team";
-import Pricing from "@p/Pricing";
+import MoreAboutUs from "@/pages/Team";
+import Pricing from "@/pages/Pricing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ScrollToTop from "@/hooks/ScrollToTop";
 import ProductTest from "./Producttest";

@@ -1,5 +1,5 @@
-import logo from "@a/Logo44.svg";
-import { SelectedPage } from "@c/shared/types";
+import logo from "@/assets/Logo44.svg";
+import { SelectedPage } from "@/components/shared/types";
 import { Link } from "react-router-dom";
 
 type Props = {

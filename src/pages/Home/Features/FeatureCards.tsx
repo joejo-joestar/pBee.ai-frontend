@@ -1,6 +1,6 @@
-import Card from "@p/Home/Features/Card";
-import img1 from "@a/img1.png";
-import img2 from "@a/img2.png";
+import Card from "@/pages/Home/Features/Card";
+import img1 from "@/assets/img1.png";
+import img2 from "@/assets/img2.png";
 
 type Props = {};
 

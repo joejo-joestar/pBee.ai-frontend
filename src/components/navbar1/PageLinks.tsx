@@ -1,7 +1,7 @@
-import { SelectedPage } from "@c/shared/types";
+import { SelectedPage } from "@/components/shared/types";
 import LoginButtons from "./LoginButtons";
 import QuickLinks from "./QuickLinks";
-import ScrollToHashElement from "@h/ScrollToAnchor";
+import ScrollToHashElement from "@/hooks/ScrollToAnchor";
 
 type Props = {
   selectedPage: SelectedPage;

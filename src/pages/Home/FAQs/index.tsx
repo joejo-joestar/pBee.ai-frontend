@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FAQItem from "./FAQItem";
-import HText from "@c/shared/HText";
+import HText from "@/components/shared/HText";
 import { faqs } from "./faqs";
 
 const FAQs = () => {

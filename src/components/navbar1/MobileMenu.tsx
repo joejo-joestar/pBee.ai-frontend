@@ -1,4 +1,4 @@
-import { SelectedPage } from "@c/shared/types";
+import { SelectedPage } from "@/components/shared/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import LoginButtons from "./LoginButtons";

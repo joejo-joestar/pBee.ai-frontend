@@ -1,5 +1,5 @@
-import { SelectedPage } from "@c/shared/types";
-import useMediaQuery from "@h/useMediaQuery";
+import { SelectedPage } from "@/components/shared/types";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import LogoPane from "./LogoPane";
 import PageLinks from "./PageLinks";
 import MobileMenu from "./MobileMenu";

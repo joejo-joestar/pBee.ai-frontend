@@ -1,4 +1,4 @@
-import MainHeaderText from "@c/shared/MainHText";
+import MainHeaderText from "@/components/shared/MainHText";
 
 const HeroCont = () => {
   return (

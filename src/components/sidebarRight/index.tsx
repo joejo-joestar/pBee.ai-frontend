@@ -1,5 +1,5 @@
 // AI Chatbar component
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 interface ChatMessage {
   sender: "user" | "ai";

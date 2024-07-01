@@ -1,6 +1,6 @@
-import ActionButton from "@c/shared/ActionButton";
-import MainHeaderText from "@c/shared/MainHText";
-import { SelectedPage } from "@c/shared/types";
+import ActionButton from "@/components/shared/ActionButton";
+import MainHeaderText from "@/components/shared/MainHText";
+import { SelectedPage } from "@/components/shared/types";
 
 type Props = {};
 

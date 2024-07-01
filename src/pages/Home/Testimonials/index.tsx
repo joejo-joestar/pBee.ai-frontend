@@ -1,5 +1,5 @@
-import { SelectedPage } from "@c/shared/types";
-import HText from "@c/shared/HText";
+import { SelectedPage } from "@/components/shared/types";
+import HText from "@/components/shared/HText";
 import Quotes from "./Quotes";
 import { motion } from "framer-motion";
 

@@ -1,6 +1,6 @@
-import ActionButton from "@c/shared/ActionButton";
+import ActionButton from "@/components/shared/ActionButton";
 import Links from "./PLink";
-import { SelectedPage } from "@c/shared/types";
+import { SelectedPage } from "@/components/shared/types";
 
 type Props = {
   style: string;
