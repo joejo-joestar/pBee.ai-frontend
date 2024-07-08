@@ -3,37 +3,25 @@ import {
   ExtFile,
   FileMosaic,
   FileMosaicProps,
-  // FullScreen,
-  // ImagePreview,
-  // VideoPreview,
 } from "@files-ui/react";
 import React from "react";
 
 type Props = {
+  fileType: string;
   id: string;
 };
 
-const DragNDrop = ({ id }: Props) => {
+const BASE_URL = "test";
+
+const DragNDrop = ({ fileType, id }: Props) => {
   const [extFiles, setExtFiles] = React.useState<ExtFile[]>([]);
-  // const [imageSrc, setImageSrc] = React.useState<File | string | undefined>(
-  //   undefined,
-  // );
-  // const [videoSrc, setVideoSrc] = React.useState<File | string | undefined>(
-  //   undefined,
-  // );
   const updateFiles = (incomingFiles: ExtFile[]) => {
-    console.log("incomming files", incomingFiles);
+    console.log("incoming files", incomingFiles);
     setExtFiles(incomingFiles);
   };
   const onDelete = (id: FileMosaicProps["id"]) => {
     setExtFiles(extFiles.filter((x) => x.id !== id));
   };
-  // const handleSee = (imageSource: File | string | undefined) => {
-  //   setImageSrc(imageSource);
-  // };
-  // const handleWatch = (videoSource: File | string | undefined) => {
-  //   setVideoSrc(videoSource);
-  // };
   const handleStart = (filesToUpload: ExtFile[]) => {
     console.log("advanced demo start upload", filesToUpload);
   };
@@ -60,58 +48,38 @@ const DragNDrop = ({ id }: Props) => {
   };
 
   return (
-    <>
+    <div className="flex items-center justify-center">
       <Dropzone
+        className="flex h-48 max-h-48 min-w-[512px] max-w-[512px] flex-none overflow-y-auto p-2"
+        id={`${id}`}
         onChange={updateFiles}
-        minHeight="195px"
         value={extFiles}
-        maxFiles={3}
-        // FmaxFileSize={2998000 * 20}
-        label="Drag'n drop files here or click to browse"
-        // accept=".png,image/*, video/*"
-        // uploadConfig={{
-        //   // autoUpload: true
-        //   url: BASE_URL + "/file/28048465460",
-        //   cleanOnUpload: true,
-        // }}
+        accept={`${fileType}`}
+        uploadConfig={{
+          autoUpload: true,
+          url: BASE_URL + "",
+          cleanOnUpload: true,
+        }}
+        footer={false}
         onUploadStart={handleStart}
         onUploadFinish={handleFinish}
-        fakeUpload
-        actionButtons={{
-          position: "after",
-          abortButton: {},
-          deleteButton: {},
-          uploadButton: {},
-        }}
       >
+        
         {extFiles.map((file) => (
           <FileMosaic
+            // style={{ background: "white" }}
             {...file}
             key={file.id}
             onDelete={onDelete}
-            // onSee={handleSee}
-            // onWatch={handleWatch}
             onAbort={handleAbort}
             onCancel={handleCancel}
             resultOnTooltip
             alwaysActive
             preview
-            info
           />
         ))}
       </Dropzone>
-      <div className="flex w-full items-center justify-center">
-        <label className="flex h-24 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:bg-gray-800">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-sm text-gray-400">
-              <span className="font-semibold">Click to upload</span> or drag and
-              drop
-            </p>
-          </div>
-          <input id={`${id}`} type="file" className="hidden" multiple />
-        </label>
-      </div>
-    </>
+    </div>
   );
 };
 

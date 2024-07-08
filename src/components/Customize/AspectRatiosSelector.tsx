@@ -1,83 +1,70 @@
-// TODO: Split File
-
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Field } from "formik";
 import { aspectRatios } from "./aspectRatios";
-import { Resolution, resolutions } from "./resolutions";
+import { resolutions } from "./resolutions";
 import { ResolutionSelector } from "./ResolutionSelector";
-import { ResolutionCustomize } from "./ResolutionCustomize";
-import { handleSetCustomResolution } from "./SetCustomResolution";
 
 interface AspectRatioProps {
-  selectedAspectRatio: string;
-  // The function to call when the aspect ratio changes
-  onAspectRatioChange: (value: string) => void;
+  formik: any;
 }
 
-const BUTTON_CLASSES = "w-32 rounded-xl px-5 py-3 text-lg";
 const CONTAINER_CLASSES =
-  "flex flex-row justify-between gap-4 rounded-xl bg-[#1f1c33] p-1";
+  "flex flex-row justify-between min-h-[60px] gap-4 rounded-xl bg-[#1f1c33] p-1";
 
-export const AspectRatioSelector: React.FC<AspectRatioProps> = ({
-  selectedAspectRatio,
-  onAspectRatioChange,
-}: AspectRatioProps) => {
-  // Initialize the available resolutions state with the resolutions for the selected aspect ratio
-  const [availableResolutions, setAvailableResolutions] = useState<
-    Resolution[]
-  >(resolutions[selectedAspectRatio] || []);
-  const [selectedResolution, setSelectedResolution] = useState<
-    string | undefined
-  >();
-  // Initialize the custom resolution state
-  const [customResolution, setCustomResolution] = useState<{
-    width: string;
-    height: string;
-  }>({ width: "", height: "" });
+export const AspectRatioSelector: React.FC<AspectRatioProps> = ({ formik }) => {
+  const { values, setValues } = formik;
+  const handleResolutionChange = (value: string) => {
+    setValues({
+      ...values,
+      resolution: value,
+    });
+  };
 
-  // Use the useEffect hook to update the available resolutions when the selected aspect ratio changes
-  useEffect(() => {
-    setAvailableResolutions(resolutions[selectedAspectRatio] || []);
-  }, [selectedAspectRatio]);
+  const getSelectedResolutions = () => {
+    if (resolutions && values.aspectRatio) {
+      return resolutions[values.aspectRatio] || [];
+    }
+    return [];
+  };
 
   return (
     <div className="flex flex-col gap-5">
-      // Render the aspect ratio buttons
       <div className={CONTAINER_CLASSES}>
         {aspectRatios.map((ratio) => (
-          <button
+          <label
             key={ratio.value}
-            className={`${BUTTON_CLASSES} ${selectedAspectRatio === ratio.value ? "bg-violet-500 text-white" : "hover:bg-violet-300/30"}`}
-            onClick={() => onAspectRatioChange(ratio.value)}
+            className="w-32 rounded-xl px-5 py-3 text-center text-lg text-violet-200 duration-75 hover:bg-violet-300/30 hover:duration-75 has-[:checked]:bg-violet-500 has-[:checked]:text-white"
           >
+            <Field
+              type="radio"
+              id={ratio.value}
+              name="aspectRatio"
+              value={ratio.value}
+              className="hidden"
+              onChange={(e: { target: { value: string | number } }) => {
+                setValues({
+                  ...values,
+                  aspectRatio: e.target.value,
+                  resolution:
+                    resolutions?.[e.target.value]?.[0] || values.resolution,
+                });
+              }}
+            />
             {ratio.value}
-          </button>
+          </label>
         ))}
       </div>
-      <div className={CONTAINER_CLASSES}>
-        {selectedAspectRatio === "Custom" ? (
-          <ResolutionCustomize
-            onCustomResolution={(width, height) =>
-              setCustomResolution(
-                handleSetCustomResolution(width, height, onAspectRatioChange),
-              )
-            }
-          />
-        ) : (
+
+      {/* Render resolution selection based on aspect ratio (optional) */}
+      {resolutions && ( // Check if resolutions are available
+        <div className={`${CONTAINER_CLASSES}`}>
           <ResolutionSelector
-            availableResolutions={availableResolutions}
-            selectedResolution={selectedResolution}
-            onResolutionChange={setSelectedResolution}
+            availableResolutions={getSelectedResolutions()} // Pass filtered resolutions
+            selectedResolution={values.resolution} // Pass selected resolution from Formik
+            onResolutionChange={handleResolutionChange} // Update onChange handler
           />
-        )}
-      </div>
-      <div className="text-sm text-gray-500">
-        Selected Resolution:{" "}
-        {selectedAspectRatio !== "Custom"
-          ? selectedResolution
-          : customResolution.width && customResolution.height
-            ? `${customResolution.width}x${customResolution.height}`
-            : "Select a resolution"}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -11,6 +11,8 @@ This repository is to store the static files for the PBee.ai website.
 - [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
 - [Framer Motion](https://www.framer.com/motion/)
 - [React-Color](https://casesandberg.github.io/react-color/)
+- [Formik](https://formik.org/docs/overview)
+- [Files UI](https://files-ui.vercel.app/getting-started)
 
 ## Landing Page
 ###  Hero Page
@@ -59,22 +61,28 @@ npm cd [project name]
 installing other dependencies
 ```terminal
 <!-- React-Router -->
-npm i react-router-dom
+npm install react-router-dom
 
 <!-- React-Redux -->
 npm install react-redux @reduxjs/toolkit
 
 <!-- Framer -->
-npm i framer-motion
+npm install framer-motion
 
 <!-- React-Color -->
-npm i react-color
+npm install react-color
+
+<!-- Formik -->
+npm install formik --save
+
+<!-- files-ui -->
+npm install @files-ui/react
 
 <!-- Other Dependencies -->
-npm i -D @types/node
+npm install -D @types/node
 
 <!-- Tailwind Install -->
-npm i -D tailwindcss postcss autoprefixer
+npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
