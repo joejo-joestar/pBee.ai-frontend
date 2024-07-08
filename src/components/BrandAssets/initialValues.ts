@@ -27,10 +27,6 @@ export const initialValues = {
   //     link: "",
   //   },
   // ],
-  colorPalette: [
-    {
-      color: "",
-    },
-  ],
+  colorPalette: ["#FFFFFF", "#131121"],
   collectionName: "",
 };

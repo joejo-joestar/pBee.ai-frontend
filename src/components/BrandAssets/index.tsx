@@ -3,11 +3,17 @@ import DragNDrop from "./DragNDrop";
 import { Formik, Form, Field } from "formik";
 import ColorPicker from "./ColorPicker";
 import { initialValues } from "./initialValues";
+import { SetStateAction, useState } from "react";
 
 type Props = { isVisible: boolean; onClose(): void };
 
 const BrandAssets = ({ isVisible, onClose }: Props) => {
   if (!isVisible) return null;
+  const [_state, updateState] = useState("#");
+
+  const handleInput = (e: { target: { value: SetStateAction<string> } }) => {
+    updateState(e.target.value);
+  };
 
   return (
     <ModalCard onClose={onClose}>
@@ -31,30 +37,31 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
             {/* DropZones */}
             <div className="flex flex-col">
               <label htmlFor="logos">Logos</label>
-              <DragNDrop fileType={".png, .svg"} id={"logos"} />
+              <DragNDrop allowedTypes={".png, .svg"} id={"logos"} />
             </div>
             <div className="flex flex-col">
               <label htmlFor="images">images</label>
-              <DragNDrop fileType={".png, .svg"} id={"images"} />
+              <DragNDrop allowedTypes={".png, .svg"} id={"images"} />
             </div>
             <div className="flex flex-col">
               <label htmlFor="headerFont">Header Font</label>
-              <DragNDrop fileType={".ttf, .otf"} id={"headerFont"} />
+              <DragNDrop allowedTypes={".ttf, .otf"} id={"headerFont"} />
             </div>
             <div className="flex flex-col">
               <label htmlFor="textFont">Text Font</label>
-              <DragNDrop fileType={".ttf, .otf"} id={"textFont"} />
+              <DragNDrop allowedTypes={".ttf, .otf"} id={"textFont"} />
             </div>
 
             {/* Completed */}
 
             {/* Color Picker */}
-            <ColorPicker values={values.colorPalette} />
+            <ColorPicker values={values.colorPalette} onChange={handleInput} />
 
             {/* Folder Name */}
             <div className="flex flex-col">
               <label htmlFor="collectionName">Collection Name</label>
               <Field
+                className="h-12 rounded-xl bg-transparent px-4"
                 name="collectionName"
                 type="text"
                 placeholder="Asset Name"
@@ -72,10 +79,11 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
                 Reset All
               </button>
               {/* Apply Button */}
+
               <button
                 className="flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 bg-buttonGradient px-12 py-4 transition duration-500 hover:border-lavender70/40"
                 type="submit"
-                disabled={isSubmitting}
+                // disabled={isSubmitting}
               >
                 apply
               </button>

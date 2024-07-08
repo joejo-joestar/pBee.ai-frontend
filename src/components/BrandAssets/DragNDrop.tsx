@@ -7,30 +7,35 @@ import {
 import React from "react";
 
 type Props = {
-  fileType: string;
+  allowedTypes: string;
   id: string;
 };
 
-const BASE_URL = "test";
+const BASE_URL = "";
 
-const DragNDrop = ({ fileType, id }: Props) => {
-  const [extFiles, setExtFiles] = React.useState<ExtFile[]>([]);
+const DragNDrop = ({ allowedTypes: fileType, id }: Props) => {
+  const [files, setFiles] = React.useState<ExtFile[]>([]);
+
   const updateFiles = (incomingFiles: ExtFile[]) => {
     console.log("incoming files", incomingFiles);
-    setExtFiles(incomingFiles);
+    setFiles(incomingFiles);
   };
+
   const onDelete = (id: FileMosaicProps["id"]) => {
-    setExtFiles(extFiles.filter((x) => x.id !== id));
+    setFiles(files.filter((x) => x.id !== id));
   };
+
   const handleStart = (filesToUpload: ExtFile[]) => {
-    console.log("advanced demo start upload", filesToUpload);
+    console.log("Start Upload", filesToUpload);
   };
+
   const handleFinish = (uploadedFiles: ExtFile[]) => {
-    console.log("advanced demo finish upload", uploadedFiles);
+    console.log("Upload Finished", uploadedFiles);
   };
+
   const handleAbort = (id: FileMosaicProps["id"]) => {
-    setExtFiles(
-      extFiles.map((ef) => {
+    setFiles(
+      files.map((ef) => {
         if (ef.id === id) {
           return { ...ef, uploadStatus: "aborted" };
         } else return { ...ef };
@@ -38,8 +43,8 @@ const DragNDrop = ({ fileType, id }: Props) => {
     );
   };
   const handleCancel = (id: FileMosaicProps["id"]) => {
-    setExtFiles(
-      extFiles.map((ef) => {
+    setFiles(
+      files.map((ef) => {
         if (ef.id === id) {
           return { ...ef, uploadStatus: undefined };
         } else return { ...ef };
@@ -53,19 +58,18 @@ const DragNDrop = ({ fileType, id }: Props) => {
         className="flex h-48 max-h-48 min-w-[512px] max-w-[512px] flex-none overflow-y-auto p-2"
         id={`${id}`}
         onChange={updateFiles}
-        value={extFiles}
+        value={files}
         accept={`${fileType}`}
         uploadConfig={{
           autoUpload: true,
-          url: BASE_URL + "",
+          url: BASE_URL,
           cleanOnUpload: true,
         }}
         footer={false}
         onUploadStart={handleStart}
         onUploadFinish={handleFinish}
       >
-        
-        {extFiles.map((file) => (
+        {files.map((file: ExtFile) => (
           <FileMosaic
             // style={{ background: "white" }}
             {...file}
