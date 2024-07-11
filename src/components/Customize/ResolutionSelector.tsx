@@ -1,47 +1,46 @@
-import React from "react";
 import { Field } from "formik";
 import { ResolutionCustomize } from "./ResolutionCustomize";
-import { Resolution } from "./resolutions";
+import { toggle } from "../shared/FormConst";
 
-interface ResolutionProps {
-  availableResolutions: Resolution[];
-  selectedResolution: string | undefined;
+type Props = {
+  selectedAspectRatio: string;
+  availableResolutions: string[];
   onResolutionChange: (value: string) => void;
-}
+};
 
-export const ResolutionSelector: React.FC<ResolutionProps> = ({
+export const ResolutionSelector = ({
+  selectedAspectRatio,
   availableResolutions,
-  selectedResolution,
   onResolutionChange,
-}) => {
+}: Props) => {
   return (
     <>
       {/* Render custom resolution section if selectedResolution is "Custom" */}
-      {selectedResolution === "Custom" && (
-        <ResolutionCustomize
-          onCustomResolution={(width, height) => {
-            onResolutionChange(`custom:${width}x${height}`);
-          }}
-        />
-      )}
+      {availableResolutions.length === 0 &&
+        selectedAspectRatio === "Custom" && (
+          <ResolutionCustomize
+            onCustomResolution={(width, height) => {
+              onResolutionChange(`${width}x${height}`);
+            }}
+          />
+        )}
 
       {/* Render predefined resolutions if selectedResolution is not "Custom" */}
-      {selectedResolution !== "Custom" && availableResolutions.length > 0 && (
+      {availableResolutions.length > 0 && selectedAspectRatio !== "Custom" && (
         <div className="flex w-full flex-row justify-between gap-5">
-          {availableResolutions.map((resolution) => (
+          {availableResolutions.map((_resolution, index) => (
             <label
-              key={resolution.value}
-              className="w-40 rounded-xl px-5 py-3 text-center text-lg text-violet-200 duration-75 hover:bg-violet-300/30 hover:duration-75 has-[:checked]:bg-violet-500 has-[:checked]:text-white"
+              key={availableResolutions[index]}
+              className={`w-40 ${toggle}`}
             >
               <Field
                 type="radio"
-                id={resolution.value}
+                id={availableResolutions[index]}
                 name="resolution"
-                value={resolution.value}
+                value={availableResolutions[index]}
                 className="hidden"
-                // onChange={onResolutionChange}
               />
-              {resolution.value}
+              {availableResolutions[index]}
             </label>
           ))}
         </div>

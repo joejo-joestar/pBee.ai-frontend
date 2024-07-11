@@ -2,6 +2,10 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      display: ["Sora"],
+      body: ['"Noto Sans"',],
+    },
     extend: {
       colors: {
         bgDark100: "#272343",
@@ -11,6 +15,7 @@ export default {
         text70: "#E5E9FA",
         text50: "#D1D6F4",
         lavender70: "#B4BAED",
+        tabContainer: "#1F1C33",
         productDark: "#131121",
         canvas: "#19181f",
         cardColor: "#5B4EAD",

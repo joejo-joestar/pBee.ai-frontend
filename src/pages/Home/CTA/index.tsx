@@ -14,7 +14,7 @@ const CTA = ({}: Props) => {
         {/* CTA */}
         <div className="flex flex-col gap-6">
           <MainHeaderText>Start creating with Placard</MainHeaderText>
-          <p className="text-center text-xl text-zinc-300">
+          <p className="font-body text-center text-xl">
             Never think twice about your media.
           </p>
         </div>

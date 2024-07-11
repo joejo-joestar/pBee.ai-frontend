@@ -1,17 +1,16 @@
-import React from "react";
 import { Field } from "formik";
-import { aspectRatios } from "./aspectRatios";
+// import { aspectRatios } from "./aspectRatios";
 import { resolutions } from "./resolutions";
 import { ResolutionSelector } from "./ResolutionSelector";
+import { container, toggle } from "../shared/FormConst";
 
-interface AspectRatioProps {
+const aspectRatios = Object.keys(resolutions);
+
+type Props = {
   formik: any;
-}
+};
 
-const CONTAINER_CLASSES =
-  "flex flex-row justify-between min-h-[60px] gap-4 rounded-xl bg-[#1f1c33] p-1";
-
-export const AspectRatioSelector: React.FC<AspectRatioProps> = ({ formik }) => {
+export const AspectRatioSelector = ({ formik }: Props) => {
   const { values, setValues } = formik;
   const handleResolutionChange = (value: string) => {
     setValues({
@@ -29,17 +28,14 @@ export const AspectRatioSelector: React.FC<AspectRatioProps> = ({ formik }) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className={CONTAINER_CLASSES}>
-        {aspectRatios.map((ratio) => (
-          <label
-            key={ratio.value}
-            className="w-32 rounded-xl px-5 py-3 text-center text-lg text-violet-200 duration-75 hover:bg-violet-300/30 hover:duration-75 has-[:checked]:bg-violet-500 has-[:checked]:text-white"
-          >
+      <div className={container}>
+        {aspectRatios.map((_ratio, index) => (
+          <label key={aspectRatios[index]} className={`w-36 ${toggle}`}>
             <Field
               type="radio"
-              id={ratio.value}
+              id={aspectRatios[index]}
               name="aspectRatio"
-              value={ratio.value}
+              value={aspectRatios[index]}
               className="hidden"
               onChange={(e: { target: { value: string | number } }) => {
                 setValues({
@@ -50,17 +46,16 @@ export const AspectRatioSelector: React.FC<AspectRatioProps> = ({ formik }) => {
                 });
               }}
             />
-            {ratio.value}
+            {aspectRatios[index]}
           </label>
         ))}
       </div>
 
-      {/* Render resolution selection based on aspect ratio (optional) */}
-      {resolutions && ( // Check if resolutions are available
-        <div className={`${CONTAINER_CLASSES}`}>
+      {resolutions && (
+        <div className={container}>
           <ResolutionSelector
             availableResolutions={getSelectedResolutions()} // Pass filtered resolutions
-            selectedResolution={values.resolution} // Pass selected resolution from Formik
+            selectedAspectRatio={values.aspectRatio} // Pass selected resolution from Formik
             onResolutionChange={handleResolutionChange} // Update onChange handler
           />
         </div>

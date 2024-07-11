@@ -11,7 +11,7 @@ const Testimonials = ({ setSelectedPage }: Props) => {
   return (
     <section
       id="Testimonials"
-      className="h-full select-none place-content-center gap-16 bg-deepPurple py-10"
+      className="h-full select-none place-content-center gap-16 bg-deepPurple py-10 font-display"
     >
       {/* Gradient Fade */}
       <div className="absolute z-10 h-full w-full bg-gradient-to-l from-deepPurple via-[#1c2336]/20 to-deepPurple"></div>
@@ -22,7 +22,7 @@ const Testimonials = ({ setSelectedPage }: Props) => {
       >
         {/* Heading */}
         <HText>Our customers love Placard</HText>
-        <h2 className="z-10 text-xl">See what they have to say.</h2>
+        <h2 className="z-10 text-xl font-body">See what they have to say.</h2>
       </motion.div>
       {/* Cards */}
       <Quotes />

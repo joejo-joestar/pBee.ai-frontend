@@ -6,7 +6,7 @@ type Props = {
 
 const Card = ({ profile, name, designation }: Props) => {
   return (
-    <div className="border-cardColor bg-cardGradient flex w-auto flex-col items-center gap-3 rounded-xl border p-8 text-left backdrop-blur-md">
+    <div className="flex w-auto flex-col items-center gap-3 rounded-xl border border-cardColor bg-cardGradient p-8 text-left backdrop-blur-md">
       {/* Profile */}
       <img
         className="size-64 rounded-full border border-neutral-700"
@@ -15,9 +15,11 @@ const Card = ({ profile, name, designation }: Props) => {
       {/* Label */}
       <div className="flex flex-col items-center justify-center gap-4">
         {/* Name */}
-        <h3 className="text-center text-xl font-semibold">{name}</h3>
+        <h3 className="font-display text-center text-xl font-semibold">
+          {name}
+        </h3>
         {/* Designation */}
-        <p className="text-center font-normal">{designation}</p>
+        <p className="font-display text-center font-normal">{designation}</p>
       </div>
     </div>
   );

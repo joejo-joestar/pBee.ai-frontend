@@ -17,7 +17,7 @@ const FAQs = () => {
   return (
     <section
       id="faqs"
-      className="h-full select-none gap-16 bg-faqGradient py-10"
+      className="h-full select-none gap-16 bg-faqGradient py-10 font-display"
     >
       {/* Header */}
       <HText>Frequently Asked Questions</HText>

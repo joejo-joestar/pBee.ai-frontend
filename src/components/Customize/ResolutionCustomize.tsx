@@ -1,48 +1,51 @@
+import { inputField, setButton } from "../shared/FormConst";
 
-// TODO: How to use this?
+type Props = {
+  onCustomResolution: (width: string, height: string) => void;
+};
 
-import React from "react";
-import { Field } from "formik"; // Import Formik's Field component
-
-interface AspectRatioProps {
-  onCustomResolution?: (width: string, height: string) => void;
-}
-
-export const ResolutionCustomize: React.FC<AspectRatioProps> = ({
-  onCustomResolution,
-}) => {
+export const ResolutionCustomize = ({ onCustomResolution }: Props) => {
   return (
     <>
-      <label htmlFor="customWidth" className="mb-2 block text-sm font-medium">
-        Width:
-      </label>
-      <Field
-        type="number"
-        id="customWidth"
-        name="customWidth"
-        placeholder="Width"
-        className="w-full rounded-xl border border-purple-600 p-3"
-      />
-      <label htmlFor="customHeight" className="mb-2 block text-sm font-medium">
-        Height:
-      </label>
-      <Field
-        type="number"
-        id="customHeight"
-        name="customHeight"
-        placeholder="Height"
-        className="w-full rounded-xl border border-purple-600 p-3"
-      />
+      <div />
+      <div className="flex flex-row items-center gap-3">
+        <label htmlFor="customWidth" className="text-lg font-medium">
+          W
+        </label>
+        <input
+          type="number"
+          id="customWidth"
+          placeholder={"Width"}
+          min={1}
+          max={8000}
+          className={inputField}
+        />
+      </div>
+      <div className="flex flex-row items-center gap-3">
+        <label htmlFor="customHeight" className="text-lg font-medium">
+          H
+        </label>
+        <input
+          type="number"
+          id="customHeight"
+          placeholder={"Height"}
+          min={1}
+          max={8000}
+          className={inputField}
+        />
+      </div>
       <button
-        className="w-auto rounded-xl bg-violet-500 px-4 py-3 text-white"
+        type="button"
+        className={setButton}
         onClick={() => {
-          const customWidth = document.getElementById("customWidth");
-          const customHeight = document.getElementById("customHeight");
+          const customWidth = document.getElementById(
+            "customWidth",
+          ) as HTMLInputElement;
+          const customHeight = document.getElementById(
+            "customHeight",
+          ) as HTMLInputElement;
           if (customWidth && customHeight) {
-            onCustomResolution?.(
-              customWidth.toString(),
-              customHeight.toString(),
-            );
+            onCustomResolution?.(customWidth.value, customHeight.value);
           }
         }}
       >

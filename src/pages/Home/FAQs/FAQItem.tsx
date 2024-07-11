@@ -19,7 +19,7 @@ const FAQItem: React.FC<FAQItemProps> = ({
       <div className="border-cardColor/70 my-10 h-0 w-auto border border-solid" />
       {/* Question */}
       <div
-        className="p-25 my-3 flex flex-row justify-between text-3xl font-medium"
+        className="p-25 my-3 flex flex-row justify-between text-3xl font-medium font-display"
         onClick={() => toggleFAQ(index)}
       >
         {faq.question}
@@ -34,7 +34,7 @@ const FAQItem: React.FC<FAQItemProps> = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="p-25 text-2xl"
+            className="p-25 text-2xl font-body"
           >
             {faq.answer}
           </motion.p>

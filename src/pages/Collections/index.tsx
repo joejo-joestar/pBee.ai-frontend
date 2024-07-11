@@ -5,7 +5,7 @@ const Collections = ({}: Props) => {
     <>
       <section
         id="collections"
-        className="select-none place-content-center gap-16 bg-dark py-10"
+        className="font-display select-none place-content-center gap-16 bg-dark py-10"
       >
         <div>Collections</div>
       </section>

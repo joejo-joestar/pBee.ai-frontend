@@ -1,5 +1,5 @@
 import Home from "@/routes/Home";
-import MoreAboutUs from "@/pages/Team";
+import Team from "@/pages/Team";
 import Pricing from "@/pages/Pricing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ScrollToTop from "@/hooks/ScrollToTop";
@@ -8,7 +8,7 @@ import ProductTest from "./Producttest";
 export enum Routes {
   BASE = "/*",
   PRICING = "/pricing",
-  ABOUTUS = "/moreaboutus",
+  ABOUTUS = "/team",
   SIGNIN = "/signin",
   SIGNUP = "/signup",
   PRODUCT = "/producttest",
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <ScrollToTop />
-        <MoreAboutUs />
+        <Team />
       </>
     ),
   },

@@ -35,12 +35,12 @@ const Pricing = ({}: Props) => {
       />
       <section
         id="pricing"
-        className="select-none place-content-center gap-16 bg-dark py-10"
+        className="select-none place-content-center gap-16 bg-dark py-10 font-display"
       >
         <div className="mt-40 flex flex-col p-6 text-center">
           {/* Header */}
           <MainHeaderText>Grow your business today</MainHeaderText>
-          <p className="mt-5 text-2xl">
+          <p className="mt-5 text-2xl font-body">
             Choose a plan that works best for you.
           </p>
           {/* Cards */}

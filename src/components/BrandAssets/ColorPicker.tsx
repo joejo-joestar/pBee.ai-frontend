@@ -1,14 +1,15 @@
 import { Field, FieldArray } from "formik";
-import React, { SetStateAction } from "react";
+import { SetStateAction } from "react";
+import { RemoveIcon } from "@/components/BrandAssets/RemoveIcon";
 
-interface Props {
+type Props = {
   values: string[];
   onChange: (e: { target: { value: SetStateAction<string> } }) => void;
-}
+};
 
-const ColorPalette: React.FC<Props> = ({ values }) => {
+const ColorPalette = ({ values }: Props) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       <label htmlFor="colorPalette">Color Palette</label>
       <div className="flex w-fit flex-col gap-3 overflow-auto">
         <FieldArray name="colorPalette">
@@ -19,47 +20,39 @@ const ColorPalette: React.FC<Props> = ({ values }) => {
                   {values.map((_color, index) => (
                     <div
                       key={index}
-                      className="relative flex flex-row rounded-xl bg-[#3f386d80] p-1"
+                      className="bg-tabContainer relative flex min-h-16 flex-row rounded-xl p-1"
                     >
-                      <div className="size-14 overflow-hidden rounded-xl border border-solid border-[#3f386d]">
+                      <div className="bg-tabContainer size-14 overflow-hidden rounded-xl border border-solid">
                         {/* Color Picker */}
                         <Field
-                          className="-m-[25%] size-20"
+                          className="-m-[25%] size-20 cursor-pointer"
                           name={`colorPalette[${index}]`}
+                          placeholder="#303030"
                           type="color"
                         />
                       </div>
+
                       {/* Hex Field */}
                       <Field
-                        className={`rounded-xl bg-transparent px-4`}
+                        className={`rounded-xl bg-transparent px-4 placeholder:text-sm placeholder:text-slate-400/50`}
                         name={`colorPalette[${index}]`}
-                        placeholder="#131121"
+                        placeholder="#303030"
                         type="text"
                       />
+
                       {/* Remove Button */}
                       <button type="button" onClick={() => remove(index)}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          className="size-6"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                          />
-                        </svg>
+                        <RemoveIcon />
                       </button>
                     </div>
                   ))}
                 </>
               )}
+
+              {/* Add New Color Button*/}
               <button
                 type="button"
-                className="ml-1 size-14 rounded-xl bg-white font-black text-black"
+                className="bg-tabContainer ml-1 size-14 rounded-xl text-lg font-black"
                 onClick={() => push("")}
               >
                 +

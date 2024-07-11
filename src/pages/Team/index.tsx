@@ -10,7 +10,7 @@ type Props = {};
 
 const Team = ({}: Props) => {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
-    SelectedPage.Placard,
+    SelectedPage.Team,
   );
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
@@ -18,7 +18,7 @@ const Team = ({}: Props) => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setIsTopOfPage(true);
-        setSelectedPage(SelectedPage.Placard);
+        setSelectedPage(SelectedPage.Team);
       }
       if (window.scrollY !== 0) setIsTopOfPage(false);
     };
@@ -35,21 +35,21 @@ const Team = ({}: Props) => {
       />
       <section
         id="Team"
-        className="h-full select-none place-content-center gap-16 bg-moreAboutUsGradient py-10"
+        className="font-display h-full select-none place-content-center gap-16 bg-moreAboutUsGradient py-10"
       >
         <div className="mt-40 p-8 text-center">
           <MainHeaderText>About Us</MainHeaderText>
-          <p className="mt-5 text-2xl">
-            Our goal is to make powerful marketing tools accessible and easy to
-            use for businesses.
+          <p className="font-body mt-5 text-2xl">
+            Our goal is to make powerful marketing tools accessible <br /> and
+            easy to use for businesses.
           </p>
         </div>
         <div className="ml-[230px] flex w-1/2 flex-col p-16">
-          <h1 className="text-4xl font-bold">
-            Simplifying technology to the world by providing a one-stop digital
-            ecosystem
+          <h1 className="text-display text-5xl font-bold">
+            Simplifying technology to the <br /> world by providing a one-stop{" "}
+            <br /> digital ecosystem
           </h1>
-          <p className="mt-3 pr-5 text-justify text-lg">
+          <p className="font-body mt-3 pr-5 text-justify text-lg">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

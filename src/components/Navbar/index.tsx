@@ -22,13 +22,15 @@ const Navbar = ({ isTopOfPage, selectedPage }: Props) => {
     <>
       <nav>
         {/* Global Position */}
-        <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
+        <div
+          className={`${flexBetween} font-display fixed top-0 z-30 w-full py-6`}
+        >
           {/* Aligning towards center */}
           <div
             className={`transition delay-150 ${navbarBackground} flex justify-center gap-1 rounded-xl px-3 py-3 ${flexBetween} mx-auto w-3/4`}
           >
             {/* Aligning depending screen size */}
-            <div className={` ${flexBetween} w-full gap-10`}>
+            <div className={`${flexBetween} w-full gap-10`}>
               {/* Left Side */}
               <LogoPane selectedPage={selectedPage} />
               {/* Right Side */}

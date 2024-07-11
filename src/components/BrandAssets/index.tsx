@@ -4,6 +4,7 @@ import { Formik, Form, Field } from "formik";
 import ColorPicker from "./ColorPicker";
 import { initialValues } from "./initialValues";
 import { SetStateAction, useState } from "react";
+import { otherButton, submitButton } from "../shared/FormConst";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -19,8 +20,10 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
     <ModalCard onClose={onClose}>
       {/* Header */}
       <div>
-        <h1>Brand Assets</h1>
-        <p>Import your brand assets, fonts and specify colors</p>
+        <h1 className="font-display font-bold">Brand Assets</h1>
+        <p className="font-body font-semibold">
+          Import your brand assets, fonts and specify colors
+        </p>
       </div>
       {/* Separator */}
       <div className="h-0 w-auto border border-solid border-cardColor" />
@@ -32,45 +35,52 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
         }}
       >
         {({ values, isSubmitting, resetForm }) => (
-          <Form>
+          <Form className="flex flex-col gap-5">
             {/* TODO: Get file details from `files-ui/react` library to formik */}
-            {/* DropZones */}
-            <div className="flex flex-col">
+
+            {/* Logo Dropzone */}
+            <div className="flex flex-col gap-2">
               <label htmlFor="logos">Logos</label>
-              <DragNDrop allowedTypes={".png, .svg"} id={"logos"} />
+              <DragNDrop allowedTypes={"image/*"} id={"logos"} />
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="images">images</label>
-              <DragNDrop allowedTypes={".png, .svg"} id={"images"} />
+
+            {/* Image Dropzone */}
+            <div className="flex flex-col gap-2">
+              <label htmlFor="images">Images</label>
+              <DragNDrop allowedTypes={"image/*"} id={"images"} />
             </div>
-            <div className="flex flex-col">
+
+            {/* Header Font Dropzone */}
+            <div className="flex flex-col gap-2">
               <label htmlFor="headerFont">Header Font</label>
               <DragNDrop allowedTypes={".ttf, .otf"} id={"headerFont"} />
             </div>
-            <div className="flex flex-col">
+
+            {/* Text Font Dropzone */}
+            <div className="flex flex-col gap-2">
               <label htmlFor="textFont">Text Font</label>
               <DragNDrop allowedTypes={".ttf, .otf"} id={"textFont"} />
             </div>
-
-            {/* Completed */}
 
             {/* Color Picker */}
             <ColorPicker values={values.colorPalette} onChange={handleInput} />
 
             {/* Folder Name */}
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-2">
               <label htmlFor="collectionName">Collection Name</label>
               <Field
-                className="h-12 rounded-xl bg-transparent px-4"
+                className="bg-tabContainer min-h-16 w-full rounded-xl px-4"
                 name="collectionName"
                 type="text"
                 placeholder="Asset Name"
               />
             </div>
+
+            {/* Button Div */}
             <div className="flex flex-row justify-evenly gap-6">
               {/* Reset Button */}
               <button
-                className="flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 px-12 py-4 transition duration-500 hover:border-lavender70/40"
+                className={otherButton}
                 type="reset"
                 onClick={() => {
                   resetForm();
@@ -79,13 +89,12 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
                 Reset All
               </button>
               {/* Apply Button */}
-
               <button
-                className="flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 bg-buttonGradient px-12 py-4 transition duration-500 hover:border-lavender70/40"
+                className={submitButton}
                 type="submit"
                 // disabled={isSubmitting}
               >
-                apply
+                Apply
               </button>
             </div>
           </Form>

@@ -12,19 +12,19 @@ const AboutUs = ({ setSelectedPage }: Props) => {
     <motion.section
       id="company"
       onViewportEnter={() => setSelectedPage(SelectedPage.Company)}
-      className="h-full select-none place-content-center gap-16 bg-aboutUsGradient py-10"
+      className="font-display h-full select-none place-content-center gap-16 bg-aboutUsGradient py-10"
     >
       <div className="flex flex-col items-center justify-center gap-5">
         {/* Heading */}
         <MainHeaderText>About Us</MainHeaderText>
-        <p className="text-center text-2xl">
+        <p className="font-body text-center text-2xl">
           Our goal is to make powerful marketing tools accessible and easy to
           use for businesses.
         </p>
         {/* Learn More Button */}
         <ActionButton
           style={"px-10 py-5 text-xl w-[300px]"}
-          page={SelectedPage.MoreAboutUs}
+          page={SelectedPage.Team}
         >
           Learn More
         </ActionButton>

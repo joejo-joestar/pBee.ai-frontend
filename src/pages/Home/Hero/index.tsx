@@ -8,7 +8,10 @@ type Props = {
 
 const Hero = ({ setSelectedPage }: Props) => {
   return (
-    <section id="placard" className="h-full select-none bg-heroGradient py-10">
+    <section
+      id="placard"
+      className="font-display h-full select-none bg-heroGradient py-10"
+    >
       <MainHeader setSelectedPage={setSelectedPage} />
       <div className="mx-auto flex w-5/6 flex-col items-center justify-center">
         {/* Image */}

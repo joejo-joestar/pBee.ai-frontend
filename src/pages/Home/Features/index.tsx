@@ -20,8 +20,8 @@ const Features = ({ setSelectedPage }: Props) => {
       >
         {/* Heading */}
         <HText>What can you do with Placard AI?</HText>
-        {/* Cards */}
       </motion.div>
+      {/* Cards */}
       <Cards />
     </section>
   );

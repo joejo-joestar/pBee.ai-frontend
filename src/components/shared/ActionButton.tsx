@@ -10,7 +10,7 @@ type Props = {
 const ActionButton = ({ style, children, page }: Props) => {
   return (
     <Link
-      className={`${style} flex select-none flex-col items-center justify-center gap-1 rounded-xl border-2 border-solid border-lavender70 bg-buttonGradient transition duration-500 hover:border-lavender70/40`}
+      className={`${style} font-display flex select-none flex-col items-center justify-center gap-1 rounded-xl border-2 border-solid border-lavender70 bg-buttonGradient transition duration-500 hover:border-lavender70/40`}
       to={`${page}`}
     >
       {children}

@@ -3,6 +3,8 @@ import { Form, Formik } from "formik";
 import { initialValues } from "./initialValues";
 import { ToneSelector } from "./TonesSelector";
 import { AspectRatioSelector } from "./AspectRatiosSelector";
+import CollectionSelector from "./CollectionSelector";
+import { otherButton, submitButton } from "../shared/FormConst";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -13,8 +15,10 @@ const Customize = ({ isVisible, onClose }: Props) => {
     <ModalCard onClose={onClose}>
       {/* Header */}
       <div>
-        <h1>Customize</h1>
-        <p>Select a specific style and format for your poster</p>
+        <h1 className="font-display font-bold">Customize</h1>
+        <p className="font-body font-semibold">
+          Select a specific style and format for your poster
+        </p>
       </div>
 
       {/* Separator */}
@@ -23,23 +27,34 @@ const Customize = ({ isVisible, onClose }: Props) => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2)); // For debugging, replace with your submit logic
+          alert(JSON.stringify(values, null, 2)); // For debugging, replace with submit logic
         }}
       >
         {({ values, setValues, isSubmitting, resetForm }) => (
-          <Form>
-            {/* Body */}
+          <Form className="flex flex-col gap-5">
+            {/* Tone Selector */}
             <div>
               <h3>Tones</h3>
               <ToneSelector />
             </div>
+
+            {/* Aspect Ratios and Resolutions Selector */}
             <div>
               <h3>Aspect Ratios & Resolutions</h3>
               <AspectRatioSelector formik={{ values, setValues }} />
             </div>
+
+            {/* Search Dropdown for Collection Name */}
+            <div>
+              <h3>Collections</h3>
+              <CollectionSelector />
+            </div>
+
+            {/* Button Div */}
             <div className="flex flex-row justify-evenly">
+              {/* Reset Button */}
               <button
-                className="flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 px-12 py-4 transition duration-500 hover:border-lavender70/40"
+                className={otherButton}
                 type="reset"
                 onClick={() => {
                   resetForm;
@@ -47,8 +62,9 @@ const Customize = ({ isVisible, onClose }: Props) => {
               >
                 Reset
               </button>
+              {/* Apply Button */}
               <button
-                className="flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 bg-buttonGradient px-12 py-4 transition duration-500 hover:border-lavender70/40"
+                className={submitButton}
                 type="submit"
                 // disabled={isSubmitting}
               >

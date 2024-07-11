@@ -9,13 +9,16 @@ type Props = {
 
 const HeroTop = ({ setSelectedPage }: Props) => {
   return (
-    <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Placard)} className="flex flex-col z-10 mt-40 p-5 md:basis-3/5 items-center">
-      <div className="md:-mt-30 text-center ">
+    <motion.div
+      onViewportEnter={() => setSelectedPage(SelectedPage.Placard)}
+      className="z-10 mt-40 flex flex-col items-center p-5 md:basis-3/5"
+    >
+      <div className="md:-mt-30 text-center">
         {/* Headings */}
         <MainHeaderText>Marketing, Simplified</MainHeaderText>
-        <p className="text-xl my-10">
-          Build posters in minutes with Placard, the AI driven tool for
-          professionals.
+        <p className="font-body my-10 text-xl">
+          Build posters in minutes with Placard, the AI driven tool <br />
+          for professionals.
         </p>
       </div>
       {/* Action */}
