@@ -64,6 +64,7 @@ const AIChatbar: React.FC = () => {
         </div>
         <div className="mt-4 flex items-center justify-end">
           <input
+            id="a"
             type="text"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}

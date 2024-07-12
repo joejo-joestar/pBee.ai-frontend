@@ -1,32 +1,8 @@
 export const initialValues = {
-  // logos: [
-  //   {
-  //     fileName: "",
-  //     link: "",
-  //     type: "",
-  //     size: "",
-  //   },
-  // ],
-  // images: [
-  //   {
-  //     fileName: "",
-  //     link: "",
-  //     type: "",
-  //     size: "",
-  //   },
-  // ],
-  // headerFont: [
-  //   {
-  //     fontName: "",
-  //     link: "",
-  //   },
-  // ],
-  // textFont: [
-  //   {
-  //     fontName: "",
-  //     link: "",
-  //   },
-  // ],
-  colorPalette: ["#FFFFFF", "#131121"],
+  logos: [null],
+  images: [null],
+  headerFont: [null],
+  textFont: [null],
+  colorPallet: ["#FFFFFF", "#131121"],
   collectionName: "",
 };

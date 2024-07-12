@@ -7,12 +7,13 @@ type Props = {
   onChange: (e: { target: { value: SetStateAction<string> } }) => void;
 };
 
-const ColorPalette = ({ values }: Props) => {
+const ColorPicker = ({ values }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="colorPalette">Color Palette</label>
+      <label id="colorPallet" />
+      Color Picker
       <div className="flex w-fit flex-col gap-3 overflow-auto">
-        <FieldArray name="colorPalette">
+        <FieldArray name="colorPallet">
           {({ push, remove }) => (
             <>
               {values && values.length > 0 && (
@@ -20,13 +21,13 @@ const ColorPalette = ({ values }: Props) => {
                   {values.map((_color, index) => (
                     <div
                       key={index}
-                      className="bg-tabContainer relative flex min-h-16 flex-row rounded-xl p-1"
+                      className="relative flex min-h-16 flex-row rounded-xl bg-tabContainer p-1"
                     >
-                      <div className="bg-tabContainer size-14 overflow-hidden rounded-xl border border-solid">
+                      <div className="size-14 overflow-hidden rounded-xl border border-solid bg-tabContainer">
                         {/* Color Picker */}
                         <Field
                           className="-m-[25%] size-20 cursor-pointer"
-                          name={`colorPalette[${index}]`}
+                          name={`colorPallet[${index}]`}
                           placeholder="#303030"
                           type="color"
                         />
@@ -35,7 +36,7 @@ const ColorPalette = ({ values }: Props) => {
                       {/* Hex Field */}
                       <Field
                         className={`rounded-xl bg-transparent px-4 placeholder:text-sm placeholder:text-slate-400/50`}
-                        name={`colorPalette[${index}]`}
+                        name={`colorPallet[${index}]`}
                         placeholder="#303030"
                         type="text"
                       />
@@ -52,7 +53,7 @@ const ColorPalette = ({ values }: Props) => {
               {/* Add New Color Button*/}
               <button
                 type="button"
-                className="bg-tabContainer ml-1 size-14 rounded-xl text-lg font-black"
+                className="ml-1 size-14 rounded-xl bg-tabContainer text-lg font-black"
                 onClick={() => push("")}
               >
                 +
@@ -65,4 +66,4 @@ const ColorPalette = ({ values }: Props) => {
   );
 };
 
-export default ColorPalette;
+export default ColorPicker;

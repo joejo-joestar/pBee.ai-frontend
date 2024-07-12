@@ -1,5 +1,4 @@
 import { Field } from "formik";
-// import { aspectRatios } from "./aspectRatios";
 import { resolutions } from "./resolutions";
 import { ResolutionSelector } from "./ResolutionSelector";
 import { container, toggle } from "../shared/FormConst";

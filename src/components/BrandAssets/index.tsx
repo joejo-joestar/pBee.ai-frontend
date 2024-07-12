@@ -1,10 +1,12 @@
 import ModalCard from "@/components/shared/ModalCard";
-import DragNDrop from "./DragNDrop";
+import ImageUpload from "./ImageUpload";
 import { Formik, Form, Field } from "formik";
 import ColorPicker from "./ColorPicker";
 import { initialValues } from "./initialValues";
 import { SetStateAction, useState } from "react";
 import { otherButton, submitButton } from "../shared/FormConst";
+import FontUpload from "./FontUpload";
+import { array, object, string } from "yup";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -30,50 +32,72 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
       {/* Body */}
       <Formik
         initialValues={initialValues}
+        // Checking Validation
+        validationSchema={object({
+          // logos: array(
+          //   object({
+          //     url: string().required(),
+          //   }),
+          // ),
+          // images: array(
+          //   object({
+          //     url: string().required(),
+          //   }),
+          // ),
+          colorPallet: array(string().required()).min(1),
+          collectionName: string().required(),
+        })}
         onSubmit={(values) => {
+          console.log("values", values);
           alert(JSON.stringify(values, null, 2));
         }}
       >
-        {({ values, isSubmitting, resetForm }) => (
+        {({ values, isSubmitting, isValid, resetForm }) => (
           <Form className="flex flex-col gap-5">
             {/* TODO: Get file details from `files-ui/react` library to formik */}
 
             {/* Logo Dropzone */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="logos">Logos</label>
-              <DragNDrop allowedTypes={"image/*"} id={"logos"} />
+              <label id="logos" />
+              Logos
+              <ImageUpload name={"logos"} />
             </div>
 
             {/* Image Dropzone */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="images">Images</label>
-              <DragNDrop allowedTypes={"image/*"} id={"images"} />
+              <label id="images" />
+              Images
+              <ImageUpload name={"images"} />
             </div>
 
             {/* Header Font Dropzone */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="headerFont">Header Font</label>
-              <DragNDrop allowedTypes={".ttf, .otf"} id={"headerFont"} />
+              <label id="headerFont" />
+              Header Font
+              <FontUpload name={"headerFont"} />
             </div>
 
             {/* Text Font Dropzone */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="textFont">Text Font</label>
-              <DragNDrop allowedTypes={".ttf, .otf"} id={"textFont"} />
+              <label id="textFont" />
+              Text Font
+              <FontUpload name={"textFont"} />
             </div>
 
             {/* Color Picker */}
-            <ColorPicker values={values.colorPalette} onChange={handleInput} />
+            <ColorPicker values={values.colorPallet} onChange={handleInput} />
 
             {/* Folder Name */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="collectionName">Collection Name</label>
-              <Field
-                className="bg-tabContainer min-h-16 w-full rounded-xl px-4"
-                name="collectionName"
-                type="text"
-                placeholder="Asset Name"
-              />
+              <label id="collectionName">
+                Collection Name
+                <Field
+                  className="min-h-16 w-full rounded-xl bg-tabContainer px-4"
+                  name="collectionName"
+                  type="text"
+                  placeholder="Asset Name"
+                />
+              </label>
             </div>
 
             {/* Button Div */}
@@ -92,7 +116,7 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
               <button
                 className={submitButton}
                 type="submit"
-                // disabled={isSubmitting}
+                disabled={!isValid}
               >
                 Apply
               </button>
