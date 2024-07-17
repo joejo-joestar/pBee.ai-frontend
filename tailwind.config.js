@@ -4,7 +4,7 @@ export default {
   theme: {
     fontFamily: {
       display: ["Sora"],
-      body: ['"Noto Sans"',],
+      body: ['"Noto Sans"'],
     },
     extend: {
       colors: {
@@ -44,6 +44,19 @@ export default {
       boxShadow: {
         cardGlowEffect:
           "inset 3px 3px 12px 0 rgb(255 255 255 / 0.12), inset -3px -3px 12px 0 rgb(255 255 255 / 0.12)",
+      },
+      animation: {
+        progress: "progress 1s infinite linear",
+      },
+      keyframes: {
+        progress: {
+          "0%": { transform: " translateX(0) scaleX(0)" },
+          "40%": { transform: "translateX(0) scaleX(0.4)" },
+          "100%": { transform: "translateX(100%) scaleX(0.5)" },
+        },
+      },
+      transformOrigin: {
+        "left-right": "0% 50%",
       },
     },
     screens: {

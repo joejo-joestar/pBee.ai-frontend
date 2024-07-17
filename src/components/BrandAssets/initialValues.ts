@@ -1,8 +1,8 @@
 export const initialValues = {
-  logos: [null],
-  images: [null],
-  headerFont: [null],
-  textFont: [null],
+  logos: [],
+  images: [],
+  headerFont: [],
+  textFont: [],
   colorPallet: ["#FFFFFF", "#131121"],
   collectionName: "",
 };

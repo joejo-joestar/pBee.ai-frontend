@@ -1,12 +1,13 @@
 import ModalCard from "@/components/shared/ModalCard";
-import ImageUpload from "./ImageUpload";
+import FileUpload from "./FileUpload";
 import { Formik, Form, Field } from "formik";
 import ColorPicker from "./ColorPicker";
 import { initialValues } from "./initialValues";
 import { SetStateAction, useState } from "react";
 import { otherButton, submitButton } from "../shared/FormConst";
-import FontUpload from "./FontUpload";
 import { array, object, string } from "yup";
+import { Loading } from "./Loading";
+import { submitForm } from "./submitForm";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -33,55 +34,92 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
       <Formik
         initialValues={initialValues}
         // Checking Validation
-        validationSchema={object({
-          // logos: array(
-          //   object({
-          //     url: string().required(),
-          //   }),
-          // ),
-          // images: array(
-          //   object({
-          //     url: string().required(),
-          //   }),
-          // ),
+        validationSchema={object().shape({
           colorPallet: array(string().required()).min(1),
           collectionName: string().required(),
         })}
-        onSubmit={(values) => {
-          console.log("values", values);
+        onSubmit={(values, actions) => {
+          // Data to Submit
+          const formData = new FormData();
+          // Collection Name
+          formData.append("collectionName", values.collectionName);
+
+          // Color Pallet
+          formData.append("colorPallet", values.colorPallet.toString());
+
+          // Logos
+          if (values.logos) {
+            values.logos.forEach((file) => {
+              formData.append("logos", file);
+              // NOTE: For Debugging Purposes
+              console.log("logos[]", file);
+            });
+          }
+          // Images
+          if (values.images) {
+            values.images.forEach((file) => {
+              formData.append("images", file);
+              // NOTE: For Debugging Purposes
+              console.log("images[]", file);
+            });
+          }
+
+          // Header Font
+          if (values.headerFont) {
+            values.headerFont.forEach((file) => {
+              formData.append("headerFonts", file);
+              // NOTE: For Debugging Purposes
+              console.log("headerFonts[]", file);
+            });
+          }
+          // Text Font
+          if (values.textFont) {
+            values.textFont.forEach((file) => {
+              formData.append("textFonts", file);
+              // NOTE: For Debugging Purposes
+              console.log("textFonts[]", file);
+            });
+          }
+
+          // NOTE: For Debugging Purposes
           alert(JSON.stringify(values, null, 2));
+          for (var pair of formData.entries()) {
+            console.log(pair[0] + ", " + pair[1]);
+          }
+
+          const handleSubmit = submitForm(formData, actions);
+
+          handleSubmit();
         }}
       >
-        {({ values, isSubmitting, isValid, resetForm }) => (
+        {({ values, isSubmitting, isValid }) => (
           <Form className="flex flex-col gap-5">
-            {/* TODO: Get file details from `files-ui/react` library to formik */}
-
             {/* Logo Dropzone */}
             <div className="flex flex-col gap-2">
               <label id="logos" />
               Logos
-              <ImageUpload name={"logos"} />
+              <FileUpload image name={"logos"} />
             </div>
 
             {/* Image Dropzone */}
             <div className="flex flex-col gap-2">
               <label id="images" />
               Images
-              <ImageUpload name={"images"} />
+              <FileUpload image name={"images"} />
             </div>
 
             {/* Header Font Dropzone */}
             <div className="flex flex-col gap-2">
               <label id="headerFont" />
               Header Font
-              <FontUpload name={"headerFont"} />
+              <FileUpload font name={"headerFont"} />
             </div>
 
             {/* Text Font Dropzone */}
             <div className="flex flex-col gap-2">
               <label id="textFont" />
               Text Font
-              <FontUpload name={"textFont"} />
+              <FileUpload font name={"textFont"} />
             </div>
 
             {/* Color Picker */}
@@ -102,23 +140,17 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
 
             {/* Button Div */}
             <div className="flex flex-row justify-evenly gap-6">
-              {/* Reset Button */}
-              <button
-                className={otherButton}
-                type="reset"
-                onClick={() => {
-                  resetForm();
-                }}
-              >
-                Reset All
+              {/* Cancel Button */}
+              <button className={otherButton} type="reset" onClick={onClose}>
+                Cancel
               </button>
               {/* Apply Button */}
               <button
                 className={submitButton}
                 type="submit"
-                disabled={!isValid}
+                disabled={!isValid || isSubmitting}
               >
-                Apply
+                {isSubmitting ? <Loading /> : "Apply"}
               </button>
             </div>
           </Form>

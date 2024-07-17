@@ -7,15 +7,16 @@ This repository is to store the static files for the PBee.ai website.
 - [Redux]()
 - [Vite](https://vitejs.dev/guide/)
 - [Typescript]()
+- [Framer](https://www.framer.com/)
 - [React Router Dom](https://reactrouter.com/en/main/start/tutorial#adding-a-router)
 - [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
 - [Framer Motion](https://www.framer.com/motion/)
-- [React-Color](https://casesandberg.github.io/react-color/)
 - [Formik](https://formik.org/docs/overview)
-- [Files UI](https://files-ui.vercel.app/getting-started)
+- [React-Dropzone](https://react-dropzone.js.org/)
 
 ## Landing Page
 ###  Hero Page
+⚠️(Made in Framer)⚠️
 - [x] Navbar
 - [x] Home
 - [x] Features
@@ -29,64 +30,61 @@ This repository is to store the static files for the PBee.ai website.
 ### Get Started Page
 - [ ] Login Page
   - [ ] Credentials
-  - [ ] Sign In using Email
+  - [ ] Sign In using Email (?)
 - [ ] Sign Up Page
-  - [ ] Sign
 - [x] Pricing
 
 ## Product
 - [ ] Account Settings Page
-- [ ] Left Sidebar
+- [x] Left Sidebar
   - [ ] History
   - [ ] Favorites
-- [ ] Poster Canvas
-  - [ ] Customize Canvas Size
+- [ ] Poster Canvas (Design Page)
+  - [x] Customize Modal (New Poster)
   - [ ] Menu Bar
 - [ ] Collections Page
-  - [ ] Uploading
+  - [x] Upload Modal
+  - [ ] Progress Bar
   - [ ] Assets Modal
-- [ ] Exporting
-  - [ ] Share
+- [ ] Exporting Modal
+  <!-- - [ ] Share -->
 
 ## Using this repo
 
-creating react project
-```terminal
+creating react project (only for creating project)
+```bash
 npm create vite@latest
 
 npm install
-npm cd [project name]
+npm cd # [project name]
 ```
 
 installing other dependencies
-```terminal
-<!-- React-Router -->
+```bash
+# React-Router
 npm install react-router-dom
 
-<!-- React-Redux -->
+# React-Redux
 npm install react-redux @reduxjs/toolkit
 
-<!-- Framer -->
+# Framer
 npm install framer-motion
 
-<!-- React-Color -->
+# React-Color
 npm install react-color
 
-<!-- Formik -->
+# Formik
 npm install formik --save
 
-<!-- files-ui -->
-npm install @files-ui/react
-
-<!-- Other Dependencies -->
+# Other Dependencies
 npm install -D @types/node
 
-<!-- Tailwind Install -->
+# Tailwind Install
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
 Test Server
-```terminal
+```bash
 npm run dev
 ```
