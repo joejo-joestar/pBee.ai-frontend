@@ -9,8 +9,8 @@ export enum Routes {
   BASE = "/*",
   PRICING = "/pricing",
   ABOUTUS = "/team",
-  SIGNIN = "/signin",
-  SIGNUP = "/signup",
+  SIGNIN = "/login",
+  SIGNUP = "/register",
   PRODUCT = "/producttest",
 }
 

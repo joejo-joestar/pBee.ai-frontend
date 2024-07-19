@@ -35,22 +35,24 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
         initialValues={initialValues}
         // Checking Validation
         validationSchema={object().shape({
-          colorPallet: array(string().required()).min(1),
-          collectionName: string().required(),
+          colorPalette: array(string().required()).min(1),
+          collectionsName: string().required(),
         })}
         onSubmit={(values, actions) => {
           // Data to Submit
           const formData = new FormData();
           // Collection Name
-          formData.append("collectionName", values.collectionName);
+          formData.append("collectionsName", values.collectionsName);
 
           // Color Pallet
-          formData.append("colorPallet", values.colorPallet.toString());
+          values.colorPalette.forEach((color) =>
+            formData.append("colorPalette", color),
+          );
 
           // Logos
-          if (values.logos) {
-            values.logos.forEach((file) => {
-              formData.append("logos", file);
+          if (values.logo) {
+            values.logo.forEach((file) => {
+              formData.append("logo", file);
               // NOTE: For Debugging Purposes
               console.log("logos[]", file);
             });
@@ -65,16 +67,16 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
           }
 
           // Header Font
-          if (values.headerFont) {
-            values.headerFont.forEach((file) => {
+          if (values.headerFonts) {
+            values.headerFonts.forEach((file) => {
               formData.append("headerFonts", file);
               // NOTE: For Debugging Purposes
               console.log("headerFonts[]", file);
             });
           }
           // Text Font
-          if (values.textFont) {
-            values.textFont.forEach((file) => {
+          if (values.textFonts) {
+            values.textFonts.forEach((file) => {
               formData.append("textFonts", file);
               // NOTE: For Debugging Purposes
               console.log("textFonts[]", file);
@@ -82,9 +84,8 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
           }
 
           // NOTE: For Debugging Purposes
-          alert(JSON.stringify(values, null, 2));
           for (var pair of formData.entries()) {
-            console.log(pair[0] + ", " + pair[1]);
+            console.log(pair[0] + ": " + pair[1]);
           }
 
           const handleSubmit = submitForm(formData, actions);
@@ -123,7 +124,7 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
             </div>
 
             {/* Color Picker */}
-            <ColorPicker values={values.colorPallet} onChange={handleInput} />
+            <ColorPicker values={values.colorPalette} onChange={handleInput} />
 
             {/* Folder Name */}
             <div className="flex flex-col gap-2">
@@ -131,7 +132,7 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
                 Collection Name
                 <Field
                   className="min-h-16 w-full rounded-xl bg-tabContainer px-4"
-                  name="collectionName"
+                  name="collectionsName"
                   type="text"
                   placeholder="Asset Name"
                 />

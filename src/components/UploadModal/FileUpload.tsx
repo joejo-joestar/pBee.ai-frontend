@@ -94,10 +94,12 @@ const ImageUpload = ({ name, image, font }: Props) => {
             )}
           </div>
         ))}
+        {files.some((f) => f.errors?.length) && (
+          <p className="p-1 text-sm text-red-500">
+            Invalid Files Will Not be Uploaded!
+          </p>
+        )}
       </div>
-      {files.some((f) => f.errors?.length) && (
-        <p className="text-red-500">Invalid Files Will Not be Uploaded!</p>
-      )}
     </>
   );
 };

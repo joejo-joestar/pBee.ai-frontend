@@ -1,6 +1,6 @@
 import { Field, FieldArray } from "formik";
 import { SetStateAction } from "react";
-import { RemoveIcon } from "@/components/BrandAssets/RemoveIcon";
+import { RemoveIcon } from "@/components/UploadModal/RemoveIcon";
 
 type Props = {
   values: string[];
@@ -10,10 +10,10 @@ type Props = {
 const ColorPicker = ({ values }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <label id="colorPallet" />
-      Color Picker
+      <label id="colorPalette" />
+      Color Palette
       <div className="flex w-fit flex-col gap-3 overflow-auto">
-        <FieldArray name="colorPallet">
+        <FieldArray name="colorPalette">
           {({ push, remove }) => (
             <>
               {values && values.length > 0 && (
@@ -27,7 +27,7 @@ const ColorPicker = ({ values }: Props) => {
                         {/* Color Picker */}
                         <Field
                           className="-m-[25%] size-20 cursor-pointer"
-                          name={`colorPallet[${index}]`}
+                          name={`colorPalette[${index}]`}
                           placeholder="#303030"
                           type="color"
                         />
@@ -36,7 +36,7 @@ const ColorPicker = ({ values }: Props) => {
                       {/* Hex Field */}
                       <Field
                         className={`rounded-xl bg-transparent px-4 placeholder:text-sm placeholder:text-slate-400/50`}
-                        name={`colorPallet[${index}]`}
+                        name={`colorPalette[${index}]`}
                         placeholder="#303030"
                         type="text"
                       />

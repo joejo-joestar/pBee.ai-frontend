@@ -5,6 +5,8 @@ import { ToneSelector } from "./TonesSelector";
 import { AspectRatioSelector } from "./AspectRatiosSelector";
 import CollectionSelector from "./CollectionSelector";
 import { otherButton, submitButton } from "../shared/FormConst";
+import { submitForm } from "./submitForm";
+import { array, object, string } from "yup";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -12,7 +14,7 @@ const Customize = ({ isVisible, onClose }: Props) => {
   if (!isVisible) return null;
 
   return (
-    <ModalCard onClose={onClose}>
+    <ModalCard closeOnClick onClose={onClose}>
       {/* Header */}
       <div>
         <h1 className="font-display font-bold">Customize</h1>
@@ -26,11 +28,39 @@ const Customize = ({ isVisible, onClose }: Props) => {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values, null, 2)); // For debugging, replace with submit logic
+        validationSchema={object().shape({
+          tone: string().required(),
+          aspectRatio: string().required(),
+          resolution: string().required(),
+          collection: string().required(),
+        })}
+        onSubmit={(values, actions) => {
+          // Data to Submit
+          const formData = new FormData();
+
+          // Tone
+          formData.append("tone", values.tone);
+
+          // Aspect Ratio
+          formData.append("aspectRatio", values.aspectRatio);
+
+          // Resolution
+          formData.append("resolution", values.resolution);
+
+          // Collection Name
+          formData.append("collection", values.collection);
+
+          // NOTE: For Debugging Purposes
+          for (var pair of formData.entries()) {
+            console.log(pair[0] + ": " + pair[1]);
+          }
+
+          const handleSubmit = submitForm(formData, actions);
+
+          handleSubmit();
         }}
       >
-        {({ values, setValues, isSubmitting, resetForm }) => (
+        {({ values, setValues, isValid, isSubmitting, resetForm }) => (
           <Form className="flex flex-col gap-5">
             {/* Tone Selector */}
             <div>
@@ -66,7 +96,7 @@ const Customize = ({ isVisible, onClose }: Props) => {
               <button
                 className={submitButton}
                 type="submit"
-                // disabled={isSubmitting}
+                disabled={!isValid || isSubmitting}
               >
                 Apply
               </button>

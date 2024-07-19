@@ -16,9 +16,10 @@ export const ResolutionCustomize = ({ onCustomResolution }: Props) => {
           type="number"
           id="customWidth"
           placeholder={"Width"}
-          min={1}
+          min={512}
           max={8000}
           className={inputField}
+          required
         />
       </div>
       <div className="flex flex-row items-center gap-3">
@@ -29,9 +30,10 @@ export const ResolutionCustomize = ({ onCustomResolution }: Props) => {
           type="number"
           id="customHeight"
           placeholder={"Height"}
-          min={1}
+          min={512}
           max={8000}
           className={inputField}
+          required
         />
       </div>
       <button

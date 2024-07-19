@@ -1,7 +1,7 @@
 // Sidebar component
 import React, { useState } from "react";
-import BrandAssets from "../BrandAssets";
-import Customize from "../Customize";
+import BrandAssets from "../UploadModal";
+import Customize from "../CustomizeModal";
 import Canvas from "@/components/Canvas/Canvas";
 
 interface Tab {
