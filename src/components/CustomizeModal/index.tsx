@@ -6,7 +6,7 @@ import { AspectRatioSelector } from "./AspectRatiosSelector";
 import CollectionSelector from "./CollectionSelector";
 import { otherButton, submitButton } from "../shared/FormConst";
 import { submitForm } from "./submitForm";
-import { array, object, string } from "yup";
+import { object, string } from "yup";
 
 type Props = { isVisible: boolean; onClose(): void };
 
