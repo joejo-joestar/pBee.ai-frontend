@@ -10,7 +10,7 @@ import { object, string } from "yup";
 
 type Props = { isVisible: boolean; onClose(): void };
 
-const Customize = ({ isVisible, onClose }: Props) => {
+const CustomizeModal = ({ isVisible, onClose }: Props) => {
   if (!isVisible) return null;
 
   return (
@@ -55,7 +55,7 @@ const Customize = ({ isVisible, onClose }: Props) => {
             console.log(pair[0] + ": " + pair[1]);
           }
 
-          const handleSubmit = submitForm(formData, actions);
+          const handleSubmit = submitForm(formData, actions, onClose);
 
           handleSubmit();
         }}
@@ -108,4 +108,4 @@ const Customize = ({ isVisible, onClose }: Props) => {
   );
 };
 
-export default Customize;
+export default CustomizeModal;

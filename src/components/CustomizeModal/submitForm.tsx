@@ -9,6 +9,7 @@ export function submitForm(
     resolution: string;
     collection: string;
   }>,
+  onClose: () => void,
 ) {
   return async () => {
     try {
@@ -26,6 +27,7 @@ export function submitForm(
         // Success scenario
         console.log("Form submission successful!");
         actions.setSubmitting(false); // Reset form submission state
+        onClose();
       } else {
         // Error scenario
         console.error("Error submitting form: ", await response.text());

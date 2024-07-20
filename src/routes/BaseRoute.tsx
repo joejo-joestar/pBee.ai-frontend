@@ -4,6 +4,7 @@ import Pricing from "@/pages/Pricing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ScrollToTop from "@/hooks/ScrollToTop";
 import ProductTest from "./Producttest";
+import t from "@/components/AssetsModal/test.json";
 
 export enum Routes {
   BASE = "/*",

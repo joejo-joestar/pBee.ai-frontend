@@ -5,7 +5,6 @@ import ChatBar from "@/components/sidebarRight";
 type Props = {};
 
 const ProductTest = ({}: Props) => {
-
   return (
     <section
       id="product"

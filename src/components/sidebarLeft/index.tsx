@@ -1,8 +1,9 @@
 // Sidebar component
 import React, { useState } from "react";
-import BrandAssets from "../UploadModal";
-import Customize from "../CustomizeModal";
+import UploadModal from "../UploadModal";
+import CustomizeModal from "../CustomizeModal";
 import Canvas from "@/components/Canvas/Canvas";
+import AssetsModal from "../AssetsModal";
 
 interface Tab {
   title: string;
@@ -11,6 +12,7 @@ interface Tab {
 
 const Sidebar: React.FC = () => {
   const [showCustomizeModal, setShowCustomizeModal] = useState<boolean>(false);
+  const [showAssetsModal, setShowAssetsModal] = useState<boolean>(false);
   const [showCollectionModal, setShowCollectionModal] =
     useState<boolean>(false);
   const [activeTab, setActiveTab] = useState("design"); // Set initial active tab
@@ -20,24 +22,37 @@ const Sidebar: React.FC = () => {
     {
       title: "Collections",
       content: (
-        <BrandAssets
+        <UploadModal
           isVisible={showCollectionModal}
           onClose={() => setShowCollectionModal(false)}
         />
       ),
     }, // will open collections modal (for now)
-    { title: "History", content: <div>History</div> },
+    {
+      title: "History",
+      content: (
+        <AssetsModal
+          isVisible={showAssetsModal}
+          onClose={() => setShowAssetsModal(false)}
+        />
+      ),
+    },
   ];
 
   const handleClick = (tab: string) => {
     setActiveTab(tab);
     setShowCollectionModal(true);
+    setShowAssetsModal(true);
   };
 
   const activeContent = tabs.find((tab) => tab.title === activeTab)?.content;
 
   return (
     <>
+      <CustomizeModal
+        isVisible={showCustomizeModal}
+        onClose={() => setShowCustomizeModal(false)}
+      />
       <div className="flex h-full w-1/5 bg-gray-200 shadow-lg">
         <div className="flex h-full w-full flex-col">
           <div className="flex items-center p-4">
@@ -67,11 +82,6 @@ const Sidebar: React.FC = () => {
         </div>
       </div>
       {activeContent}
-
-      <Customize
-        isVisible={showCustomizeModal}
-        onClose={() => setShowCustomizeModal(false)}
-      />
     </>
   );
 };

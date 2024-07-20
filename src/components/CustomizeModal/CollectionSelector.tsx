@@ -1,18 +1,55 @@
 import { Field } from "formik";
-import { assetsTest } from "./assetsTest";
+import { useEffect, useState } from "react";
 import { container, setButton } from "../shared/FormConst";
-import BrandAssets from "../UploadModal";
-import { useState } from "react";
+import UploadModal from "../UploadModal";
 
 type Props = {};
 
 const CollectionSelector = ({}: Props) => {
   const [showCollectionModal, setShowCollectionModal] =
     useState<boolean>(false);
+  const [collections, setCollections] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Mock data for testing
+    const mockCollections = [
+      "Collection One",
+      "Collection Two",
+      "Collection Three",
+    ];
+
+    // Simulate a fetch call with mock data
+    const fetchCollections = async () => {
+      setLoading(false);
+      try {
+        // const response = await fetch(
+        //   "https://your-api-url.com/api/collections",
+        // );
+        setCollections(mockCollections);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching collections:", error);
+        setError("Failed to fetch collections.");
+        setLoading(false);
+      }
+    };
+
+    fetchCollections();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className={`${container} flex flex-row gap-5`}>
-      <BrandAssets
+      <UploadModal
         isVisible={showCollectionModal}
         onClose={() => setShowCollectionModal(false)}
       />
@@ -25,12 +62,9 @@ const CollectionSelector = ({}: Props) => {
         <option key="new collection" value="">
           Pick a Collection
         </option>
-        {assetsTest.map((_assets, index) => (
-          <option
-            key={`collections ${index}`}
-            value={assetsTest[index].toLowerCase()}
-          >
-            {assetsTest[index]}
+        {collections.map((collection, index) => (
+          <option key={`collection-${index}`} value={collection.toLowerCase()}>
+            {collection}
           </option>
         ))}
       </Field>

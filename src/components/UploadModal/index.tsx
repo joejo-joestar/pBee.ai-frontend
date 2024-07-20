@@ -6,12 +6,12 @@ import { initialValues } from "./initialValues";
 import { SetStateAction, useState } from "react";
 import { otherButton, submitButton } from "../shared/FormConst";
 import { array, object, string } from "yup";
-import { Loading } from "./Loading";
+import Spinner from "../shared/Spinner";
 import { submitForm } from "./submitForm";
 
 type Props = { isVisible: boolean; onClose(): void };
 
-const BrandAssets = ({ isVisible, onClose }: Props) => {
+const UploadModal = ({ isVisible, onClose }: Props) => {
   if (!isVisible) return null;
   const [_state, updateState] = useState("#");
 
@@ -41,10 +41,11 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
         onSubmit={(values, actions) => {
           // Data to Submit
           const formData = new FormData();
+
           // Collection Name
           formData.append("collectionsName", values.collectionsName);
 
-          // Color Pallet
+          // Color Palette
           values.colorPalette.forEach((color) =>
             formData.append("colorPalette", color),
           );
@@ -88,7 +89,7 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
             console.log(pair[0] + ": " + pair[1]);
           }
 
-          const handleSubmit = submitForm(formData, actions);
+          const handleSubmit = submitForm(formData, actions, onClose);
 
           handleSubmit();
         }}
@@ -151,7 +152,7 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
                 type="submit"
                 disabled={!isValid || isSubmitting}
               >
-                {isSubmitting ? <Loading /> : "Apply"}
+                {isSubmitting ? <Spinner style={`size-5`} /> : "Apply"}
               </button>
             </div>
           </Form>
@@ -161,4 +162,4 @@ const BrandAssets = ({ isVisible, onClose }: Props) => {
   );
 };
 
-export default BrandAssets;
+export default UploadModal;

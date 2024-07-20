@@ -1,4 +1,4 @@
-import { RemoveIcon } from "./RemoveIcon";
+import { RemoveIcon } from "../../assets/RemoveIcon";
 
 export interface HeaderProps {
   file: File;

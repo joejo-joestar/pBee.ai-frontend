@@ -1,9 +1,13 @@
-export const Loading = () => {
+type Props = {
+  style: string;
+};
+
+const Spinner = ({ style }: Props) => {
   return (
-    <div role="status">
+    <div role="status" className="flex justify-center">
       <svg
         aria-hidden="true"
-        className="size-5 animate-spin fill-white text-gray-300/50"
+        className={`${style} animate-spin fill-white text-gray-300/50`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -20,3 +24,5 @@ export const Loading = () => {
     </div>
   );
 };
+
+export default Spinner;

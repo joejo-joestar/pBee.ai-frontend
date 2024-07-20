@@ -1,6 +1,6 @@
 import { Field, FieldArray } from "formik";
 import { SetStateAction } from "react";
-import { RemoveIcon } from "@/components/UploadModal/RemoveIcon";
+import { RemoveIcon } from "@/assets/RemoveIcon";
 
 type Props = {
   values: string[];
