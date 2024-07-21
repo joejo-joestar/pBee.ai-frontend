@@ -20,7 +20,7 @@ export function submitForm(
         method: "POST",
         headers: {
           // "Authorization": `Bearer ${token}`,
-          "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjEzNzEyNjgsImV4cCI6MTcyMTM3NDg2OH0.-EaDZ1U3kg9O9C0-_DM4-Y03ELRUWpzwNoH6BXO2cy0`,
+          "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE1NDgwNDQsImV4cCI6MTcyMTU1MTY0NH0.T_Ij8F35A-3SuawCuclc1eH-Pyf9PYRviSJ-NLSan3E`,
         },
         body: formData,
       });

@@ -55,7 +55,7 @@ const UploadModal = ({ isVisible, onClose }: Props) => {
             values.logo.forEach((file) => {
               formData.append("logo", file);
               // NOTE: For Debugging Purposes
-              console.log("logos[]", file);
+              console.log("logo[]", file);
             });
           }
           // Images
@@ -98,9 +98,9 @@ const UploadModal = ({ isVisible, onClose }: Props) => {
           <Form className="flex flex-col gap-5">
             {/* Logo Dropzone */}
             <div className="flex flex-col gap-2">
-              <label id="logos" />
+              <label id="logo" />
               Logos
-              <FileUpload image name={"logos"} />
+              <FileUpload image name={"logo"} />
             </div>
 
             {/* Image Dropzone */}
@@ -112,16 +112,16 @@ const UploadModal = ({ isVisible, onClose }: Props) => {
 
             {/* Header Font Dropzone */}
             <div className="flex flex-col gap-2">
-              <label id="headerFont" />
+              <label id="headerFonts" />
               Header Font
-              <FileUpload font name={"headerFont"} />
+              <FileUpload font name={"headerFonts"} />
             </div>
 
             {/* Text Font Dropzone */}
             <div className="flex flex-col gap-2">
-              <label id="textFont" />
+              <label id="textFonts" />
               Text Font
-              <FileUpload font name={"textFont"} />
+              <FileUpload font name={"textFonts"} />
             </div>
 
             {/* Color Picker */}

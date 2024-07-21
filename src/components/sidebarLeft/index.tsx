@@ -33,8 +33,7 @@ const Sidebar: React.FC = () => {
       content: (
         <AssetsModal
           isVisible={showAssetsModal}
-          onClose={() => setShowAssetsModal(false)}
-        />
+          onClose={() => setShowAssetsModal(false)} collectionName={"test1"}        />
       ),
     },
   ];
