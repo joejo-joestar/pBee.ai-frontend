@@ -1,22 +1,26 @@
-import Canvas from "@/components/Canvas/Canvas";
-import Sidebar from "@/components/sidebarLeft";
-import ChatBar from "@/components/sidebarRight";
+import { FC } from "react";
+import "./App.css";
+import Sidebar from "@/components/Sidebar";
+import Chatbar from "@/components/Chatbar";
+import { useLocation, Outlet } from "react-router-dom";
+import Canvas from "@/components/Canvas";
 
-type Props = {};
+const MainLayout: FC = () => {
+  const location = useLocation();
 
-const ProductTest = ({}: Props) => {
+  const isFavoritePath = location.pathname.startsWith("product/favorites");
+  const isDesignPath = location.pathname === "/product/design";
+
   return (
-    <section
-      id="product"
-      className="h-full select-none place-content-center gap-16 bg-dark py-10"
-    >
-      <div className="flex h-full flex-row justify-between">
-        <Sidebar />
-        <Canvas />
-        <ChatBar />
+    <div className="flex h-full w-full flex-row justify-between bg-red-500">
+      <Sidebar />
+      <div className="flex w-full flex-row p-5">
+        {/* {isFavoritePath && <Canvas />} */}
+        {/* {(isFavoritePath || isDesignPath) && <Chatbar />} */}
       </div>
-    </section>
+      <Outlet />
+    </div>
   );
 };
 
-export default ProductTest;
+export default MainLayout;

@@ -1,8 +1,8 @@
+import axios from "axios";
 import { FormikHelpers } from "formik";
 
 export function submitForm(
   formData: FormData,
-  // token: string,
   actions: FormikHelpers<{
     tone: string;
     aspectRatio: string;
@@ -14,23 +14,26 @@ export function submitForm(
   return async () => {
     try {
       // TODO: api url
-      const response = await fetch(`apiurl`, {
-        method: "POST",
-        headers: {
-          // "Authorization": `Bearer ${token}`,
-          Authorization: `Bearer key`,
+      const response = await axios.post(
+        `https://outgoing-termite-roughly.ngrok-free.app/[xxxxx]`, // Replace with your API URL
+        formData,
+        {
+          headers: {
+            // "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer key`,
+            "Content-Type": "multipart/form-data",
+          },
         },
-        body: formData,
-      });
+      );
 
-      if (response.ok) {
+      if (response.status === 201) {
         // Success scenario
         console.log("Form submission successful!");
         actions.setSubmitting(false); // Reset form submission state
         onClose();
       } else {
         // Error scenario
-        console.error("Error submitting form: ", await response.text());
+        console.error("Error submitting form: ", response.data);
         actions.setSubmitting(false); // Reset form submission state
       }
     } catch (error) {

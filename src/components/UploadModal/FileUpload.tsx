@@ -8,6 +8,7 @@ type Props = {
   name: string;
   image?: boolean;
   font?: boolean;
+  progress: number;
 };
 
 interface UploadableFile {
@@ -15,7 +16,7 @@ interface UploadableFile {
   errors?: FileError[];
 }
 
-const ImageUpload = ({ name, image, font }: Props) => {
+const ImageUpload = ({ name, image, font, progress }: Props) => {
   const [files, setFiles] = useState<UploadableFile[]>([]);
   const [, , { setValue, setError }] = useField(name);
 
@@ -90,6 +91,7 @@ const ImageUpload = ({ name, image, font }: Props) => {
                 index={index}
                 file={fileWrapper.file}
                 onDelete={onDelete}
+                progress={progress}
               />
             )}
           </div>

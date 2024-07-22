@@ -4,10 +4,13 @@ export const toggle =
 export const container =
   "bg-tabContainer w-full flex min-h-16 flex-row justify-between gap-4 rounded-xl p-1";
 
-export const submitButton =
+export const primaryButton =
   "flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 bg-buttonGradient px-12 py-4 transition duration-500 hover:border-lavender70/40";
 
-export const otherButton =
+export const buttonDisabled =
+  "flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-gray-200/50 bg-gray-300/50 opacity-50 cursor-not-allowed px-12 py-4 transition duration-500";
+
+export const secondaryButton =
   "flex w-60 select-none flex-col items-center justify-center gap-1 rounded-full border-2 border-solid border-lavender70 px-12 py-4 transition duration-500 hover:border-lavender70/40";
 
 export const setButton =

@@ -4,7 +4,7 @@ import { initialValues } from "./initialValues";
 import { ToneSelector } from "./TonesSelector";
 import { AspectRatioSelector } from "./AspectRatiosSelector";
 import CollectionSelector from "./CollectionSelector";
-import { otherButton, submitButton } from "../shared/FormConst";
+import { secondaryButton, primaryButton } from "../shared/FormConst";
 import { submitForm } from "./submitForm";
 import { object, string } from "yup";
 
@@ -84,7 +84,7 @@ const CustomizeModal = ({ isVisible, onClose }: Props) => {
             <div className="flex flex-row justify-evenly">
               {/* Reset Button */}
               <button
-                className={otherButton}
+                className={secondaryButton}
                 type="reset"
                 onClick={() => {
                   resetForm;
@@ -94,7 +94,7 @@ const CustomizeModal = ({ isVisible, onClose }: Props) => {
               </button>
               {/* Apply Button */}
               <button
-                className={submitButton}
+                className={primaryButton}
                 type="submit"
                 disabled={!isValid || isSubmitting}
               >

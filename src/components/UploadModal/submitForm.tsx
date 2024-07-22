@@ -1,8 +1,8 @@
+import axios from "axios";
 import { FormikHelpers } from "formik";
 
 export function submitForm(
   formData: FormData,
-  // token: string,
   actions: FormikHelpers<{
     logo: never[];
     images: never[];
@@ -11,28 +11,40 @@ export function submitForm(
     colorPalette: string[];
     collectionsName: string;
   }>,
-  onClose: () => void
+  onClose: () => void,
+  onProgress: (progress: number) => void, // Add the progress callback
 ) {
   return async () => {
     try {
-      // TODO: api url
-      const response = await fetch(`https://outgoing-termite-roughly.ngrok-free.app/api/files/uploadCollection`, {
-        method: "POST",
-        headers: {
-          // "Authorization": `Bearer ${token}`,
-          "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE1NDgwNDQsImV4cCI6MTcyMTU1MTY0NH0.T_Ij8F35A-3SuawCuclc1eH-Pyf9PYRviSJ-NLSan3E`,
+      const response = await axios.post(
+        "https://outgoing-termite-roughly.ngrok-free.app/api/files/uploadCollection",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE2MzUyMDAsImV4cCI6MTcyMTYzODgwMH0.IxMnaZTDt-khwXZDjv964B1NvjKOj00ZHoAwAaGd-Jw`, // Replace with your token
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            if (progressEvent.total !== undefined) {
+              // Calculate and call the progress callback
+              const percentCompleted = Math.round(
+                (progressEvent.loaded * 100) / progressEvent.total,
+              );
+              onProgress(percentCompleted);
+            }
+          },
         },
-        body: formData,
-      });
+      );
 
-      if (response.ok) {
+      // Check if the request was successful
+      if (response.status === 201) {
         // Success scenario
         console.log("Form submission successful!");
         actions.setSubmitting(false); // Reset form submission state
         onClose();
       } else {
         // Error scenario
-        console.error("Error submitting form: ", await response.text());
+        console.error("Error submitting form: ", response.data);
         actions.setSubmitting(false); // Reset form submission state
       }
     } catch (error) {
