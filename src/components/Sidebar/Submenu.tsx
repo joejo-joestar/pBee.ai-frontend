@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import { SidebarItem } from "../shared/SidebarItem";
 
 type SidebarLinkProps = {
@@ -8,82 +7,48 @@ type SidebarLinkProps = {
   isFavorite?: boolean;
 };
 
-const SidebarLink = styled(NavLink)<{ isFavorite?: boolean }>`
-  height: ${({ isFavorite }) => (isFavorite ? "2rem" : "2.5rem")};
-  font-size: ${({ isFavorite }) => (isFavorite ? "0.875rem" : "1rem")};
-  padding: ${({ isFavorite }) => (isFavorite ? "0.5rem" : "1rem")};
-  color: white;
-  border-radius: 10px;
-
-  &:hover {
-    background-color: #413c73;
-    border: 2px solid #5b4ead;
-  }
-
-  &.active {
-    background-color: #413c73;
-    border: 2px solid #5b4ead;
-  }
-`;
-
-const SidebarLabel = styled.span`
-  margin-left: 0.5rem;
-`;
-
-const DropdownLink = styled(NavLink)<{ isFavorite?: boolean }>`
-  height: ${({ isFavorite }) => (isFavorite ? "2rem" : "2.5rem")};
-  font-size: ${({ isFavorite }) => (isFavorite ? "0.875rem" : "1rem")};
-  padding-left: ${({ isFavorite }) => (isFavorite ? "1rem" : "2rem")};
-
-  &:hover {
-    background-color: #786ebb;
-  }
-
-  &.active {
-    background-color: #786ebb;
-  }
-`;
-
 const Submenu: FC<SidebarLinkProps> = ({ item, isFavorite }) => {
-  const [subnav, setSubnav] = useState(false);
-  const showSubnav = () => setSubnav(!subnav);
-
-  const isActive = (isActive: any) =>
-    isActive ? "active border-cardColor" : "";
+  const [subNav, setSubNav] = useState(false);
+  const showSubNav = () => setSubNav(!subNav);
 
   return (
     <>
-      {/* Main Page Links */}
-      <SidebarLink
+      <NavLink
         to={item.path}
-        onClick={showSubnav}
-        className={`flex flex-row justify-start border border-transparent transition-all duration-75 ${isActive}`}
-        isFavorite={isFavorite}
+        onClick={showSubNav}
+        className={({ isActive }) =>
+          `flex items-center justify-between rounded-lg transition ${
+            isFavorite ? "h-8 p-2 text-sm" : "h-10 p-4 text-base"
+          } ${isActive ? "rounded-lg bg-cardColor hover:bg-cardColor" : ""} hover:bg-cardColor/50`
+        }
       >
+        {/* Content */}
         <div className="flex items-center">
           {item.icon}
-          <SidebarLabel>{item.title}</SidebarLabel>
+          <span className="ml-2">{item.title}</span>
         </div>
         <div>
-          {item?.subnav && subnav ? item?.iconOpened : item?.iconClosed}
+          {item?.subNav && subNav ? item?.iconOpened : item?.iconClosed}
         </div>
-      </SidebarLink>
+      </NavLink>
 
-      {/* For Favorites */}
-      {subnav &&
-        item?.subnav?.map(
-          (subnavItem: { path: any; icon: any; title: any }, index: any) => (
-            <DropdownLink
-              to={subnavItem.path}
-              key={index}
-              className={isActive}
-              isFavorite={isFavorite}
-            >
-              {subnavItem.icon}
-              <SidebarLabel>{subnavItem.title}</SidebarLabel>
-            </DropdownLink>
-          ),
-        )}
+      {/* Something */}
+      {subNav &&
+        item?.subNav?.map((subNavItem, index) => (
+          <NavLink
+            to={subNavItem.path}
+            key={index}
+            className={({ isActive }) =>
+              `flex items-center justify-start ${
+                isFavorite ? "h-8 pl-4 text-sm" : "h-10 pl-8 text-base"
+              } text-white no-underline ${
+                isActive ? "bg-indigo-700" : "bg-indigo-600"
+              } hover:bg-indigo-800`
+            }
+          >
+            <span>{subNavItem.title}</span>
+          </NavLink>
+        ))}
     </>
   );
 };

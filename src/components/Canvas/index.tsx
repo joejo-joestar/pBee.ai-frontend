@@ -17,7 +17,11 @@ const Canvas: React.FC = () => {
     }
   }, []);
 
-  return <canvas ref={canvasRef} className="border-2 border-black" />;
+  return (
+    <div className="absolute left-1/2 -z-10 flex h-screen w-full -translate-x-1/2 transform items-center justify-center bg-dark">
+      <canvas ref={canvasRef} />
+    </div>
+  );
 };
 
 export default Canvas;

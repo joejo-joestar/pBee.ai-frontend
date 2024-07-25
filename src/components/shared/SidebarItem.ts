@@ -4,5 +4,5 @@ export interface SidebarItem {
     icon: any;
     iconOpened?: any;
     iconClosed?: any;
-    subnav?: SidebarItem[];
+    subNav?: SidebarItem[];
 }

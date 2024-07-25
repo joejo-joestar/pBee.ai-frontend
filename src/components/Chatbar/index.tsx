@@ -1,71 +1,5 @@
 import { FC, useState, FormEvent } from "react";
-import styled from "styled-components";
 import { IoSend, IoPersonCircle } from "react-icons/io5";
-
-const ChatbarNav = styled.div`
-  width: 325px;
-  height: 100vh;
-  // position: fixed;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-`;
-
-const ChatbarWrap = styled.div`
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 10px;
-`;
-
-const MessageInputContainer = styled.form`
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-`;
-
-const MessageInput = styled.input`
-  flex-grow: 1;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 100px;
-  margin-right: 10px;
-  background-color: #e8e6f5;
-`;
-
-const SendButton = styled.button`
-  padding: 16px;
-  background-color: #786ebb;
-  color: white;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #5a36c7;
-  }
-`;
-
-const MessageContainer = styled.div<{ isUser: boolean }>`
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  flex-direction: ${({ isUser }) => (isUser ? "row-reverse" : "row")};
-`;
-
-const ProfileIcon = styled.div<{ isUser: boolean }>`
-  margin: ${({ isUser }) => (isUser ? "0 0 0 10px" : "0 10px 0 0")};
-  display: flex;
-  align-items: center;
-`;
-
-const MessageBubble = styled.div<{ isUser: boolean }>`
-  background-color: ${({ isUser }) => (isUser ? "#dbd5f5" : "#e6e8f5")};
-  border-radius: 20px;
-  padding: 15px;
-  max-width: 70%;
-  align-self: ${({ isUser }) => (isUser ? "flex-end" : "flex-start")};
-`;
 
 const Chatbar: FC = () => {
   const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>(
@@ -91,34 +25,58 @@ const Chatbar: FC = () => {
   };
 
   return (
-    <ChatbarNav className="bg-productDark">
-      <ChatbarWrap>
+    <div className="fixed right-0 top-0 flex h-screen w-96 flex-col bg-productDark">
+      <div className="flex-grow overflow-y-auto p-2">
         {messages.map((message, index) => (
-          <MessageContainer key={index} isUser={message.isUser}>
+          <div
+            key={index}
+            className={`mb-2 flex items-start ${
+              message.isUser ? "flex-row-reverse" : "flex-row"
+            }`}
+          >
             {!message.isUser && (
-              <ProfileIcon isUser={message.isUser}>
+              <div className="mx-2 flex items-center">
                 <IoPersonCircle size={30} />
-              </ProfileIcon>
+              </div>
             )}
-            <MessageBubble className="text-slate-500" isUser={message.isUser}>
+
+            {/* Chat Bubble */}
+            <div
+              className={`max-w-3/4 rounded-lg p-4 font-normal ${
+                message.isUser
+                  ? "self-end bg-cardColor/50 text-white"
+                  : "bg-gray-300 text-black"
+              }`}
+            >
               {message.text}
-            </MessageBubble>
-          </MessageContainer>
+            </div>
+          </div>
         ))}
-      </ChatbarWrap>
-      <MessageInputContainer onSubmit={handleFormSubmit}>
-        <MessageInput
-          className="text-slate-500"
+      </div>
+
+      {/* Input */}
+      <form
+        className="flex items-center justify-center gap-2 p-3"
+        onSubmit={handleFormSubmit}
+      >
+        {/* Chat Field */}
+        <input
           type="text"
+          className="flex w-4/5 rounded-lg border border-gray-300 bg-indigo-50 p-3"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Type a message..."
         />
-        <SendButton type="submit">
-          <IoSend />
-        </SendButton>
-      </MessageInputContainer>
-    </ChatbarNav>
+
+        {/* Send Button */}
+        <button
+          type="submit"
+          className="flex size-12 items-center justify-center rounded-full bg-cardColor text-white transition hover:shadow-cardGlowEffect"
+        >
+          <IoSend className="flex items-center justify-center" size={24} />
+        </button>
+      </form>
+    </div>
   );
 };
 

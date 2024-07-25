@@ -1,25 +1,24 @@
-import Home from "@/routes/Home";
-import Design from "@/pages/Design";
-import Collections from "@/pages/Collections";
-import History from "@/pages/History";
-import NewPoster from "@/pages/NewPoster";
-import ChatDetail from "@/pages/ChatDetail";
-import ProfilePage from "@/pages/ProfilePage";
-import ProductTest from "./Producttest";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ScrollToTop from "@/hooks/ScrollToTop";
+import Home from "@/routes/Home";
+import Product from "./Product"; // This is the layout component
+import Collections from "@/pages/Product/Collections";
+import NewPoster from "@/pages/Product/NewPoster";
+import History from "@/pages/Product/History";
+import ChatPage from "@/pages/Product/ChatPage";
+import ProfilePage from "@/pages/Product/ProfilePage";
 
 export enum Routes {
   BASE = "/",
   PRODUCT = "/product",
-  DESIGN = "/product/design",
+  NEW_POSTER = "/product/",
+  // DESIGN = "/product/design",
   COLLECTIONS = "/product/collections",
   HISTORY = "/product/history",
-  NEW_POSTER = "/product/new-poster",
   CHAT = "/product/chat/:id",
   PROFILE = "/product/profile",
-  SIGNIN = "/product/login",
-  SIGNUP = "/product/register",
+  LOGIN = "/product/login",
+  REGISTER = "/product/register",
 }
 
 const router = createBrowserRouter([
@@ -34,20 +33,20 @@ const router = createBrowserRouter([
     errorElement: <div>404 No Page</div>,
   },
   {
-    path: Routes.SIGNIN,
+    path: Routes.LOGIN,
     element: <div>Sign In Page</div>, // Replace with actual component if available
   },
   {
-    path: Routes.SIGNUP,
+    path: Routes.REGISTER,
     element: <div>Sign Up Page</div>, // Replace with actual component if available
   },
   {
     path: Routes.PRODUCT,
-    element: <ProductTest />,
+    element: <Product />,
     children: [
       {
-        path: Routes.DESIGN,
-        element: <Design />,
+        path: Routes.NEW_POSTER,
+        element: <NewPoster />,
       },
       {
         path: Routes.COLLECTIONS,
@@ -58,12 +57,8 @@ const router = createBrowserRouter([
         element: <History />,
       },
       {
-        path: Routes.NEW_POSTER,
-        element: <NewPoster />,
-      },
-      {
         path: Routes.CHAT,
-        element: <ChatDetail />,
+        element: <ChatPage />,
       },
       {
         path: Routes.PROFILE,
