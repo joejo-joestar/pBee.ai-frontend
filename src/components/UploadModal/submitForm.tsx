@@ -21,7 +21,7 @@ export function submitForm(
         formData,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE4OTY0ODQsImV4cCI6MTcyMTkwMDA4NH0.atHOFna6FKJcx_vWl7K0GoTVOAiFd4gb5VPmB7khYJ4`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o`,
             "Content-Type": "multipart/form-data",
           },
           onUploadProgress: (progressEvent) => {

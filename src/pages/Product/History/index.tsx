@@ -3,39 +3,9 @@ import { useNavigate } from "react-router-dom";
 // import { FaStar, FaRegStar, FaTrash } from "react-icons/fa";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { Separator } from "@/assets/Separator";
-
-const mockChats = [
-  {
-    sessionId: "1344-7632-2347-2343",
-    title: "Chat 1",
-    updatedAt: "2023-07-01T07:35:06.94Z",
-    isFavorite: false,
-  },
-  {
-    sessionId: "2344-7632-2347-2343",
-    title: "Chat 2",
-    updatedAt: "2023-07-02T07:35:06.94Z",
-    isFavorite: false,
-  },
-  {
-    sessionId: "3344-7632-2347-2343",
-    title: "Chat 3",
-    updatedAt: "2023-07-03T07:35:06.94Z",
-    isFavorite: true,
-  },
-  {
-    sessionId: "4344-7632-2347-2343",
-    title: "Chat 4",
-    updatedAt: "2023-07-04T07:35:06.94Z",
-    isFavorite: true,
-  },
-  {
-    sessionId: "5344-7632-2347-2343",
-    title: "Chat 5",
-    updatedAt: "2023-07-05T07:35:06.94Z",
-    isFavorite: false,
-  },
-];
+import toggleFavoriteStatus from "./toggleFavoriteStatus";
+// import { mockChats } from "./mockChat";
+import fetchChats from "./fetchChats";
 
 const History: FC = () => {
   const navigate = useNavigate();
@@ -47,10 +17,10 @@ const History: FC = () => {
   useEffect(() => {
     const getChats = async () => {
       // TODO: Replace this line with the API call when ready
-      // const chatsData = await fetchChats();
-      const chatsData = mockChats;
+      const chatsData = await fetchChats();
+      // const chatsData = mockChats;
       setChats(
-        chatsData.map((chat) => ({
+        chatsData.map((chat: { updatedAt: string | number | Date }) => ({
           ...chat,
           updatedAt: new Date(chat.updatedAt),
         })),
@@ -70,15 +40,19 @@ const History: FC = () => {
     setChats(sortedChats);
   };
 
-  const handleFavoriteChat = (id: string, e: React.MouseEvent) => {
+  const handleFavoriteChat = async (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    setChats((prevChats) =>
-      prevChats.map((chat) =>
-        chat.sessionId === id ? { ...chat, favorite: !chat.favorite } : chat,
-      ),
-    );
-  };
+    const chat = chats.find((chat) => chat.sessionId === id);
+    if (!chat) return;
 
+    const updatedChat = { ...chat, isFavorite: !chat.isFavorite };
+    const response = await toggleFavoriteStatus(id, updatedChat.isFavorite);
+    if (response) {
+      setChats((prevChats) =>
+        prevChats.map((chat) => (chat.sessionId === id ? updatedChat : chat)),
+      );
+    }
+  };
   // TODO Deleting (Disabled for now)
   // const handleDeleteChat = (id: string, e: React.MouseEvent) => {
   //   e.stopPropagation();
@@ -123,9 +97,7 @@ const History: FC = () => {
             <button
               onClick={handleToggleSort}
               className={`h-12 w-24 rounded-lg border border-gray-300 p-2 transition ${
-                sortByNewest
-                  ? "bg-cardColor text-white"
-                  : "bg-transparent text-gray-800"
+                sortByNewest ? "bg-cardColor text-white" : "bg-transparent"
               } text-xs transition hover:${
                 sortByNewest ? "bg-cardColor/50" : "bg-gray-100"
               }`}

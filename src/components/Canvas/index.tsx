@@ -1,6 +1,26 @@
-import { useRef, useEffect } from "react";
+import axios from "axios";
+import { useRef, useEffect, useState } from "react";
+type Props = {
+  sessionId?: string;
+};
+const Canvas = ({ sessionId }: Props) => {
+  const [canvasData, setCanvasData] = useState(null);
 
-const Canvas: React.FC = () => {
+  useEffect(() => {
+    const fetchCanvasData = async () => {
+      try {
+        // TODO: Add api code
+        const response = await axios.get(`/api/sessions/${sessionId}/canvas`);
+        setCanvasData(response.data);
+      } catch (error) {
+        console.error("Error fetching canvas data:", error);
+      }
+    };
+
+    if (sessionId) {
+      fetchCanvasData();
+    }
+  }, [sessionId]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

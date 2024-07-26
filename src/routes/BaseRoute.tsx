@@ -15,7 +15,7 @@ export enum Routes {
   // DESIGN = "/product/design",
   COLLECTIONS = "/product/collections",
   HISTORY = "/product/history",
-  CHAT = "/product/chat/:id",
+  CHAT = "/product/chat/:sessionId",
   PROFILE = "/product/profile",
   LOGIN = "/product/login",
   REGISTER = "/product/register",

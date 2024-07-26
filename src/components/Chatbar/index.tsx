@@ -1,57 +1,107 @@
-import { FC, useState, FormEvent } from "react";
+import React, { FC, useState, useEffect, FormEvent, useRef } from "react";
 import { IoSend, IoPersonCircle } from "react-icons/io5";
+import fetchMessages from "./fetchMessages"; // Make sure the path is correct for your project structure
+import postMessage from "./postMessage"; // You'll need to create this function to handle posting messages
 
-const Chatbar: FC = () => {
-  const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>(
-    [],
-  );
+interface ChatbarProps {
+  sessionId: string;
+}
+
+interface Message {
+  text: string;
+  isUser: boolean;
+}
+
+const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const loadMessages = async () => {
+      try {
+        setIsLoading(true);
+        const fetchedMessages = await fetchMessages(sessionId);
+
+        console.log("fetchedmsg", fetchedMessages);
+
+        setMessages(fetchedMessages);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadMessages();
+  }, [sessionId]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      const newMessages = [
-        ...messages,
-        { text: inputValue, isUser: true },
-        { text: "The model gives a response.", isUser: false },
-      ];
-      setMessages(newMessages);
-      setInputValue("");
+      // Add user message to state
+      const userMessage = { text: inputValue, isUser: true };
+      setMessages((prevMessages) => [...prevMessages, userMessage]);
+
+      // Post user message to the server
+      try {
+        const responseMessage = await postMessage(sessionId, inputValue);
+
+        // Assuming postMessage returns an object with the 'content' property
+        if (responseMessage) {
+          const botMessage = { text: responseMessage.content, isUser: false };
+          setMessages((prevMessages) => [...prevMessages, botMessage]);
+        }
+      } catch (error) {
+        console.error("Error posting message:", error);
+      } finally {
+        setInputValue("");
+      }
     }
   };
 
   return (
     <div className="fixed right-0 top-0 flex h-screen w-96 flex-col bg-productDark">
       <div className="flex-grow overflow-y-auto p-2">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`mb-2 flex items-start ${
-              message.isUser ? "flex-row-reverse" : "flex-row"
-            }`}
-          >
-            {!message.isUser && (
-              <div className="mx-2 flex items-center">
-                <IoPersonCircle size={30} />
-              </div>
-            )}
-
-            {/* Chat Bubble */}
+        {isLoading ? (
+          <div className="text-center text-white">Loading...</div>
+        ) : (
+          messages.map((message, index) => (
             <div
-              className={`max-w-3/4 rounded-lg p-4 font-normal ${
-                message.isUser
-                  ? "self-end bg-cardColor/50 text-white"
-                  : "bg-gray-300 text-black"
+              key={index}
+              className={`mb-2 flex items-start ${
+                message.isUser ? "flex-row-reverse" : "flex-row"
               }`}
             >
-              {message.text}
+              {!message.isUser && (
+                <div className="mx-2 flex items-center">
+                  <IoPersonCircle size={30} />
+                </div>
+              )}
+
+              {/* Chat Bubble */}
+              <div
+                className={`max-w-3/4 rounded-lg p-4 font-normal ${
+                  message.isUser
+                    ? "self-end bg-cardColor/50 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
+              >
+                {message.text}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}
@@ -71,7 +121,7 @@ const Chatbar: FC = () => {
         {/* Send Button */}
         <button
           type="submit"
-          className="flex size-12 items-center justify-center rounded-full bg-cardColor text-white transition hover:shadow-cardGlowEffect"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-cardColor text-white transition hover:shadow-cardGlowEffect"
         >
           <IoSend className="flex items-center justify-center" size={24} />
         </button>

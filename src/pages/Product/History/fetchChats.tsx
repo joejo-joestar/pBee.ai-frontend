@@ -2,11 +2,11 @@ import axios from "axios";
 
 const fetchChats = async () => {
   try {
-    const url = `https://firm-gently-ladybird.ngrok-free.app/api/`;
+    const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE4MjM3NjEsImV4cCI6MTcyMTgyNzM2MX0.B5HkVCMPRqespk9dIE-pohEpA1ApOgJ9kn-Zrg2oBy8",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o",
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
       },

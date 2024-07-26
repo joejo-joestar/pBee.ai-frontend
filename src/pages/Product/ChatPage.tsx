@@ -1,13 +1,17 @@
+import React from "react";
+import { useParams } from "react-router-dom";
 import Canvas from "@/components/Canvas";
 import Chatbar from "@/components/Chatbar";
 import CanvasBar from "@/components/CanvasBar";
 
-const ChatPage = () => {
+const ChatPage: React.FC = () => {
+  const { sessionId } = useParams<{ sessionId?: string }>();
+
   return (
     <>
-      <Canvas />
-      <CanvasBar />
-      <Chatbar />
+      <Canvas sessionId={sessionId} />
+      <CanvasBar sessionId={sessionId} />
+      <Chatbar sessionId={sessionId} />
     </>
   );
 };

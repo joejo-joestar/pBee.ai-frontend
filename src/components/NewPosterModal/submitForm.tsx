@@ -1,59 +1,63 @@
 import axios from "axios";
 import { FormikHelpers } from "formik";
-import { useNavigate } from "react-router-dom";
 
-export function submitForm(
+export async function submitForm(
   jsonData: {
     tone: string;
     aspectRatio: string;
     resolution: string;
-    collectionName: string;
+    collectionsName: string;
   },
   actions: FormikHelpers<{
     tone: string;
     aspectRatio: string;
     resolution: string;
-    collectionName: string;
+    collectionsName: string;
   }>,
   onClose: () => void,
+  navigate: (path: string) => void,
 ) {
-  const navigate = useNavigate();
+  try {
+    const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
+    const config = {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true",
+      },
+    };
 
-  return async () => {
-    try {
-      const url = `https://firm-gently-ladybird.ngrok-free.app/api/chat/sessions`;
-      const config = {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE4MjM3NjEsImV4cCI6MTcyMTgyNzM2MX0.B5HkVCMPRqespk9dIE-pohEpA1ApOgJ9kn-Zrg2oBy8",
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true",
-        },
-      };
-      const response = await axios.post(url, jsonData, config);
+    console.log(jsonData);
 
-      if (response.status === 201) {
-        const { sessionId, userId, ...rest } = response.data;
-        console.log("Form submission successful!");
+    const response = await axios.post(url, jsonData, config);
 
-        // TODO: Testing
-        console.log("Received data:", {
-          sessionId,
-          userId,
-          ...rest,
-        });
+    if (response.status === 201) {
+      const { sessionId, userId, ...rest } = response.data;
+      console.log("Form submission successful!");
 
-        actions.setSubmitting(false); // Reset form submission state
-        onClose();
-        navigate(`/chat/${sessionId}`); // Navigate to the chat page using sessionId
-      } else {
-        console.error("Error submitting form: ", response.data);
-        actions.setSubmitting(false); // Reset form submission state
-      }
-    } catch (error) {
-      console.error("Error submitting form: ", error);
+      // TODO: Testing
+      console.log("Received data:", {
+        sessionId,
+        userId,
+        ...rest,
+      });
+
+      actions.setSubmitting(false); // Reset form submission state
+      onClose();
+      navigate(`chat/${sessionId}`); // Navigate to the chat page using sessionId
+    } else {
+      console.error("Error submitting form: ", response.data);
       actions.setSubmitting(false); // Reset form submission state
     }
-  };
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      // Inspect the error response
+      console.error("Error submitting form: ", error.response.data);
+    } else {
+      console.error("Error submitting form: ", error);
+    }
+    actions.setSubmitting(false); // Reset form submission state
+  }
 }

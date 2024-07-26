@@ -30,7 +30,7 @@ const CollectionSelector = ({ setShowUploadModal }: Props) => {
                 className="flex min-h-14 w-full flex-row justify-between gap-4 rounded-xl bg-tabContainer p-1"
                 as="select"
                 placeholder="Collection Name"
-                name="collectionName"
+                name="collectionsName"
               >
                 <option key="default" value="default collection">
                   Continue Without a Collection

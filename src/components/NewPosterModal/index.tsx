@@ -11,6 +11,7 @@ import { object, string } from "yup";
 import UploadModal from "../UploadModal";
 import { Separator } from "@/assets/Separator";
 import { useCollections } from "@/hooks/useCollections";
+import { useNavigate } from "react-router-dom";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -20,6 +21,7 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
   const [showUploadModal, setShowUploadModal] = useState<boolean>(false);
   const [showNewPosterModal, setShowNewPosterModal] = useState<boolean>(true);
   const { fetchCollections } = useCollections();
+  const navigate = useNavigate(); // Hook used here
 
   const handleCloseNewPosterModal = () => {
     setShowNewPosterModal(false);
@@ -57,7 +59,7 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
               tone: string().required(),
               aspectRatio: string().required(),
               resolution: string().required(),
-              collectionName: string().required(),
+              collectionsName: string().required(),
             })}
             onSubmit={(values, actions) => {
               // Data to Submit
@@ -65,12 +67,11 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
                 tone: values.tone,
                 aspectRatio: values.aspectRatio,
                 resolution: values.resolution,
-                collectionName: values.collectionName,
+                collectionsName: values.collectionsName,
               };
 
-              const handleSubmit = submitForm(jsonData, actions, onClose);
-
-              handleSubmit();
+              // Pass navigate to submitForm
+              submitForm(jsonData, actions, onClose, navigate);
             }}
           >
             {({ values, setValues, isValid, isSubmitting, resetForm }) => (
