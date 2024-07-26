@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FormikHelpers } from "formik";
+import { useAuth } from "@/contexts/AuthContext";
 
 export async function submitForm(
   jsonData: {
@@ -17,12 +18,20 @@ export async function submitForm(
   onClose: () => void,
   navigate: (path: string) => void,
 ) {
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    console.error("User is not authenticated");
+    actions.setSubmitting(false);
+    return;
+  }
+
   try {
+    const token = await currentUser.getIdToken();
     const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
     const config = {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o",
+        Authorization: `Bearer ${token}`,
         Accept: "application/json",
         "Content-Type": "application/json",
         "ngrok-skip-browser-warning": "true",

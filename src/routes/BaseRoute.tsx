@@ -7,18 +7,24 @@ import NewPoster from "@/pages/Product/NewPoster";
 import History from "@/pages/Product/History";
 import ChatPage from "@/pages/Product/ChatPage";
 import ProfilePage from "@/pages/Product/ProfilePage";
+import ErrorPage from "@/pages/Product/404";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
+import { AuthProvider } from "@/contexts/AuthContext";
+import ResetPassword from "@/pages/Login/ResetPassword";
+// import PrivateRoute from "@/components/PrivateRoute";
 
 export enum Routes {
   BASE = "/",
+  LOGIN = "/login",
+  REGISTER = "/register",
+  RESET_PASSWORD = "/reset-password",
   PRODUCT = "/product",
   NEW_POSTER = "/product/",
-  // DESIGN = "/product/design",
+  PROFILE = "/product/profile",
   COLLECTIONS = "/product/collections",
   HISTORY = "/product/history",
   CHAT = "/product/chat/:sessionId",
-  PROFILE = "/product/profile",
-  LOGIN = "/product/login",
-  REGISTER = "/product/register",
 }
 
 const router = createBrowserRouter([
@@ -30,19 +36,30 @@ const router = createBrowserRouter([
         <Home />
       </>
     ),
-    errorElement: <div>404 No Page</div>,
+    errorElement: <ErrorPage />,
   },
   {
     path: Routes.LOGIN,
-    element: <div>Sign In Page</div>, // Replace with actual component if available
+    element: <Login />,
+  },
+  {
+    path: Routes.RESET_PASSWORD,
+    element: <ResetPassword />,
   },
   {
     path: Routes.REGISTER,
-    element: <div>Sign Up Page</div>, // Replace with actual component if available
+    element: <Register />,
+  },
+  {
+    // path: Routes.EMAI
   },
   {
     path: Routes.PRODUCT,
-    element: <Product />,
+    element: (
+      // <PrivateRoute>
+      <Product />
+    ),
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: Routes.NEW_POSTER,
@@ -69,7 +86,11 @@ const router = createBrowserRouter([
 ]);
 
 const BaseRoute = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />;
+    </AuthProvider>
+  );
 };
 
 export default BaseRoute;

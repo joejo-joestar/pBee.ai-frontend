@@ -1,11 +1,15 @@
 import axios from "axios";
 
-const toggleFavoriteStatus = async (sessionId: string, isFavorite: boolean) => {
+const toggleFavoriteStatus = async (
+  sessionId: string,
+  isFavorite: boolean,
+  token: string,
+) => {
   try {
     const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions/${sessionId}/favorite`;
     const config = {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     };

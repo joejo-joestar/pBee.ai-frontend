@@ -1,34 +1,41 @@
 import { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { FaStar, FaRegStar, FaTrash } from "react-icons/fa";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { Separator } from "@/assets/Separator";
 import toggleFavoriteStatus from "./toggleFavoriteStatus";
-// import { mockChats } from "./mockChat";
 import fetchChats from "./fetchChats";
+import { useAuth } from "@/contexts/AuthContext";
 
 const History: FC = () => {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const [token, setToken] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortByNewest, setSortByNewest] = useState(true);
   const [chats, setChats] = useState<any[]>([]);
 
+  useEffect(() => {
+    if (currentUser) {
+      currentUser.getIdToken().then(setToken);
+    }
+  }, [currentUser]);
+
   // Fetch chat history when the component mounts
   useEffect(() => {
     const getChats = async () => {
-      // TODO: Replace this line with the API call when ready
-      const chatsData = await fetchChats();
-      // const chatsData = mockChats;
-      setChats(
-        chatsData.map((chat: { updatedAt: string | number | Date }) => ({
-          ...chat,
-          updatedAt: new Date(chat.updatedAt),
-        })),
-      );
+      if (token) {
+        const chatsData = await fetchChats(token);
+        setChats(
+          chatsData.map((chat: { updatedAt: string | number | Date }) => ({
+            ...chat,
+            updatedAt: new Date(chat.updatedAt),
+          })),
+        );
+      }
     };
 
     getChats();
-  }, []);
+  }, [token]);
 
   const handleToggleSort = () => {
     setSortByNewest((prev) => !prev);
@@ -46,14 +53,18 @@ const History: FC = () => {
     if (!chat) return;
 
     const updatedChat = { ...chat, isFavorite: !chat.isFavorite };
-    const response = await toggleFavoriteStatus(id, updatedChat.isFavorite);
+    const response = await toggleFavoriteStatus(
+      id,
+      updatedChat.isFavorite,
+      token,
+    );
     if (response) {
       setChats((prevChats) =>
         prevChats.map((chat) => (chat.sessionId === id ? updatedChat : chat)),
       );
     }
   };
-  // TODO Deleting (Disabled for now)
+
   // const handleDeleteChat = (id: string, e: React.MouseEvent) => {
   //   e.stopPropagation();
   //   setChats((prevChats) => prevChats.filter((chat) => chat.sessionId !== id));
@@ -63,12 +74,10 @@ const History: FC = () => {
   //   setChats([]);
   // };
 
-  // Navigating to session
   const handleChatClick = (id: string) => {
     navigate(`/product/chat/${id}`);
   };
 
-  // For searching sessions
   const filteredChats = chats.filter((chat) =>
     chat.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
@@ -76,11 +85,9 @@ const History: FC = () => {
   return (
     <div className="flex h-screen w-screen bg-dark p-5">
       <div className="ml-64 flex w-full flex-col gap-5 bg-dark">
-        {/* Title */}
         <h2 className="font-display text-2xl">History</h2>
         <Separator />
 
-        {/* Search and Sort */}
         <div className="flex w-1/2 items-center gap-5">
           <input
             key="search"
@@ -91,9 +98,7 @@ const History: FC = () => {
             className="text-sms h-12 w-48 flex-1 rounded-lg border p-2"
           />
 
-          {/* Buttons */}
           <div className="flex items-center gap-3">
-            {/* Sort */}
             <button
               onClick={handleToggleSort}
               className={`h-12 w-24 rounded-lg border border-gray-300 p-2 transition ${
@@ -115,7 +120,6 @@ const History: FC = () => {
           </div>
         </div>
 
-        {/* Chat List */}
         <div className="flex flex-col gap-2">
           {filteredChats.map((session) => (
             <div
@@ -123,14 +127,11 @@ const History: FC = () => {
               key={session.sessionId}
               onClick={() => handleChatClick(session.sessionId)}
             >
-              {/* Session Name */}
               <div className="flex items-center">
                 <span>{session.title}</span>
               </div>
 
-              {/* Fav and Delete */}
               <div className="flex items-center gap-2">
-                {/* Favorite Star */}
                 <button
                   onClick={(e) => handleFavoriteChat(session.sessionId, e)}
                   className="p-2"
@@ -142,7 +143,6 @@ const History: FC = () => {
                   )}
                 </button>
 
-                {/* TODO: Delete Button (Disabled for now) */}
                 {/* <button
                   onClick={(e) => handleDeleteChat(chat.sessionId, e)}
                   className="p-2"

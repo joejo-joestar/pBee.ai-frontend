@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect, FormEvent, useRef } from "react";
 import { IoSend, IoPersonCircle } from "react-icons/io5";
-import fetchMessages from "./fetchMessages"; // Make sure the path is correct for your project structure
-import postMessage from "./postMessage"; // You'll need to create this function to handle posting messages
+import { io, Socket } from "socket.io-client";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ChatbarProps {
-  sessionId: string;
+  sessionId: string | undefined;
 }
 
 interface Message {
@@ -13,29 +13,64 @@ interface Message {
 }
 
 const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
+  const { currentUser } = useAuth();
+  const [token, setToken] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    const loadMessages = async () => {
-      try {
-        setIsLoading(true);
-        const fetchedMessages = await fetchMessages(sessionId);
+    if (currentUser) {
+      currentUser.getIdToken().then(setToken);
+    }
+  }, [currentUser]);
 
-        console.log("fetchedmsg", fetchedMessages);
+  useEffect(() => {
+    if (token && sessionId) {
+      const url = `https://outgoing-termite-roughly.ngrok-free.app/?token=${token}`;
+      const socket = io(url);
 
-        setMessages(fetchedMessages);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      socketRef.current = socket;
 
-    loadMessages();
-  }, [sessionId]);
+      socket.on("connect", () => {
+        console.log("Connected to WebSocket");
+
+        // Join the session
+        socket.emit("join", sessionId);
+
+        // Fetch initial messages
+        socket.emit("fetchMessages", sessionId);
+      });
+
+      socket.on(
+        "messages",
+        (initialMessages: { content: string; type: string }[]) => {
+          const fetchedMessages = initialMessages.map((message) => ({
+            text: message.content,
+            isUser: message.type === "request",
+          }));
+          setMessages(fetchedMessages);
+        },
+      );
+
+      socket.on("message", (message: { content: string; type: string }) => {
+        const newMessage = {
+          text: message.content,
+          isUser: message.type === "request",
+        };
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from WebSocket");
+      });
+
+      return () => {
+        socket.disconnect();
+      };
+    }
+  }, [sessionId, token]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -48,68 +83,50 @@ const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      // Add user message to state
       const userMessage = { text: inputValue, isUser: true };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-      // Post user message to the server
-      try {
-        const responseMessage = await postMessage(sessionId, inputValue);
+      // Emit user message to the server via WebSocket
+      socketRef.current?.emit("message", { sessionId, content: inputValue });
 
-        // Assuming postMessage returns an object with the 'content' property
-        if (responseMessage) {
-          const botMessage = { text: responseMessage.content, isUser: false };
-          setMessages((prevMessages) => [...prevMessages, botMessage]);
-        }
-      } catch (error) {
-        console.error("Error posting message:", error);
-      } finally {
-        setInputValue("");
-      }
+      setInputValue("");
     }
   };
 
   return (
     <div className="fixed right-0 top-0 flex h-screen w-96 flex-col bg-productDark">
       <div className="flex-grow overflow-y-auto p-2">
-        {isLoading ? (
-          <div className="text-center text-white">Loading...</div>
-        ) : (
-          messages.map((message, index) => (
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`mb-2 flex items-start ${
+              message.isUser ? "flex-row-reverse" : "flex-row"
+            }`}
+          >
+            {!message.isUser && (
+              <div className="mx-2 flex items-center">
+                <IoPersonCircle size={30} />
+              </div>
+            )}
+
             <div
-              key={index}
-              className={`mb-2 flex items-start ${
-                message.isUser ? "flex-row-reverse" : "flex-row"
+              className={`max-w-3/4 rounded-lg p-4 font-normal ${
+                message.isUser
+                  ? "self-end bg-cardColor/50 text-white"
+                  : "bg-gray-300 text-black"
               }`}
             >
-              {!message.isUser && (
-                <div className="mx-2 flex items-center">
-                  <IoPersonCircle size={30} />
-                </div>
-              )}
-
-              {/* Chat Bubble */}
-              <div
-                className={`max-w-3/4 rounded-lg p-4 font-normal ${
-                  message.isUser
-                    ? "self-end bg-cardColor/50 text-white"
-                    : "bg-gray-300 text-black"
-                }`}
-              >
-                {message.text}
-              </div>
+              {message.text}
             </div>
-          ))
-        )}
+          </div>
+        ))}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
       <form
         className="flex items-center justify-center gap-2 p-3"
         onSubmit={handleFormSubmit}
       >
-        {/* Chat Field */}
         <input
           type="text"
           className="flex w-4/5 rounded-lg border border-gray-300 bg-indigo-50 p-3"
@@ -117,8 +134,6 @@ const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
           onChange={handleInputChange}
           placeholder="Type a message..."
         />
-
-        {/* Send Button */}
         <button
           type="submit"
           className="flex h-12 w-12 items-center justify-center rounded-full bg-cardColor text-white transition hover:shadow-cardGlowEffect"

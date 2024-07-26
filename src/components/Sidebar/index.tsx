@@ -1,16 +1,26 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import Submenu from "./Submenu";
 import { IconContext } from "react-icons";
-import { useSidebarData } from "./SidebarData";
+import { useSidebarData } from "./useSidebarData";
 import { SidebarItem } from "../shared/SidebarItem";
 import { FaCog } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Separator } from "@/assets/Separator";
 import NewPosterModal from "../NewPosterModal";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Sidebar: FC = () => {
   const navigate = useNavigate();
-  const sidebarData = useSidebarData();
+  const { currentUser } = useAuth();
+  const [token, setToken] = useState<string>("");
+
+  useEffect(() => {
+    if (currentUser) {
+      currentUser.getIdToken().then(setToken);
+    }
+  }, [currentUser]);
+
+  const sidebarData = useSidebarData(token);
 
   const [showCustomizeModal, setShowCustomizeModal] = useState<boolean>(false);
   const handleNewPosterClick = () => {

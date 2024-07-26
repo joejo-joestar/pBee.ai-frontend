@@ -4,13 +4,14 @@ type Props = {
   sessionId?: string;
 };
 const Canvas = ({ sessionId }: Props) => {
-  const [canvasData, setCanvasData] = useState(null);
+  const [_canvasData, setCanvasData] = useState(null);
 
   useEffect(() => {
     const fetchCanvasData = async () => {
       try {
+        const url = ``;
         // TODO: Add api code
-        const response = await axios.get(`/api/sessions/${sessionId}/canvas`);
+        const response = await axios.get(url);
         setCanvasData(response.data);
       } catch (error) {
         console.error("Error fetching canvas data:", error);

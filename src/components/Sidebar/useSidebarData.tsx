@@ -5,7 +5,7 @@ import { RxReload } from "react-icons/rx";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import axios from "axios";
 
-export const useSidebarData = () => {
+export const useSidebarData = (token: string) => {
   const [sidebarData, setSidebarData] = useState<SidebarItem[]>([
     {
       title: "Design",
@@ -30,13 +30,12 @@ export const useSidebarData = () => {
         const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
         const config = {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o",
+            Authorization: `Bearer ${token}`,
             Accept: "application/json",
             "ngrok-skip-browser-warning": "true",
           },
         };
-        const response = await axios.get(url, config); // Replace with your API endpoint
+        const response = await axios.get(url, config);
         const sessions = response.data;
         if (sessions.length > 0) {
           sessions.sort(
@@ -56,22 +55,19 @@ export const useSidebarData = () => {
           );
         }
       } catch (error) {
-        // TODO: FOR TESTING
-        const mostRecentSessionId = "errored";
+        console.error("Error fetching sessions:", error);
         setSidebarData((prevData) =>
           prevData.map((item) =>
             item.title === "Design"
-              ? { ...item, path: `/product/chat/${mostRecentSessionId}` }
+              ? { ...item, path: `/product/chat/errored` }
               : item,
           ),
         );
-
-        console.error("Error fetching sessions:", error);
       }
     };
 
     fetchMostRecentSession();
-  }, []);
+  }, [token]);
 
   return sidebarData;
 };

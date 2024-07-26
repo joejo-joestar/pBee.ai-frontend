@@ -4,7 +4,7 @@ import { SelectedPage } from "./types";
 type Props = {
   style: string;
   children: React.ReactNode;
-  page: SelectedPage;
+  page: SelectedPage | string;
 };
 
 const ActionButton = ({ style, children, page }: Props) => {

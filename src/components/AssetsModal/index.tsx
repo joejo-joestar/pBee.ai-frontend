@@ -3,7 +3,6 @@ import ModalCard from "@/components/shared/ModalCard";
 import { useEffect, useState } from "react";
 import Spinner from "../shared/Spinner";
 import { MdOutlineDeleteForever } from "react-icons/md";
-// import { mockData } from "./mockData";
 import DeleteModal from "./DeleteModal";
 import LogoSection from "./LogoSection";
 import ImageSection from "./ImageSection";
@@ -11,6 +10,7 @@ import HeaderFontSection from "./HeaderFontSection";
 import TextFontSection from "./TextFontSection";
 import ColorPaletteSection from "./ColorPaletteSection";
 import { Separator } from "@/assets/Separator";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Props = { isVisible: boolean; onClose(): void; collectionName: string };
 
@@ -29,20 +29,27 @@ interface Item {
 }
 
 const AssetsModal = ({ isVisible, onClose, collectionName }: Props) => {
+  const { currentUser } = useAuth();
+  const [token, setToken] = useState<string>("");
   const [data, setData] = useState<Item | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmDeleteVisible, setConfirmDeleteVisible] =
     useState<boolean>(false);
 
+  useEffect(() => {
+    if (currentUser) {
+      currentUser.getIdToken().then(setToken);
+    }
+  }, [currentUser]);
+
   // Getting Collection Data
   useEffect(() => {
-    if (isVisible) {
+    if (isVisible && token) {
       const url = `https://firm-gently-ladybird.ngrok-free.app/api/files/${collectionName}`;
       const config = {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE5Mjk0ODAsImV4cCI6MTcyMTkzMzA4MH0.8BNXhhqH8SDPHVDhkfzhk79uB2MFB_l6bPk-0c4rHrU",
+          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "ngrok-skip-browser-warning": "true",
         },
@@ -63,15 +70,16 @@ const AssetsModal = ({ isVisible, onClose, collectionName }: Props) => {
       // NOTE: Using mock data for testing
       // setData(mockData);
     }
-  }, [isVisible, collectionName]);
+  }, [isVisible, collectionName, token]);
 
   // Deleting Collection
   const handleDelete = () => {
+    if (!token) return;
+
     const url = `https://firm-gently-ladybird.ngrok-free.app/api/files/folders/${collectionName}`;
     const config = {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE5Mjk0ODAsImV4cCI6MTcyMTkzMzA4MH0.8BNXhhqH8SDPHVDhkfzhk79uB2MFB_l6bPk-0c4rHrU",
+        Authorization: `Bearer ${token}`,
         "ngrok-skip-browser-warning": "true",
       },
     };

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuth } from "@/contexts/AuthContext"; // Import your AuthContext
 
 export const useCollections = () => {
+  const { currentUser } = useAuth(); // Get the current user from AuthContext
   const [collections, setCollections] = useState<
     { collectionName: string; logo: string }[]
   >([]);
@@ -9,13 +11,19 @@ export const useCollections = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchCollections = async () => {
+    if (!currentUser) {
+      setError("User not authenticated");
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     try {
+      const token = await currentUser.getIdToken(); // Get the token
       const url = `https://firm-gently-ladybird.ngrok-free.app/api/files/collections/logos`;
       const config = {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjE5Mjk0ODAsImV4cCI6MTcyMTkzMzA4MH0.8BNXhhqH8SDPHVDhkfzhk79uB2MFB_l6bPk-0c4rHrU",
+          Authorization: `Bearer ${token}`,
           Accept: "application/json",
           "ngrok-skip-browser-warning": "true",
         },
@@ -42,7 +50,7 @@ export const useCollections = () => {
 
   useEffect(() => {
     fetchCollections();
-  }, []);
+  }, [currentUser]); // Depend on currentUser to refetch if it changes
 
   return { collections, loading, error, fetchCollections };
 };

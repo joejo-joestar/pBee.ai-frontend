@@ -5,7 +5,7 @@ import Chatbar from "@/components/Chatbar";
 import CanvasBar from "@/components/CanvasBar";
 
 const ChatPage: React.FC = () => {
-  const { sessionId } = useParams<{ sessionId?: string }>();
+  const { sessionId } = useParams<{ sessionId?: string | undefined }>();
 
   return (
     <>

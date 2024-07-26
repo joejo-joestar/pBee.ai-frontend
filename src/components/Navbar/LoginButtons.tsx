@@ -8,15 +8,15 @@ type Props = {
   selectedPage: SelectedPage;
 };
 
-const Logo = ({ style, buttonStyle, selectedPage }: Props) => {
+const LoginButton = ({ style, buttonStyle, selectedPage }: Props) => {
   return (
     <div className={`${style}`}>
-      <Links page="Sign In" selectedPage={selectedPage} />
-      <ActionButton style={`${buttonStyle}`} page={SelectedPage.Pricing}>
+      <Links page="Login" selectedPage={selectedPage} />
+      <ActionButton style={`${buttonStyle}`} page={SelectedPage.Register}>
         Get Started
       </ActionButton>
     </div>
   );
 };
 
-export default Logo;
+export default LoginButton;

@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const fetchChats = async () => {
+const fetchChats = async (token: string) => {
   try {
     const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
     const config = {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o",
+        Authorization: `Bearer ${token}`,
         Accept: "application/json",
         "ngrok-skip-browser-warning": "true",
       },

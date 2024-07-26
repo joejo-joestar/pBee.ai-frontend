@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FormikHelpers } from "formik";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function submitForm(
   formData: FormData,
@@ -15,13 +16,23 @@ export function submitForm(
   onProgress: (progress: number) => void, // Add the progress callback
 ) {
   return async () => {
+    const { currentUser } = useAuth(); // Get the current user from AuthContext
+
+    if (!currentUser) {
+      console.error("User not authenticated");
+      actions.setSubmitting(false); // Reset form submission state
+      return;
+    }
+
     try {
+      const token = await currentUser.getIdToken(); // Get the token
+
       const response = await axios.post(
         "https://firm-gently-ladybird.ngrok-free.app/api/files/uploadCollection",
         formData,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5OCJ9LCJpYXQiOjE3MjE5MjMzNzksImV4cCI6MTcyMTk2NjU3OX0.nSrQjhDOSVKUSgohpGD6ncz-fi6Bo1saRUANlzHQj_o`,
+            Authorization: `Bearer ${token}`, // Use dynamic token here
             "Content-Type": "multipart/form-data",
           },
           onUploadProgress: (progressEvent) => {

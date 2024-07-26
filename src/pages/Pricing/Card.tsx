@@ -20,13 +20,13 @@ const Card = ({ pricingType, price, isCustomPrice, features }: Props) => {
             {/* Price */}
             <h2 className="font-display text-6xl font-semibold">${price}</h2>
             {/* per month */}
-            <p className="font-display ml-3 text-2xl"> / month</p>
+            <p className="ml-3 font-display text-2xl"> / month</p>
           </div>
         )}
       </div>
 
       {/* Select Plan Button */}
-      <ActionButton style={"px-6 py-3 text-2xl"} page={SelectedPage.SignUp}>
+      <ActionButton style={"px-6 py-3 text-2xl"} page={SelectedPage.Register}>
         Select Plan
       </ActionButton>
 
@@ -35,7 +35,7 @@ const Card = ({ pricingType, price, isCustomPrice, features }: Props) => {
 
       {/* TODO: Get Features and split in file with keys */}
       {/* Features */}
-      <div className="font-body ml-5 flex flex-col gap-4">
+      <div className="ml-5 flex flex-col gap-4 font-body">
         <p>{features}</p>
         <p>{features}</p>
         <p>{features}</p>
