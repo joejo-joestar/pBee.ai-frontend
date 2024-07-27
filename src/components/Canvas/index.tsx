@@ -9,8 +9,8 @@ const Canvas = ({ sessionId }: Props) => {
   useEffect(() => {
     const fetchCanvasData = async () => {
       try {
+        // TODO: Add api url
         const url = ``;
-        // TODO: Add api code
         const response = await axios.get(url);
         setCanvasData(response.data);
       } catch (error) {
