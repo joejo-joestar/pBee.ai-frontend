@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ScrollToTop from "@/hooks/ScrollToTop";
 import Home from "@/routes/Home";
-import Product from "./Product"; // This is the layout component
+import Product from "./Product"; // This is a layout component
 import Collections from "@/pages/Product/Collections";
 import NewPoster from "@/pages/Product/NewPoster";
 import History from "@/pages/Product/History";
@@ -12,7 +12,7 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ResetPassword from "@/pages/Login/ResetPassword";
-// import PrivateRoute from "@/components/PrivateRoute";
+import PrivateRoute from "@/components/PrivateRoute";
 
 export enum Routes {
   BASE = "/",
@@ -51,15 +51,13 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    // path: Routes.EMAI
-  },
-  {
     path: Routes.PRODUCT,
     element: (
-      // <PrivateRoute>
-      <Product />
+      <PrivateRoute>
+        <Product />
+      </PrivateRoute>
     ),
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: Routes.NEW_POSTER,

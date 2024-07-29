@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const postMessage = async (
-  sessionId: string,
+  sessionId: string | undefined,
   content: string,
   token: string,
 ) => {

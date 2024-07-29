@@ -1,7 +1,9 @@
 import React, { FC, useState, useEffect, FormEvent, useRef } from "react";
 import { IoSend, IoPersonCircle } from "react-icons/io5";
-import { io, Socket } from "socket.io-client";
 import { useAuth } from "@/contexts/AuthContext";
+import fetchMessages from "./fetchMessages";
+import postMessage from "./postMessage";
+import Spinner from "../shared/Spinner";
 
 interface ChatbarProps {
   sessionId: string | undefined;
@@ -17,8 +19,8 @@ const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
   const [token, setToken] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
     if (currentUser) {
@@ -27,49 +29,20 @@ const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
   }, [currentUser]);
 
   useEffect(() => {
-    if (token && sessionId) {
-      const url = `https://outgoing-termite-roughly.ngrok-free.app/?token=${token}`;
-      const socket = io(url);
+    const loadMessages = async () => {
+      if (!token) return;
+      try {
+        setIsLoading(true);
+        const fetchedMessages = await fetchMessages(sessionId, token);
+        setMessages(fetchedMessages);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-      socketRef.current = socket;
-
-      socket.on("connect", () => {
-        console.log("Connected to WebSocket");
-
-        // Join the session
-        socket.emit("join", sessionId);
-
-        // Fetch initial messages
-        socket.emit("fetchMessages", sessionId);
-      });
-
-      socket.on(
-        "messages",
-        (initialMessages: { content: string; type: string }[]) => {
-          const fetchedMessages = initialMessages.map((message) => ({
-            text: message.content,
-            isUser: message.type === "request",
-          }));
-          setMessages(fetchedMessages);
-        },
-      );
-
-      socket.on("message", (message: { content: string; type: string }) => {
-        const newMessage = {
-          text: message.content,
-          isUser: message.type === "request",
-        };
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
-      });
-
-      socket.on("disconnect", () => {
-        console.log("Disconnected from WebSocket");
-      });
-
-      return () => {
-        socket.disconnect();
-      };
-    }
+    loadMessages();
   }, [sessionId, token]);
 
   useEffect(() => {
@@ -85,51 +58,61 @@ const Chatbar: FC<ChatbarProps> = ({ sessionId }) => {
     if (inputValue.trim()) {
       const userMessage = { text: inputValue, isUser: true };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
-
-      // Emit user message to the server via WebSocket
-      socketRef.current?.emit("message", { sessionId, content: inputValue });
-
-      setInputValue("");
+      try {
+        const responseMessage = await postMessage(sessionId, inputValue, token);
+        if (responseMessage) {
+          const botMessage = { text: responseMessage, isUser: false };
+          setMessages((prevMessages) => [...prevMessages, botMessage]);
+        }
+      } catch (error) {
+        console.error("Error posting message:", error);
+      } finally {
+        setInputValue("");
+      }
     }
   };
 
   return (
     <div className="fixed right-0 top-0 flex h-screen w-96 flex-col bg-productDark">
       <div className="flex-grow overflow-y-auto p-2">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`mb-2 flex items-start ${
-              message.isUser ? "flex-row-reverse" : "flex-row"
-            }`}
-          >
-            {!message.isUser && (
-              <div className="mx-2 flex items-center">
-                <IoPersonCircle size={30} />
-              </div>
-            )}
-
+        {isLoading ? (
+          <div className="justify-center">
+            <Spinner style={"size-32"} />
+          </div>
+        ) : (
+          messages.map((message, index) => (
             <div
-              className={`max-w-3/4 rounded-lg p-4 font-normal ${
-                message.isUser
-                  ? "self-end bg-cardColor/50 text-white"
-                  : "bg-gray-300 text-black"
+              key={index}
+              className={`mb-2 flex items-start ${
+                message.isUser ? "flex-row-reverse" : "flex-row"
               }`}
             >
-              {message.text}
+              {!message.isUser && (
+                <div className="mx-2 flex items-center">
+                  <IoPersonCircle size={30} />
+                </div>
+              )}
+              <div
+                className={`max-w-3/4 rounded-lg p-4 font-normal ${
+                  message.isUser
+                    ? "self-end bg-cardColor/50 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
+              >
+                {message.text}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
         <div ref={messagesEndRef} />
       </div>
-
       <form
         className="flex items-center justify-center gap-2 p-3"
         onSubmit={handleFormSubmit}
       >
         <input
           type="text"
-          className="flex w-4/5 rounded-lg border border-gray-300 bg-indigo-50 p-3"
+          className="flex w-4/5 rounded-lg border border-gray-300 p-3"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Type a message..."

@@ -26,6 +26,8 @@ export const useSidebarData = (token: string) => {
 
   useEffect(() => {
     const fetchMostRecentSession = async () => {
+      if (!token) return;
+
       try {
         const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
         const config = {

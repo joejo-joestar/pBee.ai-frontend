@@ -68,7 +68,7 @@ const Register: React.FC = () => {
 
       setSuccess("Signed up successfully with Google!");
       setTimeout(() => {
-        navigate("/welcome");
+        navigate("/product/profile");
       }, 2000);
     } catch (error: any) {
       console.error("Google sign up failed:", error);
@@ -81,9 +81,9 @@ const Register: React.FC = () => {
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] text-white">
       <div className="flex flex-col items-center">
-        <h1 className="mb-5 text-4xl">Placard</h1>
+        <h1 className="mb-5 text-6xl">pBee.ai</h1>
         <div className="w-full max-w-md rounded-lg bg-white bg-opacity-10 p-8 text-center shadow-lg">
-          <h2 className="mb-3 text-2xl">Create your account</h2>
+          <h2 className="mb-3 text-2xl">Create your pBee.ai account</h2>
           <p>
             Already have an account?{" "}
             <Link to="/login" className="text-[#6c63ff] hover:underline">

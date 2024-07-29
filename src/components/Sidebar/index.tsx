@@ -15,9 +15,13 @@ const Sidebar: FC = () => {
   const [token, setToken] = useState<string>("");
 
   useEffect(() => {
-    if (currentUser) {
-      currentUser.getIdToken().then(setToken);
-    }
+    const fetchToken = async () => {
+      if (currentUser) {
+        const token = await currentUser.getIdToken();
+        setToken(token);
+      }
+    };
+    fetchToken();
   }, [currentUser]);
 
   const sidebarData = useSidebarData(token);
@@ -53,9 +57,9 @@ const Sidebar: FC = () => {
             <Separator />
 
             {/* TODO: Display Favorites */}
-            <div>
+            {/* <div>
               <div className="px-1 font-bold">Favorites</div>
-            </div>
+            </div> */}
           </div>
 
           {/* Profile Section */}
@@ -64,7 +68,9 @@ const Sidebar: FC = () => {
             className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-300 bg-cardColor/50 p-2 transition hover:bg-cardColor/80"
           >
             <div className="flex flex-col items-start">
-              <span className="text-sm">User Name</span>
+              <span className="text-sm">
+                {currentUser?.displayName || "Not available"}
+              </span>
               <span className="text-xs text-gray-300">Enterprise</span>
             </div>
             <div className="cursor-pointer">

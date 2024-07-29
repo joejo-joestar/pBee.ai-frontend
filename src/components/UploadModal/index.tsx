@@ -17,6 +17,7 @@ import HeaderFontSection from "./HeaderFontSection";
 import TextFontSection from "./TextFontSection";
 import ColorPickerSection from "./ColorPickerSection";
 import CollectionNameField from "./CollectionNameField";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Props = {
   isVisible: boolean;
@@ -26,6 +27,7 @@ type Props = {
 const UploadModal = ({ isVisible, onClose }: Props) => {
   if (!isVisible) return null;
   const [uploadProgress, setUploadProgress] = useState(0);
+  const { currentUser } = useAuth(); // Get currentUser from useAuth
 
   const handleProgress = (progress: number) => {
     setUploadProgress(progress);
@@ -81,6 +83,7 @@ const UploadModal = ({ isVisible, onClose }: Props) => {
             actions,
             onClose,
             handleProgress,
+            currentUser, // Pass currentUser here
           );
 
           handleSubmit();

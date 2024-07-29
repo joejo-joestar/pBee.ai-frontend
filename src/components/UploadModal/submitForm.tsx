@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FormikHelpers } from "formik";
-import { useAuth } from "@/contexts/AuthContext";
+import { User } from "firebase/auth"; // Import the User type from Firebase
 
 export function submitForm(
   formData: FormData,
@@ -13,11 +13,10 @@ export function submitForm(
     collectionsName: string;
   }>,
   onClose: () => void,
-  onProgress: (progress: number) => void, // Add the progress callback
+  onProgress: (progress: number) => void,
+  currentUser: User | null, // Accept currentUser as a parameter
 ) {
   return async () => {
-    const { currentUser } = useAuth(); // Get the current user from AuthContext
-
     if (!currentUser) {
       console.error("User not authenticated");
       actions.setSubmitting(false); // Reset form submission state
@@ -27,25 +26,24 @@ export function submitForm(
     try {
       const token = await currentUser.getIdToken(); // Get the token
 
-      const response = await axios.post(
-        "https://firm-gently-ladybird.ngrok-free.app/api/files/uploadCollection",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Use dynamic token here
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            if (progressEvent.total !== undefined) {
-              // Calculate and call the progress callback
-              const percentCompleted = Math.round(
-                (progressEvent.loaded * 100) / progressEvent.total,
-              );
-              onProgress(percentCompleted);
-            }
-          },
+      const url = `https://firm-gently-ladybird.ngrok-free.app/api/files/uploadCollection`;
+
+      const response = await axios.post(url, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Use dynamic token here
+          "Content-Type": "multipart/form-data",
+          "ngrok-skip-browser-warning": "true",
         },
-      );
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total !== undefined) {
+            // Calculate and call the progress callback
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total,
+            );
+            onProgress(percentCompleted);
+          }
+        },
+      });
 
       // Check if the request was successful
       if (response.status === 201) {

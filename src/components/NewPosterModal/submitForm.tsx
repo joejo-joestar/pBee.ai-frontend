@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FormikHelpers } from "formik";
-import { useAuth } from "@/contexts/AuthContext";
+import { User } from 'firebase/auth';
 
 export async function submitForm(
   jsonData: {
@@ -17,9 +17,8 @@ export async function submitForm(
   }>,
   onClose: () => void,
   navigate: (path: string) => void,
+  currentUser: User | null
 ) {
-  const { currentUser } = useAuth();
-
   if (!currentUser) {
     console.error("User is not authenticated");
     actions.setSubmitting(false);
@@ -46,27 +45,25 @@ export async function submitForm(
       const { sessionId, userId, ...rest } = response.data;
       console.log("Form submission successful!");
 
-      // TODO: Testing
       console.log("Received data:", {
         sessionId,
         userId,
         ...rest,
       });
 
-      actions.setSubmitting(false); // Reset form submission state
+      actions.setSubmitting(false);
       onClose();
-      navigate(`chat/${sessionId}`); // Navigate to the chat page using sessionId
+      navigate(`chat/${sessionId}`);
     } else {
       console.error("Error submitting form: ", response.data);
-      actions.setSubmitting(false); // Reset form submission state
+      actions.setSubmitting(false);
     }
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      // Inspect the error response
       console.error("Error submitting form: ", error.response.data);
     } else {
       console.error("Error submitting form: ", error);
     }
-    actions.setSubmitting(false); // Reset form submission state
+    actions.setSubmitting(false);
   }
 }

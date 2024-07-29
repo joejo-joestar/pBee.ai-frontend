@@ -74,7 +74,7 @@ const Login: React.FC = () => {
       <div className="flex flex-col items-center">
         <h1 className="mb-5 text-6xl">pBee.ai</h1>
         <div className="w-96 rounded-lg bg-white bg-opacity-10 p-8 text-center shadow-lg">
-          <h2 className="mb-4 text-2xl">Sign in to Placard</h2>
+          <h2 className="mb-4 text-2xl">Sign in to pBee.ai</h2>
           <p className="mb-4">
             Don't have an account?{" "}
             <Link to="/register" className="text-[#6c63ff] hover:underline">

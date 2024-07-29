@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Canvas from "@/components/Canvas";
 import Chatbar from "@/components/Chatbar";
-import CanvasBar from "@/components/CanvasBar";
+// import CanvasBar from "@/components/CanvasBar";
 
 const ChatPage: React.FC = () => {
   const { sessionId } = useParams<{ sessionId?: string | undefined }>();
@@ -10,7 +10,7 @@ const ChatPage: React.FC = () => {
   return (
     <>
       <Canvas sessionId={sessionId} />
-      <CanvasBar sessionId={sessionId} />
+      {/* <CanvasBar sessionId={sessionId} /> */}
       <Chatbar sessionId={sessionId} />
     </>
   );

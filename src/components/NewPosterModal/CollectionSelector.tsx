@@ -32,6 +32,10 @@ const CollectionSelector = ({ setShowUploadModal }: Props) => {
                 placeholder="Collection Name"
                 name="collectionsName"
               >
+                <option key="none" value="">
+                  Select a Collection
+                </option>
+
                 <option key="default" value="default collection">
                   Continue Without a Collection
                 </option>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const fetchMessages = async (sessionId: string, token: string) => {
+const fetchMessages = async (sessionId: string | undefined, token: string) => {
   try {
     const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions/${sessionId}/messages`;
     const config = {

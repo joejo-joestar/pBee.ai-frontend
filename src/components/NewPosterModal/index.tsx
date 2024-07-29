@@ -12,6 +12,7 @@ import UploadModal from "../UploadModal";
 import { Separator } from "@/assets/Separator";
 import { useCollections } from "@/hooks/useCollections";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Props = { isVisible: boolean; onClose(): void };
 
@@ -21,7 +22,8 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
   const [showUploadModal, setShowUploadModal] = useState<boolean>(false);
   const [showNewPosterModal, setShowNewPosterModal] = useState<boolean>(true);
   const { fetchCollections } = useCollections();
-  const navigate = useNavigate(); // Hook used here
+  const navigate = useNavigate();
+  const { currentUser, loading } = useAuth(); // Access currentUser from AuthContext
 
   const handleCloseNewPosterModal = () => {
     setShowNewPosterModal(false);
@@ -38,6 +40,8 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
     setShowNewPosterModal(true);
     fetchCollections();
   };
+
+  if (loading) return <div>Loading...</div>; // Optional: Handle loading state
 
   return (
     <>
@@ -62,7 +66,6 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
               collectionsName: string().required(),
             })}
             onSubmit={(values, actions) => {
-              // Data to Submit
               const jsonData = {
                 tone: values.tone,
                 aspectRatio: values.aspectRatio,
@@ -70,8 +73,12 @@ const NewPosterModal = ({ isVisible, onClose }: Props) => {
                 collectionsName: values.collectionsName,
               };
 
-              // Pass navigate to submitForm
-              submitForm(jsonData, actions, onClose, navigate);
+              if (currentUser) {
+                submitForm(jsonData, actions, onClose, navigate, currentUser);
+              } else {
+                console.error("User is not authenticated");
+                actions.setSubmitting(false);
+              }
             }}
           >
             {({ values, setValues, isValid, isSubmitting, resetForm }) => (

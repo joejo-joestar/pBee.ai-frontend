@@ -20,6 +20,7 @@ export const useCollections = () => {
     setLoading(true);
     try {
       const token = await currentUser.getIdToken(); // Get the token
+      // const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVpZCI6IjYwZDVmOWI5YzJmNDJiMDAxYzNlM2Y5NiJ9LCJpYXQiOjE3MjIwNjM4ODgsImV4cCI6MTcyMjA2NzQ4OH0.C2BMp5fuwps6qBWwFWcT5AxhbiFYQU_ksHNfW_8zwXE`; // Get the token
       const url = `https://firm-gently-ladybird.ngrok-free.app/api/files/collections/logos`;
       const config = {
         headers: {

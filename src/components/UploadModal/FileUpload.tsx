@@ -42,11 +42,12 @@ const ImageUpload = ({ name, image, font, progress }: Props) => {
   const accept: { [key: string]: string[] } = {};
   if (image) {
     accept["image/png"] = [".png"];
-    accept["image/svg+xml"] = [".svg"];
+    accept["image/jpg"] = [".jpg"];
+    // accept["image/svg+xml"] = [".svg"];
   }
   if (font) {
     accept["font/ttf"] = [".ttf"];
-    accept["font/otf"] = [".otf"];
+    // accept["font/otf"] = [".otf"];
   }
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
