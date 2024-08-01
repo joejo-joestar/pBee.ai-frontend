@@ -13,9 +13,13 @@ import Register from "@/pages/Register";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ResetPassword from "@/pages/Login/ResetPassword";
 import PrivateRoute from "@/components/PrivateRoute";
+import Pricing from "@/pages/Pricing";
+import Team from "@/pages/Team";
 
 export enum Routes {
   BASE = "/",
+  PRICING = "/pricing",
+  TEAM = "/team",
   LOGIN = "/login",
   REGISTER = "/register",
   RESET_PASSWORD = "/reset-password",
@@ -37,6 +41,14 @@ const router = createBrowserRouter([
       </>
     ),
     errorElement: <ErrorPage />,
+  },
+  {
+    path: Routes.PRICING,
+    element: <Pricing />,
+  },
+  {
+    path: Routes.TEAM,
+    element: <Team />,
   },
   {
     path: Routes.LOGIN,
@@ -86,7 +98,7 @@ const router = createBrowserRouter([
 const BaseRoute = () => {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </AuthProvider>
   );
 };

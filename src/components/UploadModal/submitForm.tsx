@@ -24,13 +24,12 @@ export function submitForm(
     }
 
     try {
-      const token = await currentUser.getIdToken(); // Get the token
-
+      const token = await currentUser.getIdToken();
       const url = `https://firm-gently-ladybird.ngrok-free.app/api/files/uploadCollection`;
 
       const response = await axios.post(url, formData, {
         headers: {
-          Authorization: `Bearer ${token}`, // Use dynamic token here
+          Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
           "ngrok-skip-browser-warning": "true",
         },

@@ -16,12 +16,7 @@ const postMessage = async (
     };
 
     const response = await axios.post(
-      url,
-      {
-        sessionId: sessionId,
-        content: content,
-      },
-      config,
+      url, { sessionId: sessionId, content: content }, config,
     );
     return response.data.content;
   } catch (error) {

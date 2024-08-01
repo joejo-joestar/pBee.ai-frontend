@@ -3,21 +3,25 @@ import FooterColumn from "./FooterColumn";
 type Props = {};
 
 const FooterCard = ({}: Props) => (
-  <div className="border-cardColor shadow-cardGlowEffect bg-CardColor/5 flex justify-between gap-16 rounded-xl border border-solid p-16">
-    <FooterColumn title="Placard" links={[]} isLogoColumn={true} />
+  <div className="bg-CardColor/5 flex justify-between gap-16 rounded-xl border border-solid border-cardColor p-16 shadow-cardGlowEffect">
+    <FooterColumn title="pBee.ai" isLogoColumn={true} />
     <div className="flex flex-row justify-evenly gap-16">
       <div className="flex gap-16">
         <FooterColumn
-          title="Placeholder"
-          links={["Placeholder", "Placeholder", "Placeholder"]}
+          title="Product"
+          // links={["Placeholder"]}
         />
         <FooterColumn
-          title="Placeholder"
-          links={["Placeholder", "Placeholder", "Placeholder"]}
+          title="Pricing"
+          // links={["Placeholder"]}
         />
         <FooterColumn
-          title="Placeholder"
-          links={["Placeholder", "Placeholder", "Placeholder"]}
+          title="Company"
+          // links={["Placeholder"]}
+        />
+        <FooterColumn
+          title="Register"
+          // links={["Placeholder"]}
         />
       </div>
     </div>

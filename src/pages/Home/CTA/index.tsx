@@ -7,7 +7,7 @@ type Props = {};
 const CTA = ({}: Props) => {
   return (
     <section
-      id="cta"
+      id="contact"
       className="h-full select-none place-content-center gap-16 bg-ctaGradient py-10"
     >
       <div className="flex flex-col items-center justify-center gap-5">

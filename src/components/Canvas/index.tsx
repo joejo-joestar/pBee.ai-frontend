@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import Spinner from "../shared/Spinner";
+import Poster from "@/assets/poster.svg";
 
 type Props = {
   sessionId?: string;
@@ -29,6 +30,7 @@ const Canvas = ({ sessionId }: Props) => {
         const response = await axios.get(url, config);
         const poster = response.data.poster;
 
+        setSvgData(Poster);
         if (poster.status === "active") {
           setSvgData(poster.posterSvg);
           setLoading(false);
@@ -43,7 +45,8 @@ const Canvas = ({ sessionId }: Props) => {
       if (currentUser) {
         const token = await currentUser.getIdToken();
         interval = setInterval(() => fetchSvgData(token), 120000); // Poll every 2 minutes
-        fetchSvgData(token); // TODO: Delete this line once you fix the.
+        fetchSvgData(token);
+        // TODO: Delete this line once sockets work.
       } else {
         console.error("User not authenticated 🔥");
       }
@@ -63,9 +66,15 @@ const Canvas = ({ sessionId }: Props) => {
           <Spinner style={"size-32"} />
         </div>
       ) : (
+        // NOTE: Debugging
+        // <img
+        //   className="flex w-full max-w-[512px] items-center justify-center"
+        //   src={Poster}
+        //   alt="Poster"
+        // />
         <div
           className="flex w-full max-w-[512px] items-center justify-center"
-          dangerouslySetInnerHTML={{ __html: svgData || "" }}
+          dangerouslySetInnerHTML={{ __html: Poster || "" }}
         />
       )}
     </div>

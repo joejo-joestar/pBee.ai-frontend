@@ -6,7 +6,7 @@ type Props = {};
 // TODO: finish
 const Cards = ({}: Props) => {
   return (
-    <div className="max-h-[420px] place-content-center overflow-hidden">
+    <div className="max-h-[500px] place-content-center overflow-hidden">
       {/* Brick Layout */}
       <div className="relative -left-1/4 flex w-[2500px] flex-wrap justify-center gap-4">
         {/* QuoteCards */}

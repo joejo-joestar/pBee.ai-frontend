@@ -9,7 +9,7 @@ type Props = {
 const Card = ({ quote, profileImg, author, designation }: Props) => {
   return (
     <div
-      className={`font-body flex h-[200px] max-w-[400px] flex-col rounded-xl border border-cardColor bg-cardColor/5 p-5 shadow-lg backdrop-blur`}
+      className={`font-body justify-between flex h-[215px] max-w-[400px] flex-col rounded-xl border border-cardColor bg-cardColor/5 p-5 shadow-lg backdrop-blur`}
     >
       <p>{quote}</p>
       <div className="mt-5 flex flex-row">

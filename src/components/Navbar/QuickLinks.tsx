@@ -13,7 +13,7 @@ const QuickLinks = ({ style, selectedPage }: Props) => {
       <ALink page={"Product"} selectedPage={selectedPage} />
       <PLink page={"Pricing"} selectedPage={selectedPage} />
       <ALink page={"Company"} selectedPage={selectedPage} />
-      <PLink page={"Contact"} selectedPage={selectedPage} />
+      <ALink page={"Contact"} selectedPage={selectedPage} />
     </div>
   );
 };

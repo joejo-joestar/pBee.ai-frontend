@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FormikHelpers } from "formik";
-import { User } from 'firebase/auth';
+import { User } from "firebase/auth";
 
 export async function submitForm(
   jsonData: {
@@ -17,7 +17,7 @@ export async function submitForm(
   }>,
   onClose: () => void,
   navigate: (path: string) => void,
-  currentUser: User | null
+  currentUser: User | null,
 ) {
   if (!currentUser) {
     console.error("User is not authenticated");
@@ -26,6 +26,7 @@ export async function submitForm(
   }
 
   try {
+    console.log(jsonData);
     const token = await currentUser.getIdToken();
     const url = `https://outgoing-termite-roughly.ngrok-free.app/api/chat/sessions`;
     const config = {
@@ -36,8 +37,6 @@ export async function submitForm(
         "ngrok-skip-browser-warning": "true",
       },
     };
-
-    console.log(jsonData);
 
     const response = await axios.post(url, jsonData, config);
 

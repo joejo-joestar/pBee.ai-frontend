@@ -35,29 +35,22 @@ const Team = ({}: Props) => {
       />
       <section
         id="Team"
-        className="font-display h-full select-none place-content-center gap-16 bg-moreAboutUsGradient py-10"
+        className="h-full select-none place-content-center gap-16 bg-moreAboutUsGradient py-10 font-display"
       >
         <div className="mt-40 p-8 text-center">
           <MainHeaderText>About Us</MainHeaderText>
-          <p className="font-body mt-5 text-2xl">
+          <p className="mt-5 font-body text-2xl">
             Our goal is to make powerful marketing tools accessible <br /> and
             easy to use for businesses.
           </p>
         </div>
         <div className="ml-[230px] flex w-1/2 flex-col p-16">
-          <h1 className="text-display text-5xl font-bold">
-            Simplifying technology to the <br /> world by providing a one-stop{" "}
-            <br /> digital ecosystem
+          <h1 className="text-display text-4xl font-bold">
+            Simplifying technology to the world by providing a one-stop digital
+            ecosystem
           </h1>
-          <p className="font-body mt-3 pr-5 text-justify text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          {/* <p className="mt-3 pr-5 text-justify font-body text-lg"> */}
+          {/* </p> */}
         </div>
         <MoreInfo />
       </section>
