@@ -10,7 +10,7 @@ type Props = {
 
 const Canvas = ({ sessionId }: Props) => {
   const { currentUser, loading: authLoading } = useAuth();
-  const [svgData, setSvgData] = useState<string | null>(null);
+  const [_svgData, setSvgData] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
