@@ -10,13 +10,19 @@ This repository is to store the static files for the PBee.ai website.
 - [Framer](https://www.framer.com/)
 - [React Router Dom](https://reactrouter.com/en/main/start/tutorial#adding-a-router)
 - [Tailwindcss](https://tailwindcss.com/docs/guides/vite)
+- [Axios](https://github.com/axios/axios)
+- [Firebase](https://firebase.google.com/docs/web/setup)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Formik](https://formik.org/docs/overview)
+- [yup](https://github.com/jquense/yup)
+  [(in context with formik)](https://formik.org/docs/guides/validation)
 - [React-Dropzone](https://react-dropzone.js.org/)
+- [React-Icons](https://www.npmjs.com/package/react-icons)
+- [Socket.IO](https://socket.io/docs/v4/client-installation/)
 
 ## Landing Page
 ###  Hero Page
-⚠️(Made in Framer)⚠️
+⚠️(Remade in [Framer](https://organic-opportunities-016295.framer.app/))⚠️
 - [x] Navbar
 - [x] Home
 - [x] Features
@@ -28,38 +34,45 @@ This repository is to store the static files for the PBee.ai website.
 - [x] Footer
 
 ### Get Started Page
-- [ ] Login Page
-  - [ ] Credentials
-  - [ ] Sign In using Email (?)
-- [ ] Sign Up Page
+- [x] Login Page
+  - [x] Credentials
+  - [x] Sign In using Email (?)
+- [x] Sign Up Page
 - [x] Pricing
 
-## Product
-- [ ] Account Settings Page
+## App
+- [x] Account Dashboard
 - [x] Left Sidebar
-  - [ ] History
+  - [x] History
   - [ ] Favorites
-- [ ] Poster Canvas (Design Page)
+- [x] Poster Canvas (Design Page)
   - [x] Customize Modal (New Poster)
   - [ ] Menu Bar
-- [ ] Collections Page
+- [x] Collections Page
   - [x] Upload Modal
-  - [ ] Progress Bar
-  - [ ] Assets Modal
+  - [x] Progress Bar
+  - [x] Assets Modal
 - [ ] Exporting Modal
   <!-- - [ ] Share -->
 
 ## Using this repo
 
-creating react project (only for creating project)
+**Creating react project (only for creating project)**
 ```bash
 npm create vite@latest
 
-npm install
+npm i
 npm cd # [project name]
 ```
 
-installing other dependencies
+**Modules, Libraries and Dependencies**
+
+☝️ **Note**: this command is only required when cloning this project
+
+```bash
+npm i
+```
+
 ```bash
 # React-Router
 npm install react-router-dom
@@ -67,14 +80,24 @@ npm install react-router-dom
 # React-Redux
 npm install react-redux @reduxjs/toolkit
 
-# Framer
+# Framer-Motion
 npm install framer-motion
 
-# React-Color
-npm install react-color
+# Axios
+npm install axios
 
-# Formik
+# Formik & yup
 npm install formik --save
+npm install yup --save
+
+# Firebase
+npm install firebase
+
+# react-icons
+npm install react-icons --save
+
+# Socket.IO
+npm install socket.io-client
 
 # Other Dependencies
 npm install -D @types/node
@@ -84,7 +107,7 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-Test Server
+**Running the Test Server**
 ```bash
 npm run dev
 ```
