@@ -78,6 +78,10 @@ npm cd # [project name]
 
 ☝️ **Note**: this command is only required when cloning this project
 
+<img src="public/pixels.jpg" alt="☝️😺" width="125">
+
+<br>
+
 ```bash
 npm i
 ```
