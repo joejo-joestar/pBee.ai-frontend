@@ -3,7 +3,6 @@ import quotes_list from "./quotesList";
 
 type Props = {};
 
-// TODO: finish
 const Cards = ({}: Props) => {
   return (
     <div className="max-h-[500px] place-content-center overflow-hidden">

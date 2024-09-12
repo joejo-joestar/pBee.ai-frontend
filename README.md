@@ -1,4 +1,11 @@
-# Veehive | PBee.ai Front-End Development
+# Veehive | PBee.ai Front-End
+
+***⚠️ pBee.ai is no longer a product offered by Veehive ⚠️***
+pBee.ai is a tool used to generate posters using the power of generative AI. It has a chat like interface where the user chats with a chatbot which in turn generates the poster to the desired specifications. The same chat is used to further change the poster to make all adjustments to fit the user’s needs.
+
+This tool can also store different brand assets of a business, like their logos, product images, typefaces, tones, color palettes in “collections,” from which certain elements of the poster will be sourced from.
+
+---
 
 This repository is to store the static files for the PBee.ai website.
 
@@ -44,7 +51,7 @@ This repository is to store the static files for the PBee.ai website.
 - [x] Account Dashboard
 - [x] Left Sidebar
   - [x] History
-  - [ ] Favorites
+  - [x] Favorites
 - [x] Poster Canvas (Design Page)
   - [x] Customize Modal (New Poster)
   - [ ] Menu Bar

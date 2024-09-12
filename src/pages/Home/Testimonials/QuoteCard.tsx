@@ -5,7 +5,6 @@ type Props = {
   designation: string;
 };
 
-// TODO: finish
 const Card = ({ quote, profileImg, author, designation }: Props) => {
   return (
     <div

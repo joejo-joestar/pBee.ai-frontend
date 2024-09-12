@@ -44,11 +44,21 @@ const router = createBrowserRouter([
   },
   {
     path: Routes.PRICING,
-    element: <Pricing />,
+    element: (
+      <>
+        <ScrollToTop />
+        <Pricing />
+      </>
+    ),
   },
   {
     path: Routes.TEAM,
-    element: <Team />,
+    element: (
+      <>
+        <ScrollToTop />
+        <Team />
+      </>
+    ),
   },
   {
     path: Routes.LOGIN,
