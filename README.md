@@ -1,4 +1,4 @@
-<h1 alighn="center">Veehive | PBee.ai Front-End</h1>
+<h1 align="center">Veehive | PBee.ai Front-End</h1>
 
 > [!NOTE]
 > pBee.ai is no longer a product offered by Veehive
