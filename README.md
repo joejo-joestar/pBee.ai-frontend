@@ -1,7 +1,7 @@
-# Veehive | PBee.ai Front-End
-<p align="center">
-  <b><em>⚠️ pBee.ai is no longer a product offered by Veehive ⚠️</em></b>
-</p>
+<h1 alighn="center">Veehive | PBee.ai Front-End</h1>
+
+> [!NOTE]
+> pBee.ai is no longer a product offered by Veehive
 
 pBee.ai is a tool used to generate posters using the power of generative AI. It has a chat interface where the user chats with a chatbot which in turn generates the poster to the desired specifications. The same chat is used to further change the poster to make all adjustments to fit the user’s needs.
 
@@ -31,7 +31,8 @@ This repository is to store the static files for the PBee.ai website.
 
 ## Landing Page
 ###  Hero Page
-⚠️(Remade in [Framer](https://organic-opportunities-016295.framer.app/))⚠️
+> [!NOTE]
+> (Remade in [Framer](https://organic-opportunities-016295.framer.app/))
 - [x] Navbar
 - [x] Home
 - [x] Features
@@ -76,9 +77,11 @@ npm cd # [project name]
 
 **Modules, Libraries and Dependencies**
 
-☝️ **Note**: this command is only required when cloning this project
+> [!NOTE]
+> <img src="public/pixels.jpg" alt="☝️😺" width="125">
+>
+> this command is only required when cloning this project
 
-<img src="public/pixels.jpg" alt="☝️😺" width="125">
 
 <br>
 
