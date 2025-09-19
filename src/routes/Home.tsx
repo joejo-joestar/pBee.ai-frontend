@@ -50,7 +50,11 @@ const Home = ({}: Props) => {
     </>
   ) : (
     <div className="flex h-full select-none flex-col place-content-center items-center justify-center gap-16 bg-ctaGradient p-10 text-center font-display text-2xl font-black opacity-75">
-      <img src="public/pixels.jpg" alt="nuh uh" className="max-w-xs" />
+      <img
+        src="https://raw.githubusercontent.com/joejo-joestar/pBee.ai-frontend/refs/heads/main/public/pixels.jpg"
+        alt="nuh uh"
+        className="max-w-xs"
+      />
       This website is only available on desktop screens.
       <br />I have a life of some sort :3
     </div>
